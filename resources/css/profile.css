@@ -188,7 +188,7 @@ img { display: block; max-width: 100%; }
 .about_title { font-weight: 700; font-size: clamp(2.6rem, 7vw, 8.4rem); line-height: .98; letter-spacing: -.03em; }
 /* 같은 Gmarket Sans 안에서 Bold(700) ↔ Light(300) 굵기 대비로 포인트 */
 .about_title em { font-style: normal; font-weight: 300; letter-spacing: -.03em; color: var(--red); }
-.about_lead { max-width: 22rem; padding-bottom: .8rem; font-family: "Pretendard Variable", "Pretendard", sans-serif; font-weight: 400; font-size: 1.0625rem; line-height: 1.75; color: var(--about-desc); }
+.about_lead { max-width: 22rem; padding-bottom: .8rem; font-weight: 400; font-size: 1.0625rem; line-height: 1.75; color: var(--about-desc); }
 
 /* 본문: 왼쪽 sticky(45%) + 오른쪽 스크롤(55%) */
 .about_body { display: grid; grid-template-columns: 45fr 55fr; padding: 0 var(--gut); }
@@ -210,13 +210,12 @@ img { display: block; max-width: 100%; }
 /* 문장: 화면 중앙에 가까울수록(--focus 0→1) 굵고 진해짐 */
 .about_text {
   --focus: 0;
-  font-family: "Pretendard Variable", "Pretendard", sans-serif;
   font-size: clamp(26px, 2.4vw, 40px); line-height: 1.4; letter-spacing: -.025em;
   font-weight: calc(var(--about-w-min) + (var(--about-w-max) - var(--about-w-min)) * var(--focus));
   font-variation-settings: "wght" calc(var(--about-w-min) + (var(--about-w-max) - var(--about-w-min)) * var(--focus));
   color: color-mix(in srgb, var(--about-ink) calc(var(--focus) * 100%), var(--about-dim));
 }
-.about_desc { margin-top: 1.8rem; max-width: 30rem; font-family: "Pretendard Variable", "Pretendard", sans-serif; font-weight: 400; font-size: clamp(16px, 1.05vw, 17px); line-height: 1.75; color: var(--about-desc); }
+.about_desc { margin-top: 1.8rem; max-width: 30rem;font-weight: 400; font-size: clamp(16px, 1.05vw, 17px); line-height: 1.75; color: var(--about-desc); }
 
 /* ================= 4. LIFE (가로 스크롤) ================= */
 .life { position: relative; background: var(--white); color: var(--ink); border-top: 1px solid rgba(17,17,17,.12); overflow: hidden; }
