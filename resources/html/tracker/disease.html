@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main bg-fade">
+      <header class="page-header">
+        <h1 class="page-title">질병정보 수정하기</h1>
+        <button class="icon-button" type="button" aria-label="닫기" onclick="location.href='./mypage.html'">
+          <img src="./public/icon-close.svg" alt="" />
+        </button>
+      </header>
+
+      <section class="info-card">
+        <h2 class="form-title">질병정보</h2>
+        <dl class="info-list">
+            <div class="info-row"><dt>참여 병원</dt><dd>구로 고대병원</dd></div>
+            <div class="info-row"><dt>질병</dt><dd>해당없음</dd></div>
+            <div class="info-row"><dt>장애유형</dt><dd>해당없음</dd></div>
+            <div class="info-row"><dt>장애중증도</dt><dd>해당없음</dd></div>
+        </dl>
+      </section>
+
+      <section class="panel-section">
+        <form data-confirm="#confirmPop" data-confirm-next="./mypage.html">
+          <h2 class="form-title">질병정보 수정</h2>
+          <div class="form-rows">
+              <div class="form-row">
+                <label class="form-label" for="hospital">참여 병원</label>
+                <div class="field">
+                  <select id="hospital"><option>구로 고대병원</option><option>안암 고대병원</option><option>안산 고대병원</option></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="disease">질병</label>
+                <div class="field">
+                  <!-- 회원가입 개인 정보 등록 6단계 '과거병력'과 같은 선택지 -->
+                  <select id="disease"><option>해당없음</option><option>고혈압</option><option>당뇨병</option><option>고지혈증</option><option>심장병(심장질환)</option><option>뇌졸중</option><option>암</option><option>호흡기계질환</option><option>간질환</option><option>신장질환</option><option>갑상선질환</option><option>소화기계질환</option><option>관절염</option><option>기타</option></select>
+                </div>
+              </div>
+              <!-- 장애유형·장애중증도: 회원가입 개인 정보 등록 7·8단계와 같은 선택지 -->
+              <div class="form-row">
+                <label class="form-label" for="disability">장애유형</label>
+                <div class="field">
+                  <select id="disability"><option>해당없음</option><option>비장애인</option><option>지체장애인</option><option>뇌병변장애인</option><option>시각장애인</option><option>청각장애인</option><option>언어장애인</option><option>지적장애인</option><option>자폐성장애인</option><option>정신장애인</option><option>신장장애인</option><option>호흡기장애인</option><option>간장애인</option><option>안면장애인</option><option>장루·요루장애인</option><option>뇌전증장애인</option><option>기타</option></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="severity">장애중증도</label>
+                <div class="field">
+                  <select id="severity"><option>해당없음</option><option>중증(1-3등급)</option><option>경증(4-6등급)</option></select>
+                </div>
+              </div>
+          </div>
+          <button class="button square" type="submit">수정하기</button>
+        </form>
+      </section>
+
+      <nav class="tab-bar">
+        <button class="tab-button" type="button" onclick="location.href='./main-good.html'">
+          <span class="tab-icon"><img src="./public/tab-home-off.svg" alt="" /></span>
+          <span class="tab-name">홈</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./location.html'">
+          <span class="tab-icon"><img src="./public/tab-location-off.svg" alt="" /></span>
+          <span class="tab-name">위치 데이터</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./heatmap.html'">
+          <span class="tab-icon"><img src="./public/tab-heatmap-off.svg" alt="" /></span>
+          <span class="tab-name">히트맵</span>
+        </button>
+        <button class="tab-button on" type="button" onclick="location.href='./mypage.html'">
+          <span class="tab-icon"><img src="./public/tab-setting-on.svg" alt="" /></span>
+          <span class="tab-name">환경설정</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- 확인 팝업 (js/confirm.js) -->
+    <div class="pop_wrap" id="confirmPop" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <div class="popup-parent">
+        <div class="popup-text">
+          <p class="popup-title" id="confirmTitle">수정하시겠습니까?</p>
+        </div>
+        <div class="popup-buttons">
+          <button class="popup-button cancel" type="button">취소</button>
+          <button class="popup-button" type="button">확인</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/select.js"></script>
+    <script src="./js/confirm.js"></script>
+  </body>
+</html>

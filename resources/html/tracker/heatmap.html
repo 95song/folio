@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main">
+      <section class="map-view">
+        <div class="map-layer">
+          <img class="map-img" src="./public/map.png" alt="" />
+          <span class="heat-spot"></span>
+        </div>
+        <div class="map-search">
+          <div class="search-input" data-calendar>
+            <input type="text" placeholder="날짜 선택" readonly aria-haspopup="dialog" />
+            <img src="./public/icon-calendar.svg" alt="" />
+            <div class="calendar" role="dialog" aria-label="기간 선택"></div>
+          </div>
+          <button class="search-button" type="button">검색</button>
+        </div>
+      </section>
+
+      <nav class="tab-bar">
+        <button class="tab-button" type="button" onclick="location.href='./main-good.html'">
+          <span class="tab-icon"><img src="./public/tab-home-off.svg" alt="" /></span>
+          <span class="tab-name">홈</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./location.html'">
+          <span class="tab-icon"><img src="./public/tab-location-off.svg" alt="" /></span>
+          <span class="tab-name">위치 데이터</span>
+        </button>
+        <button class="tab-button on" type="button" onclick="location.href='./heatmap.html'">
+          <span class="tab-icon"><img src="./public/tab-heatmap-on.svg" alt="" /></span>
+          <span class="tab-name">히트맵</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./mypage.html'">
+          <span class="tab-icon"><img src="./public/tab-setting-off.svg" alt="" /></span>
+          <span class="tab-name">환경설정</span>
+        </button>
+      </nav>
+    </div>
+    <script src="./js/calendar.js"></script>
+  </body>
+</html>

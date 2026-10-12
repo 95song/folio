@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="끊임없이 새로운 꿈을 꾸며 발전하는 디자이너">
+<meta name="keywords" content="PortFolioㅣUX/UIㅣ디자인ㅣ뚠뚠">
+
+<title>PortFolio</title>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="resources/img/common/favicon.png" type="image/x-icon">
+
+<!-- 기본 css -->
+<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="resources/css/port-1.css">
+<link rel="stylesheet" type="text/css" href="resources/css/menu.css">
+<link rel="stylesheet" type="text/css" href="resources/css/jauery.fullpage.css">
+<link rel="stylesheet" href="resources/css/form.css">
+<link rel="stylesheet" type="text/css" href="resources/css/pad.css">
+<link rel="stylesheet" href="resources/css/mobile.css">
+<!-- Tracker 디자인 가이드 (.design-system) -->
+<link rel="stylesheet" href="resources/css/tracker-ds.css">
+<!-- 리플렛 상세 섹션 (.leaflet) -->
+<link rel="stylesheet" href="resources/css/port-6.css">
+
+<!-- 웹폰트 -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+<!-- 리플렛 표지 타이틀(.cover-title) 재현용 -->
+<link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="resources/js/common.js" defer></script>
+<script src="resources/js/port.js"></script>
+<!-- Tracker 디자인 가이드 (.design-system): 앱 스크립트 사본 + 가이드 동작 -->
+<script src="resources/js/tracker/select.js" defer></script>
+<script src="resources/js/tracker/calendar.js" defer></script>
+<script src="resources/js/tracker/graph.js" defer></script>
+<script src="resources/js/tracker-ds.js" defer></script>
+<!-- 리플렛 상세 섹션 스크롤 연출 -->
+<script src="resources/js/port-6.js" defer></script>
+</head>
+<body class="main" style="background-color: #fff;">
+
+<!-- header 시작 -->
+<div class="cursor-follower"></div>
+
+<!-- .quick-nav 유리 굴절(liquid glass) 효과용 SVG 필터. 화면에는 그리지 않고 backdrop-filter에서 참조만 한다 -->
+<svg width="0" height="0" style="position:absolute; overflow:hidden;">
+    <filter id="quickNavGlass" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.009 0.012" numOctaves="2" seed="7" result="noise" />
+        <feGaussianBlur in="noise" stdDeviation="3" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="26" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+</svg>
+
+<!-- 하단 고정 퀵 내비게이션 (Figma: Frame 1 / Prev · 메뉴 · Next) -->
+<div class="quick-nav" id="quickNav">
+    <a href="#" class="quick-nav-side quick-nav-prev" data-nav="prev">
+        <span class="quick-nav-arrow quick-nav-arrow-left"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+        <span class="quick-nav-label">Prev</span>
+    </a>
+    <a href="portfolio.html" class="quick-nav-center">
+        <img src="resources/img/common/port-menu-icon.png" alt="메뉴">
+    </a>
+    <a href="#" class="quick-nav-side quick-nav-next" data-nav="next">
+        <span class="quick-nav-label">Next</span>
+        <span class="quick-nav-arrow quick-nav-arrow-right"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+    </a>
+</div>
+
+<header>
+    <!--  -->
+            <div class="navi">
+
+                 <h1 id="logo">
+                    <a >
+                    </a>
+                </h1>
+                 <div class="gnb"> 
+                    <ul>
+                        <li>
+                            
+                        </li>                                     
+                    </ul>
+    
+                </div>
+                
+                
+            </div>
+    
+        </header>
+                
+    
+    <!-- 네비게이션 바 -->
+                    
+        <div class="ham sitemap-open-btn btn">						
+             <span class="bar1"></span>
+             <span class="bar2"></span>
+             <span class="bar3"></span>
+        </div>
+    
+    <!-- 네비게이션 -->
+            
+        <div class="site_wrap">
+            <div class="site_map">
+                <div>
+                    <ul>
+                        <li class="sitemap_dep1">
+                            <a href="index.html">
+                                <span>HOME</span><span>HOME</span>
+                            </a>
+                        </li>
+                        <li class="sitemap_dep1">
+                            <a href="profile.html">
+                                <span>ABOUT</span><span>ABOUT</span>
+                            </a>
+                        </li>
+                        <li class="sitemap_dep1">
+                            <a href="portfolio.html">
+                                <span>Portfolio</span><span>Portfolio</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <h6> © 2026 EUNSUN .ALL RIGHTS RESERVED</h6>
+                </div>
+            </div>
+        </div>
+        <div class="site_bg"></div>
+
+    
+    <!-- header 끝 -->
+
+<div class="all_wrap page-content">
+	
+
+	<div id="fullpage">
+
+		<section class="section" id="port">
+			<div class="portfolio_wrap">
+        <div class="port-main">
+            <img class="port-3-bg" src="resources/img/port/port-5-bg.png">
+        </div>
+                
+		  </div>
+    </section>
+
+        <section class="section">
+            <div class="overview">
+                <div class="overview-top">
+                    <div class="port-tittle-gray">Overview</div>
+                    <div class="port-title port-6">해마다 새로 쓰는 연하장 디자인</div>
+                    <div class="port-coment">연하장은 한 해의 첫 연락입니다. 받는 사람이 그해의 분위기를 느끼도록, 매년 띠와 색에서 출발했습니다. 2024년은 친근한 캐릭터, 2025년은 서정적인 풍경, 2026년은 격식 있는 전통 문양으로 풀었고, 소나무와 복주머니 같은 요소는 이어 써서 세 장이 한 시리즈로 읽히게 했습니다.
+                    </div>
+                </div>
+                <div class="overview-bottom">
+                    <div class="overview-left">
+                        <div class="port-graph">
+                            <div class="port-t">기간</div>
+                            <div class="port-day">
+                                <div>2022. 07 ~ 2022. 08</div>
+                            </div>
+                        </div>
+                        <div class="port-graph">
+                            <div class="port-t">기획</div>
+                            <div class="graph-div">
+                                <div class="port-percent per-100"></div>
+                                <div>100%</div>
+                            </div>
+                        </div>
+                        <div class="port-graph">
+                            <div class="port-t">디자인</div>
+                            <div class="graph-div">
+                                <div class="port-percent per-100"></div>
+                                <div>100%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="ending-curtain">
+            <div class="ending-post">
+                <div>
+                    <img src="resources/img/port/school_end.png">
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<div class="outro-spacer" aria-hidden="true"></div>
+
+<section class="section" id="outro">
+    <div class="goodbye-section">
+        <div class="goodbye-group">
+            <div class="goodbye-left">
+                <div class="goodbye-bold">
+                    <span>Ctrl + S.</span>
+                    <span>Portfolio saved.</span>
+                </div>
+                <div class="goodbye-thin">Produced by Song Eunsun</div>
+            </div>
+            <div class="goodbye-right">
+                <a class="goodbye-box" data-nav="prev" href="#">
+                    <div class="goodbye-box-label">
+                        <span>Prev Project</span>
+                        <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+                    </div>
+                    <div class="prev-img"><img src="" alt=""></div>
+                </a>
+                <a class="goodbye-box" data-nav="next" href="#">
+                    <div class="goodbye-box-label">
+                        <span>Next Project</span>
+                        <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+                    </div>
+                    <div class="prev-img"><img src="" alt=""></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="port-footer">
+        <div class="blob-words"
+             data-trigger=".outro-spacer"
+             data-words="UX/UI,반응형,디자인시스템,Portfolio"
+             data-bg="#ffffff" data-fill="#ffffff" data-border="#111111" data-text="#111111"
+             data-font="Inter" data-unit="5" data-seed="7"
+             data-scale="1" data-speed="1" data-blobbiness="1" data-wobble="1">
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>    

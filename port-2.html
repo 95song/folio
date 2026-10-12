@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="끊임없이 새로운 꿈을 꾸며 발전하는 디자이너">
+<meta name="keywords" content="PortFolioㅣUX/UIㅣ디자인ㅣ뚠뚠">
+
+<title>PortFolio</title>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="resources/img/common/favicon.png" type="image/x-icon">
+
+<!-- 기본 css -->
+<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="resources/css/port-1.css">
+<link rel="stylesheet" type="text/css" href="resources/css/menu.css">
+<link rel="stylesheet" type="text/css" href="resources/css/jauery.fullpage.css">
+<link rel="stylesheet" href="resources/css/form.css">
+<link rel="stylesheet" type="text/css" href="resources/css/pad.css">
+<link rel="stylesheet" href="resources/css/mobile.css">
+<!-- EHDB DID 디자인 시스템 -->
+<link rel="stylesheet" href="resources/css/ehdb-ds.css">
+<!-- 화면 뷰어 ("바로가기" 버튼) -->
+<link rel="stylesheet" href="resources/css/app-viewer.css">
+
+
+<!-- 웹폰트 -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<!-- .port-footer의 blob-words 애니메이션 전용 폰트 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="resources/js/common.js" defer></script>
+<script src="resources/js/port.js"></script>
+<script src="resources/js/ehdb-ds.js"></script>
+<script src="resources/js/app-viewer.js" defer></script>
+
+</head>
+<body class="main" style="background-color: #fff;" data-project-id="port-2">
+
+<!-- header 시작 -->
+<div class="cursor-follower"></div>
+
+<!-- .quick-nav 유리 굴절(liquid glass) 효과용 SVG 필터. 화면에는 그리지 않고 backdrop-filter에서 참조만 한다 -->
+<svg width="0" height="0" style="position:absolute; overflow:hidden;">
+    <filter id="quickNavGlass" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.009 0.012" numOctaves="2" seed="7" result="noise" />아 이제 bold-word.js port.js
+        <feGaussianBlur in="noise" stdDeviation="3" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="26" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+</svg>
+
+<!-- 하단 고정 퀵 내비게이션 (Figma: Frame 1 / Prev · 메뉴 · Next) -->
+<div class="quick-nav" id="quickNav">
+    <a href="#" class="quick-nav-side quick-nav-prev" data-nav="prev">
+        <span class="quick-nav-arrow quick-nav-arrow-left"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+        <span class="quick-nav-label">Prev</span>
+    </a>
+    <a href="portfolio.html" class="quick-nav-center">
+        <img src="resources/img/common/port-menu-icon.png" alt="메뉴">
+    </a>
+    <a href="#" class="quick-nav-side quick-nav-next" data-nav="next">
+        <span class="quick-nav-label">Next</span>
+        <span class="quick-nav-arrow quick-nav-arrow-right"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+    </a>
+</div>
+
+
+<header>
+    <!--  -->
+            <div class="navi">
+
+                 <h1 id="logo">
+                    <a >
+                    </a>
+                </h1>
+                 <div class="gnb"> 
+                    <ul>
+                        <li>
+                            
+                        </li>                                     
+                    </ul>
+    
+                </div>
+                
+                
+            </div>
+    
+        </header>
+                
+    
+    <!-- 네비게이션 바 -->
+                    
+        <div class="ham sitemap-open-btn btn">	
+             <span class="bar1"></span>
+             <span class="bar2"></span>
+             <span class="bar3"></span>
+        </div>
+    
+    <!-- 네비게이션 -->
+            
+        <div class="site_wrap">
+            <div class="site_map">
+                <div>
+                    <ul>
+                        <li class="sitemap_dep1">
+                            <a href="index.html">
+                                <span>HOME</span><span>HOME</span>
+                            </a>
+                        </li>
+                        <li class="sitemap_dep1">
+                            <a href="profile.html">
+                                <span>ABOUT</span><span>ABOUT</span>
+                            </a>
+                        </li>
+                        <li class="sitemap_dep1">
+                            <a href="portfolio.html">
+                                <span>Portfolio</span><span>Portfolio</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <h6> © 2026 EUNSUN .ALL RIGHTS RESERVED</h6>
+                </div>
+            </div>
+        </div>
+        <div class="site_bg"></div>
+
+    
+    <!-- header 끝 -->
+
+<div class="all_wrap page-content">
+
+
+	<div id="fullpage">
+
+		<section class="section" id="port">
+			<div class="portfolio_wrap">
+                <div class="port-main">
+                    <img class="port-3-bg" src="resources/img/port/port-2-bg.png">
+                </div>
+                
+		    </div>
+        </section>
+
+        <section class="section">
+            <div class="overview">
+                <div class="port-top">
+                    <div class="port-tittle-gray">Overview</div>
+                    <div class="port-title port-2">환경성 질환 예방센터 DID</div>
+                    <div class="port-coment">
+                        환경성질환예방센터에서 시범 운영하고 있는 어린이 실회활동공간 대기오염 데이터 공유서비스를 일부 제주도의 초등학교 대상으로 환경보건센터와 연계하는 서비스 프로젝트입니다.
+                        2023년, 경기환경에너지 진흥원에서부터 시작된 프로젝트로 각 기관과 지역의 다른 특색과 요구 조건에 맞춰 다양한 레이아웃 디자인이 있습니다.
+                    </div>
+                </div>
+                <div class="overview-bottom">
+                    <div class="overview-left">
+                        <div class="port-graph">
+                            <div class="port-t">기간</div>
+                            <div class="port-day">
+                                <div>2024. 11 ~ 2024. 12</div>
+                            </div>
+                        </div>
+                        <div class="port-graph">
+                            <div class="port-t">디자인</div>
+                            <div class="graph-div">
+                                <div class="port-percent per-100 port-3"></div>
+                                <div>100%</div>
+                            </div>
+                        </div>
+                        <div class="port-graph">
+                            <div class="port-t">퍼블리싱</div>
+                            <div class="graph-div">
+                                <div class="port-percent per-100 port-3"></div>
+                                <div>100%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overview-right">
+                        <!-- 누르면 1376 × 1032 프레임 안에서 실제 화면이 열린다 (resources/js/app-viewer.js) -->
+                        <button class="direct-btn" type="button" data-app-viewer="resources/jeju-did/index.html" data-app-title="제주 DID"
+                                data-app-width="1376" data-app-height="1032" data-app-radius="28" data-app-mobile="fit">홈페이지 바로가기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="design-concept">
+                <div class="port-top">
+                    <div class="port-tittle-gray">Task & Goal</div>
+                    <div class="port-title">DESGIN CONCEPT</div>
+                </div>
+
+                <!-- 붓으로 그린 듯한 원: 바깥 원과 살짝 어긋난 안쪽 원을 evenodd로 뚫어
+                     두께가 들쭉날쭉한 링을 만들고, 거친 가장자리 필터를 한 번 더 씌운다 -->
+                <svg width="0" height="0" style="position:absolute; overflow:hidden;" aria-hidden="true">
+                    <defs>
+                        <filter id="brushEdge" x="-5%" y="-5%" width="110%" height="110%">
+                            <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" seed="3" result="grain" />
+                            <feDisplacementMap in="SourceGraphic" in2="grain" scale="1.6" xChannelSelector="R" yChannelSelector="G" />
+                        </filter>
+                        <symbol id="brushRing" viewBox="0 0 200 200">
+                            <path fill-rule="evenodd" fill="currentColor" filter="url(#brushEdge)"
+                                  d="M100 3 C153.6 2.4 197.4 46.2 197 100.4 C196.6 154 153.2 197.2 99.4 197 C45.8 196.8 2.6 153.4 3 99.6 C3.4 46 46.6 3.6 100 3 Z
+                                     M101.2 5.4 C49.6 5.2 6.2 47.4 6.4 99.8 C6.6 152.2 48.6 194.6 100.4 194.2 C152.4 193.8 195 152.6 194.2 100.6 C193.4 48.4 152.4 5.6 101.2 5.4 Z" />
+                        </symbol>
+                    </defs>
+                </svg>
+
+                <ul class="concept-list">
+                    <li class="concept-item">
+                        <div class="concept-circle" style="--ring-rotate: 0deg;">
+                            <svg class="concept-ring" aria-hidden="true"><use href="#brushRing" /></svg>
+                            <span class="concept-name">Adaptive</span>
+                        </div>
+                        <p class="concept-desc">요구사항이 달라도 구조가 유연하게 휘어지며 대응합니다.</p>
+                    </li>
+                    <li class="concept-item">
+                        <div class="concept-circle" style="--ring-rotate: 130deg;">
+                            <svg class="concept-ring" aria-hidden="true"><use href="#brushRing" /></svg>
+                            <span class="concept-name">Modular</span>
+                        </div>
+                        <p class="concept-desc">모듈형으로 정보 블록을 조합해 기관별 원하는 화면을 구성합니다.</p>
+                    </li>
+                    <li class="concept-item">
+                        <div class="concept-circle" style="--ring-rotate: 250deg;">
+                            <svg class="concept-ring" aria-hidden="true"><use href="#brushRing" /></svg>
+                            <span class="concept-name">Clarity</span>
+                        </div>
+                        <p class="concept-desc">어떤 레이아웃이든 정보가 명료하게 읽힙니다.</p>
+                    </li>
+                </ul>
+
+                <div class="concept-visual">
+                    <img src="resources/img/port/port-2-img.png" alt="">
+                    <span class="concept-badge">Design System</span>
+                </div>
+                <!-- EHDB DID 디자인 시스템 (스타일: resources/css/ehdb-ds.css / 동작: resources/js/ehdb-ds.js) -->
+                <div class="eds">
+
+                    <!-- Color -->
+                    <div class="eds-chapter" id="eds-color">
+                        <div class="eds-wrap">
+                            <div class="eds-head">
+                                <h2>Color</h2>
+                                <p>컬러는 장식이 아니라 등급 그 자체입니다. 상태 컬러 다섯 가지가 얼굴 아이콘, 원형 그래프, 범례 배경에 똑같이 쓰이고, 나머지 화면은 흰색과 반투명 글래스로만 구성해 멀리서 보더라도 상태 컬러가 가장 먼저 보이게 했습니다.</p>
+                            </div>
+
+                            <div class="eds-sub"><h3>Status · 대기 등급 컬러</h3><p>환경부 대기환경기준 · 단위 ㎍/㎥</p></div>
+                            <div class="eds-band" id="eds-band"></div>
+
+                            <div class="eds-sub"><h3>Base · 텍스트와 글래스</h3><p>배경 사진 위에 올라가는 요소</p></div>
+                            <div class="eds-base">
+                                <article class="eds-sw">
+                                    <div class="eds-sw-chip" style="background:#406689"></div>
+                                    <div class="eds-sw-body"><h4>Navy<button type="button" class="eds-copy" data-copy="#406689">#406689</button></h4><p>흰색 섹션 타이틀 pill 안의 텍스트. 화면에서 유일한 진한 색입니다.</p></div>
+                                </article>
+                                <article class="eds-sw">
+                                    <div class="eds-sw-chip" style="background:#FFFFFF; box-shadow: inset 0 0 0 1px #E4E4E4"></div>
+                                    <div class="eds-sw-body"><h4>White<button type="button" class="eds-copy" data-copy="#FFFFFF">#FFFFFF</button></h4><p>모든 수치·항목명 텍스트, 카드 테두리(0.2083vw), 섹션 타이틀 배경.</p></div>
+                                </article>
+                                <article class="eds-sw">
+                                    <div class="eds-sw-chip is-line" style="--c: rgba(255,255,255,.2)"></div>
+                                    <div class="eds-sw-body"><h4>Line 20%<button type="button" class="eds-copy" data-copy="#FFFFFF33">#FFFFFF33</button></h4><p>실내 측정 목록(반별 수치) 사이 구분선.</p></div>
+                                </article>
+                                <article class="eds-sw is-span">
+                                    <div class="eds-sw-chip is-glass" style="--c: rgba(255,255,255,.3); --b: 3px"></div>
+                                    <div class="eds-sw-body"><h4>Glass 30%<button type="button" class="eds-copy" data-copy="#FFFFFF4D">#FFFFFF4D</button></h4><p>모든 레이아웃의 카드·박스 배경. 하늘 사진이든 일러스트든 같은 투명도로 맞춰, 배경이 바뀌어도 카드 영역이 같은 밝기로 구분됩니다.</p></div>
+                                </article>
+                                <article class="eds-sw">
+                                    <div class="eds-sw-chip is-glass" style="--c: transparent; --b: 2px"></div>
+                                    <div class="eds-sw-body"><h4>Outline<button type="button" class="eds-copy" data-copy="#DDDDDD">#DDDDDD</button></h4><p>날씨정보 태그 테두리. 채우지 않은 보조 라벨에만 씁니다.</p></div>
+                                </article>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Typography -->
+                    <div class="eds-chapter" id="eds-type">
+                        <div class="eds-wrap">
+                            <div class="eds-head">
+                                <h2>Typography</h2>
+                                <p>서체는 Gmarket Sans 하나만 씁니다. 획이 굵고 자폭이 넓어 3~5m 거리에서도 숫자가 뭉개지지 않습니다. 크기는 모두 vw로 지정해 1920 화면이든 4K 화면이든 같은 비율로 보입니다.</p>
+                            </div>
+
+                            <div class="eds-sub"><h3>Typeface</h3><p>Light 300 · Medium 500 · Bold 700</p></div>
+                            <div class="eds-specimen">
+                                <div class="eds-glyph">
+                                    <div class="eds-glyph-big" style="font-weight:700">가Aa10</div>
+                                    <div class="eds-glyph-meta">
+                                        <div><strong>Gmarket Sans</strong><p class="eds-glyph-note">Bold 700 · 수치, 항목명, 헤더</p></div>
+                                        <div class="eds-weights" role="group" aria-label="굵기">
+                                            <button type="button" data-w="300" aria-pressed="false">Light</button>
+                                            <button type="button" data-w="500" aria-pressed="false">Medium</button>
+                                            <button type="button" data-w="700" aria-pressed="true">Bold</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="eds-charset">
+                                    <div><span>Light 300 · 날씨 큰 숫자</span><p class="w3">강우량 15mm · 최저 5 / 최고 12</p></div>
+                                    <div><span>Medium 500 · 날짜, 보조 라벨</span><p class="w5">08월 10일 오후 03:55 · 습도 · 대체로 맑음</p></div>
+                                    <div><span>Bold 700 · 수치, 항목명, 헤더</span><p class="w7">초미세먼지 농도 10㎍/㎥ PM2.5</p></div>
+                                </div>
+                            </div>
+
+                            <div class="eds-sub">
+                                <h3>Type Scale</h3>
+                                <div class="eds-res" role="group" aria-label="화면 너비">
+                                    <button type="button" data-res="1280" aria-pressed="false">1280</button>
+                                    <button type="button" data-res="1920" aria-pressed="true">1920</button>
+                                    <button type="button" data-res="3840" aria-pressed="false">3840</button>
+                                </div>
+                            </div>
+                            <div class="eds-scale-wrap">
+                                <table class="eds-scale">
+                                    <thead><tr><th>역할</th><th>vw</th><th>px</th><th>굵기</th><th>크기 비교</th><th>예시</th></tr></thead>
+                                    <tbody id="eds-scale"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Graph & Icon -->
+                    <div class="eds-chapter" id="eds-graph">
+                        <div class="eds-wrap">
+                            <div class="eds-head">
+                                <h2>Graph &amp; Icon</h2>
+                                <p>숫자를 읽지 않아도 상태를 알 수 있게 원형 그래프와 표정 아이콘을 함께 씁니다. 그래프의 바깥 선은 농도가 높을수록 길어지고, 안쪽 원과 얼굴은 등급 컬러로 바뀝니다.</p>
+                            </div>
+
+                            <div class="eds-sub"><h3>Ring Gauge · 직접 움직여 보기</h3></div>
+                            <div class="eds-gauge-box">
+                                <div class="eds-gauge-stage">
+                                    <div class="eds-gauge">
+                                        <svg viewBox="0 0 320 320" aria-hidden="true">
+                                            <circle class="track" cx="160" cy="160" r="133"></circle>
+                                            <circle class="arc" cx="160" cy="160" r="148"></circle>
+                                            <circle class="core" cx="160" cy="160" r="118"></circle>
+                                        </svg>
+                                        <div class="eds-gauge-text">
+                                            <div class="v">46<small>㎍/㎥</small></div>
+                                            <div class="lg">PM<small>10</small></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="eds-gauge-ctrl">
+                                    <div class="eds-res" role="group" aria-label="측정 항목" style="justify-self:start">
+                                        <button type="button" data-p="pm10" aria-pressed="true">미세먼지 PM10</button>
+                                        <button type="button" data-p="pm25" aria-pressed="false">초미세먼지 PM2.5</button>
+                                    </div>
+                                    <div>
+                                        <label for="eds-range">측정값 <output id="eds-range-out" for="eds-range">46 ㎍/㎥</output></label>
+                                        <input class="eds-range" id="eds-range" type="range" min="0" max="200" value="46">
+                                    </div>
+                                    <div class="eds-grade">
+                                        <img src="resources/jeju-did/resources/images/air/air_green.png" alt="">
+                                        <div><strong>보통</strong><p>민감군은 장시간 실외활동을 줄이세요.</p></div>
+                                    </div>
+                                    <table class="eds-thresh"><tbody></tbody></table>
+                                </div>
+                            </div>
+
+                            <div class="eds-sub"><h3>Chart Asset</h3></div>
+                            <div class="eds-assets" id="eds-rings"></div>
+
+                            <div class="eds-sub"><h3>Face Icon</h3><p>등급 이름이 함께 그려진 표정 아이콘</p></div>
+                            <div class="eds-assets" id="eds-faces"></div>
+
+                            <div class="eds-sub"><h3>Weather Icon</h3><p>기상청 하늘상태·강수형태 대응</p></div>
+                            <div class="eds-assets" id="eds-skies"></div>
+
+                            <div class="eds-sub"><h3>Legend &amp; Mark</h3><p>범례 pill과 기관·출처 로고</p></div>
+                            <div class="eds-pills">
+                                <div class="eds-pill-board" id="eds-pill-board"></div>
+                                <div class="eds-marks">
+                                    <figure><img src="resources/jeju-did/resources/images/logo/ehdb.png" alt="EHDB">헤더 · 제주</figure>
+                                    <figure><img src="resources/jeju-did/resources/images/logo/ggeea_logo.png" alt="GGEEA">헤더 · 경기</figure>
+                                    <figure><img src="resources/jeju-did/resources/images/logo/air_logo.png" alt="에어코리아">대기 데이터 출처</figure>
+                                    <figure><img src="resources/jeju-did/resources/images/logo/weater_logo.png" alt="기상청">날씨 데이터 출처</figure>
+                                    <figure class="is-wide"><img src="resources/jeju-did/resources/images/icon/repair.png" alt="점검중">날씨 수신 실패 시 표시</figure>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="eds-toast" role="status" aria-live="polite"></div>
+                </div>
+                <div class="visual-img">
+                    <img src="resources/img/port/port-2-task-1.png">
+                </div>
+            </div>
+        </section>
+
+
+        <section class="section">
+            <div class="web-design">
+                <div class="port-top">
+                    <div class="port-tittle-gray">EHDB Design</div>
+                    <div class="port-title">제주 DID 디자인<p>제주특별자치도 환경성질환예방관리센터에서 진행한 프로젝트로 환경성질환예방관리센터의 캐릭터 이미지를 활용한 DID 디자인과 초등학교에서 쓰는 별도의 DID 디자인 요청을 받아 진행했습니다. 초등학교 DID는 어린 아이들에게도 친숙하게 다가갈 수 있는 배경 디자인에 신경써서 제작했습니다.</p></div>
+                </div>
+                <div class="web-design-group port-2">
+                    <div class="web-design-box right">
+                        <div>
+                            <img src="resources/img/screenshots/jeju.png">
+                        </div>
+                    </div>
+                    <div class="web-design-box left">
+                        <div>
+                            <img src="resources/img/screenshots/school-1.png">
+                        </div>
+                    </div>
+                    <div class="web-design-box right">
+                        <div>
+                            <img src="resources/img/screenshots/school-2.png">
+                        </div>
+                    </div>
+                    <div class="visual-img">
+                        <img src="resources/img/port/port-2-task-2.png">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="ending-curtain">
+            <div class="ending-post">
+                <div>
+                    <img src="resources/img/port/EHDB_end.png">
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<div class="outro-spacer" aria-hidden="true"></div>
+
+<section class="section" id="outro">
+    <div class="goodbye-section">
+        <div class="goodbye-group">
+            <div class="goodbye-left">
+                <div class="goodbye-bold">
+                    <span>Ctrl + S.</span>
+                    <span>Portfolio saved.</span>
+                </div>
+                <div class="goodbye-thin">Produced by Song Eunsun</div>
+            </div>
+            <div class="goodbye-right">
+                <a class="goodbye-box" data-nav="prev" href="#">
+                    <div class="goodbye-box-label">
+                        <span>Prev Project</span>
+                        <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+                    </div>
+                    <div class="prev-img"><img src="" alt=""></div>
+                </a>
+                <a class="goodbye-box" data-nav="next" href="#">
+                    <div class="goodbye-box-label">
+                        <span>Next Project</span>
+                        <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+                    </div>
+                    <div class="prev-img"><img src="" alt=""></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="port-footer">
+        <div class="blob-words"
+             data-trigger=".outro-spacer"
+             data-words="UX/UI,반응형,디자인시스템,Portfolio"
+             data-bg="#ffffff" data-fill="#ffffff" data-border="#111111" data-text="#111111"
+             data-font="Inter" data-unit="5" data-seed="7"
+             data-scale="1" data-speed="1" data-blobbiness="1" data-wobble="1"></div>
+    </div>
+</section>
+
+</body>
+
+</html>    

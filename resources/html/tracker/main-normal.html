@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main theme theme-normal">
+
+      <section class="hero-section">
+        <div class="sub-header">
+          <p class="sub-header-title">오늘 <span>6월 16일</span></p>
+          <button class="icon-button" type="button" aria-label="새로고침" onclick="location.reload()">
+            <img src="./public/icon-refresh.svg" alt="" />
+          </button>
+        </div>
+
+        <button class="loc-chip" type="button">
+          <img src="./public/icon-location-white.svg" alt="" />
+          <span>서울시 종로구 신교동</span>
+        </button>
+
+        <div class="sphere">
+          <img src="./public/sphere.gif" alt="" />
+          <p class="sphere-value">30</p>
+        </div>
+      </section>
+
+      <section class="card-section">
+        <p class="dust-title">현재 초미세먼지 농도</p>
+        <p class="dust-status"><b>보통 30</b><span>(㎍/㎥)</span></p>
+        <p class="dust-message">“몸 상태에 따라 야외 활동에 <b>유의</b>하세요.”</p>
+      </section>
+
+      <nav class="tab-bar">
+        <button class="tab-button on" type="button" onclick="location.href='./main-good.html'">
+          <span class="tab-icon"><img src="./public/tab-home-on.svg" alt="" /></span>
+          <span class="tab-name">홈</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./location.html'">
+          <span class="tab-icon"><img src="./public/tab-location-off.svg" alt="" /></span>
+          <span class="tab-name">위치 데이터</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./heatmap.html'">
+          <span class="tab-icon"><img src="./public/tab-heatmap-off.svg" alt="" /></span>
+          <span class="tab-name">히트맵</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./mypage.html'">
+          <span class="tab-icon"><img src="./public/tab-setting-off.svg" alt="" /></span>
+          <span class="tab-name">환경설정</span>
+        </button>
+      </nav>
+    </div>
+  </body>
+</html>

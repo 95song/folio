@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1">
+    <title>Document</title>
+    <link rel="icon" type="image/x-icon" href="resources/images/favicon.ico">
+
+    <link rel="stylesheet" href="resources/css/fonts.css">
+    <link rel="stylesheet" href="resources/css/reset.css">
+    <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="stylesheet" href="resources/css/jeju.css">
+    <link rel="stylesheet" href="resources/swiper/swiper-bundle.min.css">
+    <script src="resources/swiper/swiper-bundle.min.js"></script>
+    <script src="resources/js/main.js"></script>
+</head>
+
+<body>
+    <div class="swiper slider-container ">
+        <div class="swiper-wrapper">
+
+            <!-- 대기환경 -->
+            <div class="swiper-slide bg-container bg1"> <!-- bg1 ~ bg6 배경화면  -->
+                <div class="header">
+                    <h1 class="logo"><img src="./resources/images/logo/ggeea_logo.png">구리사랑어린이집 - 대기환경정보</h1>
+                    <span class="date">08월 10일 오후 03:55</span>
+                </div>
+                <div class="contents flex center">
+                    <div class="air-container">
+                        <div class="left">
+                            <h3>실외</h3>
+                            <div class="air-container-inner">
+                                <ul>
+                                    <li>
+                                        <dl>
+                                            <dt>미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_blue.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span class="sub-txt">㎍/㎥</span></p>
+                                                <!-- blue, green yellow, red -->
+                                                <p class="blue">PM<span class="sub-txt">10</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>초미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_green.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span>㎍/㎥</span></p>
+                                                <p class="green">PM<span class="sub-txt">10</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                                <p class="air-copy">
+                                    <img src="./resources/images/logo/air_logo2.png" alt="에어코리아">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <h3>실내</h3>
+                            <div class="air-container-inner">
+                                <ul>
+                                    <li>
+                                        <dl>
+                                            <dt>미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_yellow.png" />
+                                            </dd>
+                                            <dd class="room-list-box">
+                                                <!-- room-list 최대 5개 까지 가능 -->
+                                                <ul class="room-list">
+                                                    <li>
+                                                        <p>예쁜둥지반</p>
+                                                        <p>10<span>㎍/㎥</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p>예쁜둥지반</p>
+                                                        <p>10<span>㎍/㎥</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p>하얀구름반</p>
+                                                        <p>10<span>㎍/㎥</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p>맑은샘물반</p>
+                                                        <p>10<span>㎍/㎥</span></p>
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>초미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_red.png" />
+                                            </dd>
+                                            <dd>
+                                                <!-- room-list 최대 5개 까지 가능 -->
+                                                <ul class="room-list">
+                                                    <li>
+                                                        <p>예쁜둥지반</p>
+                                                        <p>10<span>㎍/㎥</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p>하얀구름반</p>
+                                                        <p>10<span>㎍/㎥</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p>예쁜둥지반</p>
+                                                        <p>10<span>㎍/㎥</span></p>
+                                                    </li>
+                                                    <li>
+                                                        <p>하얀구름반</p>
+                                                        <p>10<span>㎍/㎥</span></p>
+                                                    </li>
+                                                </ul>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+   
+            </div>
+            <!-- //대기환경 -->
+
+            <!-- 실내 대기환경 -->
+            <div class="swiper-slide bg-container bg2">
+                <div class="header">
+                    <h1 class="logo"><img src="./resources/images/logo/ggeea_logo.png">갈매사회복지관 - 실내 대기환경정보</h1>
+                    <span class="date">08월 10일 오후 03:55</span>
+                </div>
+                <div class="contents">
+                    <div>
+                        <div class="air-graph-container">
+                            <ul class="air-graph-inner">
+                                <li>
+                                    <h3>미세먼지 농도</h3>
+                                    <!-- gray:수신장애,  blue:좋음,  green: 보통, yellow나쁨,  red : 매우나쁨-->
+                                    <div class="air-graph gray">
+                                        <p class="air-value">점검중</p>
+                                        <p class="legend">PM<span>1.0</span></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h3>초미세먼지 농도</h3>
+                                    <div class="air-graph green">
+                                        <p class="air-value">9<span>㎍/㎥</span></p>
+                                        <p class="legend">PM<span>2.5</span></p>
+                                    </div>
+                                </li>
+                                <li>
+                                    <h3>이산화탄소 농도</h3>
+                                    <!--  <h3>오존 농도</h3> -->
+                                    <div class="air-graph blue">
+                                        <p class="air-value">0.03<span>ppm</span></p>
+                                        <p class="legend">CO<span>2</span></p>
+                                        <!-- <p class="legend">O<span>3</span></p> -->
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="weather-container">
+                            <div class="weather-tit-box">
+                                <h2>날씨정보</h2>
+                                <p>갈매사회복지관</p>
+                            </div>
+                            <div class="weatehr-inner-box">
+                                <!-- 정상일 경우 -->
+                    
+                                    <ul>
+                                        <li>
+                                            <p class="weather-icon-box">
+                                                <img src="./resources/images/weather/SKY_01.png" alt="">
+                                            </p>
+                                            <p>대체로 맑음</p>
+                                        </li>
+                                    <li>
+                                        <p>-˚</p>
+                                        <p>최저 5 / 최고 12</p>
+                                    </li>
+
+                                    <li>
+                                        <!-- 값이 없는 경우 none-value 추가 -->
+                                        <p class="none-value">-<span class="sub-txt">%</span></p>
+                                        <p>습도</p>
+                                    </li>
+                                    
+                                    <li>
+                                        <p>15<span class="sub-txt">mm</span></p>
+                                        <p>강우/적설량</p>
+                                    </li>
+                                </ul>
+                                    
+                        
+                        
+                                <!-- //정상일 경우 -->
+
+                                <!-- 점검중일경우 -->
+                                    <!-- 
+                                <div class="repair-box">
+                                    <img src="./resources/images/icon/repair.png" alt="점검중">
+                                </div>
+                                    -->
+                                <!-- //점검중일경우 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="weather-copy">
+                    <img src="./resources/images/logo/weater_logo.png" alt="기상청">
+                </p>
+            </div>
+            <!-- //실내 대기환경  -->
+
+            <!-- ===== 제주 DID 레이아웃 ===== -->
+            <!-- 제주 대기환경 -->
+            <div class="swiper-slide bg-container bg3 jeju"> <!-- bg1 ~ bg6 배경화면  -->
+                <div class="header">
+                    <h1 class="logo"><img src="./resources/images/logo/ehdb.png">경기환경에너지진흥원 - 대기환경정보</h1>
+                    <span class="date">08월 10일 오후 03:55</span>
+                </div>
+                <div class="contents flex center">
+                    <div class="air-container">
+                        <div class="left">
+                            <h3>실외 정보</h3>
+                            <div class="air-container-inner">
+                                <ul>
+                                    <li>
+                                        <dl>
+                                            <dt>미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_gray.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span class="sub-txt">㎍/㎥</span></p>
+                                                <!-- blue, green yellow, red -->
+                                                <p class="blue">PM<span class="sub-txt">10</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>초미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_green.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span>㎍/㎥</span></p>
+                                                <p class="green">PM<span class="sub-txt">2.5</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                                <p class="air-copy">
+                                    <img src="./resources/images/logo/air_logo2.png" alt="에어코리아">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <h3>실외 정보</h3>
+                            <div class="air-container-inner">
+                                <ul>
+                                    <li>
+                                        <dl>
+                                            <dt>미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_blue.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span class="sub-txt">㎍/㎥</span></p>
+                                                <!-- blue, green yellow, red -->
+                                                <p class="blue">PM<span class="sub-txt">10</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>초미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_green.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span>㎍/㎥</span></p>
+                                                <p class="green">PM<span class="sub-txt">2.5</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+   
+            </div>
+            <!-- //제주 대기환경 -->
+
+            <!-- 제주 실내 대기환경 -->
+            <div class="swiper-slide bg-container bg4 jeju">
+                <div class="header">
+                    <h1 class="logo"><img src="./resources/images/logo/ehdb.png">제주특별자치도 환경성질환예방관리센터 - 대기환경정보</h1>
+                    <span class="date">08월 10일 오후 03:55</span>
+                </div>
+                <div class="contents flex center">
+                    <div class="air-container">
+                        <div class="left">
+                            <h3>실외 정보</h3>
+                            <div class="air-container-bottom">
+                                <ul>
+                                    <li>
+                                        <dl>
+                                            <dt>미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_blue.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span class="sub-txt">㎍/㎥</span></p>
+                                                <!-- blue, green yellow, red -->
+                                                <p class="blue">PM<span class="sub-txt">10</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_blue.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span class="sub-txt">㎍/㎥</span></p>
+                                                <!-- blue, green yellow, red -->
+                                                <p class="blue">PM<span class="sub-txt">10</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>초미세먼지<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_green.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span>㎍/㎥</span></p>
+                                                <p class="green">PM<span class="sub-txt">2.5</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                    <li>
+                                        <dl>
+                                            <dt>오존<br />농도</dt>
+                                            <dd>
+                                                <img src="./resources/images/air/air_green.png" />
+                                            </dd>
+                                            <dd class="outdoor-air-box">
+                                                <p>10<span>ppm</span></p>
+                                                <p class="green">O<span class="sub-txt">3</span></p>
+                                            </dd>
+                                        </dl>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <h3>날씨 정보</h3>
+                            <div class="weatehr-inner-box">
+                                <!-- 정상일 경우 -->
+                    
+                                <ul>
+                                    <li>
+                                        <p class="weather-icon-box">
+                                            <img src="./resources/images/weather/SKY_05.png" alt="">
+                                        </p>
+                                        <p>흐리고 눈 옴</p>
+                                    </li>
+                                <li>
+                                    <p>-˚</p>
+                                    <p>최저 5 / 최고 12</p>
+                                </li>
+                                </ul>
+
+                                <ul>
+                                <li>
+                                    <!-- 값이 없는 경우 none-value 추가 -->
+                                    <p class="none-value">-<span class="sub-txt">%</span></p>
+                                    <p>습도</p>
+                                </li>
+                                
+                                <li>
+                                    <p>15<span class="sub-txt">mm</span></p>
+                                    <p>강우/적설량</p>
+                                </li>
+                            </ul>
+                                
+                    
+                    
+                            <!-- //정상일 경우 -->
+
+                            <!-- 점검중일경우 -->
+                                <!-- 
+                            <div class="repair-box">
+                                <img src="./resources/images/icon/repair.png" alt="점검중">
+                            </div>
+                                -->
+                            <!-- //점검중일경우 -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <p class="weather-copy">
+                    <img src="./resources/images/logo/weater_logo.png" alt="기상청">
+                </p>
+            </div>
+            <!-- //제주 실내 대기환경 -->
+            <!-- ===== //제주 DID 레이아웃 ===== -->
+
+            <!-- 학교 대기환경 (5번째) -->
+            <div class="swiper-slide bg-container bg5 jeju school">
+                <div class="header">
+                    <h1 class="logo"><img src="./resources/images/logo/ehdb.png">삼화초등학교 - 대기환경정보</h1>
+                    <span class="date">08월 10일 오후 03:55</span>
+                </div>
+                <div class="contents">
+                    <div class="school-container">
+                        <h3 class="school-name">
+                            <img src="./resources/images/logo/school_logo.png" alt="">삼화초등학교
+                        </h3>
+                        <ul class="school-air-list">
+                            <!-- 등급 색상: gray:수신장애, blue:좋음, green:보통, yellow:나쁨, red:매우나쁨 -->
+                            <li>
+                                <dl>
+                                    <dt>미세먼지</dt>
+                                    <dd class="school-air-icon">
+                                        <img src="./resources/images/air/air_yellow.png" />
+                                    </dd>
+                                    <dd class="outdoor-air-box">
+                                        <p>10<span class="sub-txt">㎍/㎥</span></p>
+                                        <p class="yellow">PM<span class="sub-txt">10</span></p>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>초미세먼지</dt>
+                                    <dd class="school-air-icon">
+                                        <img src="./resources/images/air/air_green.png" />
+                                    </dd>
+                                    <dd class="outdoor-air-box">
+                                        <p>10<span class="sub-txt">㎍/㎥</span></p>
+                                        <p class="green">PM<span class="sub-txt">2.5</span></p>
+                                    </dd>
+                                </dl>
+                            </li>
+                            <li>
+                                <dl>
+                                    <dt>오존</dt>
+                                    <dd class="school-air-icon">
+                                        <img src="./resources/images/air/air_yellow.png" />
+                                    </dd>
+                                    <dd class="outdoor-air-box">
+                                        <p>10<span class="sub-txt">ppm</span></p>
+                                        <p class="yellow">O<span class="sub-txt">3</span></p>
+                                    </dd>
+                                </dl>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p class="school-center">제주특별자치도 환경보건센터</p>
+                <p class="weather-copy">
+                    <img src="./resources/images/logo/air_logo.png" alt="에어코리아">
+                </p>
+            </div>
+            <!-- //학교 대기환경 (5번째) -->
+
+        </div>
+    </div>
+</body>
+
+</html>

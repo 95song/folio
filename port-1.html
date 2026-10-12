@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="끊임없이 새로운 꿈을 꾸며 발전하는 디자이너">
+<meta name="keywords" content="PortFolioㅣUX/UIㅣ디자인ㅣ뚠뚠">
+
+<title>PortFolio</title>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="resources/img/common/favicon.png" type="image/x-icon">
+
+<!-- 기본 css -->
+<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="resources/css/port-1.css">
+<link rel="stylesheet" type="text/css" href="resources/css/menu.css">
+<link rel="stylesheet" type="text/css" href="resources/css/jauery.fullpage.css">
+<link rel="stylesheet" href="resources/css/form.css">
+<link rel="stylesheet" type="text/css" href="resources/css/pad.css">
+<link rel="stylesheet" href="resources/css/mobile.css">
+<!-- Tracker 디자인 가이드 (.design-system) -->
+<link rel="stylesheet" href="resources/css/tracker-ds.css">
+<!-- 앱 뷰어 ("어플 바로가기" 버튼) -->
+<link rel="stylesheet" href="resources/css/app-viewer.css">
+
+<!-- 웹폰트 -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600&display=swap" rel="stylesheet">
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="resources/js/common.js" defer></script>
+<script src="resources/js/port.js"></script>
+<!-- Tracker 디자인 가이드 (.design-system): 앱 스크립트 사본 + 가이드 동작 -->
+<script src="resources/js/tracker/select.js" defer></script>
+<script src="resources/js/tracker/calendar.js" defer></script>
+<script src="resources/js/tracker/graph.js" defer></script>
+<script src="resources/js/tracker-ds.js" defer></script>
+<script src="resources/js/app-viewer.js" defer></script>
+</head>
+<body class="main" style="background-color: #fff;">
+
+<!-- header 시작 -->
+<div class="cursor-follower"></div>
+
+<!-- .quick-nav 유리 굴절(liquid glass) 효과용 SVG 필터. 화면에는 그리지 않고 backdrop-filter에서 참조만 한다 -->
+<svg width="0" height="0" style="position:absolute; overflow:hidden;">
+    <filter id="quickNavGlass" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.009 0.012" numOctaves="2" seed="7" result="noise" />
+        <feGaussianBlur in="noise" stdDeviation="3" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="26" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+</svg>
+
+<!-- 하단 고정 퀵 내비게이션 (Figma: Frame 1 / Prev · 메뉴 · Next) -->
+<div class="quick-nav" id="quickNav">
+    <a href="#" class="quick-nav-side quick-nav-prev" data-nav="prev">
+        <span class="quick-nav-arrow quick-nav-arrow-left"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+        <span class="quick-nav-label">Prev</span>
+    </a>
+    <a href="portfolio.html" class="quick-nav-center">
+        <img src="resources/img/common/port-menu-icon.png" alt="메뉴">
+    </a>
+    <a href="#" class="quick-nav-side quick-nav-next" data-nav="next">
+        <span class="quick-nav-label">Next</span>
+        <span class="quick-nav-arrow quick-nav-arrow-right"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+    </a>
+</div>
+
+<header>
+    <!--  -->
+            <div class="navi">
+
+                 <h1 id="logo">
+                    <a >
+                    </a>
+                </h1>
+                 <div class="gnb"> 
+                    <ul>
+                        <li>
+                            
+                        </li>                                     
+                    </ul>
+    
+                </div>
+                
+                
+            </div>
+    
+        </header>
+                
+    
+    <!-- 네비게이션 바 -->
+                    
+        <div class="ham sitemap-open-btn btn">						
+             <span class="bar1"></span>
+             <span class="bar2"></span>
+             <span class="bar3"></span>
+        </div>
+    
+    <!-- 네비게이션 -->
+            
+        <div class="site_wrap">
+            <div class="site_map">
+                <div>
+                    <ul>
+                        <li class="sitemap_dep1">
+                            <a href="index.html">
+                                <span>HOME</span><span>HOME</span>
+                            </a>
+                        </li>
+                        <li class="sitemap_dep1">
+                            <a href="profile.html">
+                                <span>ABOUT</span><span>ABOUT</span>
+                            </a>
+                        </li>
+                        <li class="sitemap_dep1">
+                            <a href="portfolio.html">
+                                <span>Portfolio</span><span>Portfolio</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <h6> © 2026 EUNSUN .ALL RIGHTS RESERVED</h6>
+                </div>
+            </div>
+        </div>
+        <div class="site_bg"></div>
+
+    
+    <!-- header 끝 -->
+
+<div class="all_wrap page-content">
+	
+
+	<div id="fullpage">
+
+		<section class="section" id="port">
+			<div class="portfolio_wrap">
+                <div class="port-main port-1">
+                    <div class="main-title">Tracker</div>
+                    <div class="port-gif"></div>
+                </div>
+                
+		    </div>
+        </section>
+
+        <section class="section">
+            <div class="overview">
+                <div class="overview-top">
+                    <div class="port-tittle-gray">Overview</div>
+                    <div class="port-title port-1">취약계층 맞춤형 환경유해인자 노출영향 관리 서비스 리디자인</div>
+                    <div class="port-coment">Tracker는 웨어러블 기기로 수집한 사용자의 위치·건강 데이터를 미세먼지·날씨 등 주변 환경 정보와 연계해, 환경 오염에 취약한 사람들이 아토피·천식 같은 환경성 질환을 미리 예방하고 꾸준히 관리할 수 있도록 돕는 맞춤형 건강 관리 서비스입니다.
+                        <br><br>기존 앱의 데이터 나열 중심 디자인에서 사용자 중심으로 리뉴얼했습니다. 수치와 표를 그대로 보여 주던 화면을 위치·행동 안내·지도 경로와 함께 전달하도록 바꿔, 사용자가 자신의 상황을 바로 이해하고 행동할 수 있게 했습니다.
+                    </div>
+                </div>
+                <div class="overview-bottom">
+                    <div class="overview-left">
+                        <div class="port-graph">
+                            <div class="port-t">기간</div>
+                            <div class="port-day">
+                                <div>2026. 07 ~ 2026. 07</div>
+                            </div>
+                        </div>
+                        <div class="port-graph">
+                            <div class="port-t">디자인</div>
+                            <div class="graph-div">
+                                <div class="port-percent per-100"></div>
+                                <div>100%</div>
+                            </div>
+                        </div>
+                        <div class="port-graph">
+                            <div class="port-t">퍼블리싱</div>
+                            <div class="graph-div">
+                                <div class="port-percent per-100"></div>
+                                <div>100%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overview-right">
+                        <!-- 누르면 폰 프레임 안에서 실제 앱이 열린다 (resources/js/app-viewer.js). 시작 화면은 인트로 -->
+                        <button class="direct-btn" type="button" data-app-viewer="resources/html/tracker/intro.html" data-app-title="Tracker">어플 바로가기</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="port-goal">
+                <div class="port-top">
+                    <div class="port-tittle-gray">AS-IS TO-BE</div>
+                    <div class="port-title">이전 디자인에서 필요한 개선점은 뭐가 있을까요?</div>
+                </div>
+                <div class="hotspot-demo">
+                    <main class="stage" id="stage">
+                        <div class="product" id="product">
+                            <img id="productArt" src="resources/img/port/tracker-task.png" alt="비스듬히 놓인 스마트폰" width="2000" height="1333">
+                            <!-- 핫스팟은 JS가 여기에 주입 -->
+                        </div>
+
+                        <aside class="panel" id="panel" role="dialog" aria-modal="false" aria-labelledby="panelTitle" aria-hidden="true">
+                            <div class="media" id="media">
+                                <button class="close" id="closeBtn" aria-label="닫기">
+                                    <svg viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M1 1l12 12M13 1L1 13"/></svg>
+                                </button>
+                            </div>
+                            <div class="body" id="hotspotBody"></div>
+                            <div class="nav">
+                                <button class="arrow prev" id="prevBtn" aria-label="이전">
+                                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 8H2M7 3L2 8l5 5"/></svg>
+                                </button>
+                                <div class="dots" id="dots" role="tablist" aria-label="기능 목록"></div>
+                                <button class="arrow next" id="nextBtn" aria-label="다음">
+                                    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 8h12M9 3l5 5-5 5"/></svg>
+                                </button>
+                            </div>
+                        </aside>
+                    </main>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="design-system">
+            <!-- ============================== 01 COLOR -->
+            <section class="tg-sec" id="ds-color">
+              <div class="tg-wrap">
+                <div class="tg-head">
+                  <div>
+                    <p class="tg-eyebrow rv"><b>01</b>Color</p>
+                    <h2 class="tg-h2 rv" style="--d: 1">맑은 하늘에서<br />시작한 팔레트</h2>
+                  </div>
+                  <p class="tg-lead rv" style="--d: 2">
+                    브랜드 컬러는 가장 좋은 공기 단계와 같은 하늘색입니다. 앱을 열었을 때의 첫인상이 곧 ‘좋음’이 되도록 했고,
+                    나머지 단계는 채도를 맞춘 초록 · 노랑 · 코랄로 이어집니다.
+                  </p>
+                </div>
+
+                <div class="tg-block">
+                  <h3 class="tg-sub rv">Brand</h3>
+                  <div class="tg-brand" id="brand"></div>
+                  <div class="tg-states" id="states"></div>
+                </div>
+
+                <div class="tg-block">
+                  <h3 class="tg-sub rv">Air Quality Scale <small>막대를 움직여 보세요</small></h3>
+                  <div class="tg-scale rv" id="scale">
+                    <div>
+                      <div class="tg-scale-now"><b id="scaleVal">12</b><span>㎍/㎥ · 초미세먼지</span></div>
+                      <p class="tg-scale-label" id="scaleLabel">좋음</p>
+                      <p class="tg-scale-msg" id="scaleMsg"></p>
+                      <div class="tg-range">
+                        <div class="tg-range-track" aria-hidden="true">
+                          <i style="--c: var(--color-good); flex: 15"></i><i style="--c: var(--color-normal); flex: 20"></i><i style="--c: var(--color-bad); flex: 40"></i><i style="--c: var(--color-verybad); flex: 45"></i>
+                        </div>
+                        <input id="scaleInput" type="range" min="0" max="120" value="12" aria-label="초미세먼지 농도" />
+                        <span class="tg-range-thumb" id="scaleThumb" aria-hidden="true"></span>
+                      </div>
+                      <div class="tg-range-ticks" aria-hidden="true">
+                        <span style="left: 0%">0</span><span style="left: 12.5%">15</span><span style="left: 29.2%">35</span><span style="left: 62.5%">75</span><span style="left: 100%">120</span>
+                      </div>
+                      <ul class="tg-stage-list" id="stageList"></ul>
+                    </div>
+                    <div class="tg-stage-phone">
+                      <div class="tg-phone"><span class="tg-screen" id="stageScreen" data-w="393"></span></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tg-block">
+                  <h3 class="tg-sub rv">Neutral &amp; System</h3>
+                  <div class="tg-neutral" id="neutral"></div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ============================== 02 TYPOGRAPHY -->
+            <section class="tg-sec sky" id="ds-type">
+              <div class="tg-wrap">
+                <div class="tg-head">
+                  <div>
+                    <p class="tg-eyebrow rv"><b>02</b>Typography</p>
+                    <h2 class="tg-h2 rv" style="--d: 1">숫자가 먼저<br />읽히는 글꼴</h2>
+                  </div>
+                  <p class="tg-lead rv" style="--d: 2">
+                    농도 수치가 화면의 주인공이기 때문에, 숫자의 형태가 단단한 <b>Gmarket Sans</b> 한 가지로 통일했습니다.
+                    굵기는 Light 300 · Medium 500 · Bold 700 세 가지만 씁니다.
+                  </p>
+                </div>
+                <div class="tg-type-hero">
+                  <div class="tg-type-big rv" aria-hidden="true">Aa<span>가</span></div>
+                  <div class="tg-weights">
+                    <div class="tg-weight rv"><small>Light 300</small><p style="font-weight: 300">오늘의 공기 17 ㎍/㎥</p></div>
+                    <div class="tg-weight rv" style="--d: 1"><small>Medium 500</small><p style="font-weight: 500">오늘의 공기 17 ㎍/㎥</p></div>
+                    <div class="tg-weight rv" style="--d: 2"><small>Bold 700</small><p style="font-weight: 700">오늘의 공기 17 ㎍/㎥</p></div>
+                  </div>
+                </div>
+                <div id="typeScale"></div>
+              </div>
+            </section>
+
+            <!-- ============================== 03 LAYOUT -->
+            <section class="tg-sec" id="ds-layout">
+              <div class="tg-wrap">
+                <div class="tg-head">
+                  <div>
+                    <p class="tg-eyebrow rv"><b>03</b>Layout</p>
+                    <h2 class="tg-h2 rv" style="--d: 1">375 안에<br />모든 것을</h2>
+                  </div>
+                  <p class="tg-lead rv" style="--d: 2">
+                    기준 화면은 375 × 812. 위로는 상태 표시줄 44, 아래로는 탭바 76 을 비워 두고, 좌우 여백은 24 로 맞췄습니다.
+                    모서리는 쓰임에 따라 8단계로 나눴습니다.
+                  </p>
+                </div>
+                <div class="tg-layout">
+                  <div class="tg-anat rv" role="img" aria-label="화면 구조 도해: 상태 표시줄 44, 좌우 여백 24, 탭바 76">
+                    <div class="tg-anat-screen">
+                      <div class="tg-anat-band top">status bar</div>
+                      <div class="tg-anat-pad l"></div><div class="tg-anat-pad r"></div>
+                      <div class="tg-anat-body"><i></i><i></i><i></i><i></i><i></i></div>
+                      <div class="tg-anat-band bot">tab bar</div>
+                    </div>
+                    <span class="tg-anat-tag t1"><b>44</b> --status-bar</span>
+                    <span class="tg-anat-tag t2"><b>24</b> side padding</span>
+                    <span class="tg-anat-tag t3"><b>76</b> --tab-bar</span>
+                  </div>
+                  <div>
+                    <h3 class="tg-sub rv">Radius</h3>
+                    <div class="tg-radius" id="radius"></div>
+                    <h3 class="tg-sub rv" style="margin-top: 60px">Shadow</h3>
+                    <div class="tg-shadows" id="shadows"></div>
+                  </div>
+                </div>
+              </div>
+            </section>
+
+            <!-- ============================== 04 COMPONENTS -->
+            <section class="tg-sec sky" id="ds-components">
+              <div class="tg-wrap">
+                <div class="tg-head">
+                  <div>
+                    <p class="tg-eyebrow rv"><b>04</b>Components</p>
+                    <h2 class="tg-h2 rv" style="--d: 1">실제 코드로<br />그린 부품들</h2>
+                  </div>
+                  <p class="tg-lead rv" style="--d: 2">
+                    아래 부품은 그림이 아니라 앱과 같은 CSS 로 그린 실제 요소입니다. 셀렉트와 캘린더는 눌러서 써 볼 수 있습니다.
+                  </p>
+                </div>
+
+                <div class="tg-comps">
+                  <article class="tg-comp wide rv">
+                    <div class="tg-comp-head"><h3>Button</h3></div>
+                    <div class="tg-demo">
+                      <div class="tg-btn-matrix">
+                        <span></span><span class="col">Default</span><span class="col">Hover</span><span class="col">Pressed</span><span class="col">Focus</span><span class="col">Disabled</span>
+                        <span class="lbl">Primary 46</span>
+                        <button class="button" type="button" tabindex="-1">다음</button>
+                        <button class="button is-hover" type="button" tabindex="-1">다음</button>
+                        <button class="button is-active" type="button" tabindex="-1">다음</button>
+                        <button class="button is-focus" type="button" tabindex="-1">다음</button>
+                        <button class="button stanby" type="button" tabindex="-1">다음</button>
+                        <span class="lbl">Square 44</span>
+                        <button class="button square" type="button" tabindex="-1">저장</button>
+                        <button class="button square is-hover" type="button" tabindex="-1">저장</button>
+                        <button class="button square is-active" type="button" tabindex="-1">저장</button>
+                        <button class="button square is-focus" type="button" tabindex="-1">저장</button>
+                        <button class="button square stanby" type="button" tabindex="-1">저장</button>
+                        <span class="lbl">Line 40</span>
+                        <button class="button line" type="button" tabindex="-1">로그아웃</button>
+                        <button class="button line is-hover" type="button" tabindex="-1">로그아웃</button>
+                        <button class="button line is-active" type="button" tabindex="-1">로그아웃</button>
+                        <button class="button line is-focus" type="button" tabindex="-1">로그아웃</button>
+                        <button class="button line stanby" type="button" tabindex="-1">로그아웃</button>
+                      </div>
+                    </div>
+                    <ul class="tg-rules">
+                      <li>높이를 고정하고(46 · 44 · 40) 글자는 flex 로 정가운데에 둡니다. line-height 로 높이를 맞추지 않습니다.</li>
+                      <li>Disabled 는 <span class="tg-mono">.stanby</span> — 필수 입력이 모두 차면 <span class="tg-mono">:has()</span> 규칙이 자동으로 풀어 줍니다.</li>
+                      <li>한 화면의 주 버튼은 하나. 보조 동작은 Line, 문구는 ‘다음 · 확인 · 완료’처럼 짧은 동사로.</li>
+                    </ul>
+                  </article>
+
+                  <article class="tg-comp rv">
+                    <div class="tg-comp-head"><h3>Input</h3></div>
+                    <div class="tg-demo">
+                      <div class="tg-fields">
+                        <div><label class="form-label" for="gName">이름</label><div class="field"><input id="gName" type="text" placeholder="홍길동" /></div></div>
+                        <div><label class="form-label" for="gFocus">Focus</label><div class="field is-focus"><input id="gFocus" type="text" placeholder="입력 중" /></div></div>
+                        <div><label class="form-label" for="gH">키 <span class="tg-tag">단위</span></label><div class="field"><input id="gH" type="text" inputmode="decimal" placeholder="175" /><span class="input-unit">cm</span></div></div>
+                        <div><label class="form-label" for="gSex">성별 <span class="tg-tag">select</span></label><div class="field"><select id="gSex"><option>남성</option><option>여성</option></select></div></div>
+                        <div style="grid-column: 1 / -1"><label class="form-label" for="gBirth">생년월일 <span class="tg-tag">calendar</span></label>
+                          <div class="field" data-calendar="single">
+                            <input id="gBirth" type="text" placeholder="1990.11.21" readonly aria-haspopup="dialog" />
+                            <img src="resources/html/tracker/public/icon-calendar.svg" alt="" />
+                            <div class="calendar" role="dialog" aria-label="날짜 선택"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="tg-rules">
+                      <li>모서리 5, 테두리 --border-field. Focus 에서 primary 테두리 + focus ring.</li>
+                      <li>알약형은 로그인 입력칸과 지도 검색칸에만 씁니다.</li>
+                      <li>날짜는 숫자만 입력해도 점(.)이 자동으로 들어갑니다.</li>
+                    </ul>
+                  </article>
+
+                  <article class="tg-comp rv" style="--d: 1">
+                    <div class="tg-comp-head"><h3>Agreement</h3></div>
+                    <div class="tg-demo">
+                      <label class="check-box-parent">
+                        <input type="checkbox" checked />
+                        <span class="check-ui purple"><span class="check-type">위치 기반 서비스 약관(필수)</span><span class="check-icon"><span class="check-svg"></span></span></span>
+                      </label>
+                      <label class="check-box-parent">
+                        <input type="checkbox" />
+                        <span class="check-ui purple"><span class="check-type">연구 참여 약관(필수)</span><span class="check-icon"><span class="check-svg"></span></span></span>
+                      </label>
+                      <label class="check-box-parent">
+                        <input type="checkbox" checked />
+                        <span class="check-ui"><span class="check-type">과거병력 · 천식</span><span class="check-icon"><span class="check-svg"></span></span></span>
+                      </label>
+                      <label class="input-check-square" style="margin-top: 18px">
+                        <input type="checkbox" />
+                        <span class="mark"></span>
+                        사고 피해분석을 위한 개인정보 활용에 동의합니다(필수)
+                      </label>
+                    </div>
+                    <ul class="tg-rules">
+                      <li>약관 동의만 보라(--color-purple), 선택 목록은 브랜드 컬러.</li>
+                      <li>줄 전체가 label 이라 어디를 눌러도 체크됩니다.</li>
+                      <li>필수 사각 체크(.input-check-square)는 숨기지 않고 투명하게 겹쳐 둡니다. 체크하지 않고 보내면 브라우저 안내가 뜨고, 키보드로도 체크할 수 있습니다.</li>
+                    </ul>
+                  </article>
+
+                  <article class="tg-comp rv">
+                    <div class="tg-comp-head"><h3>Popup</h3></div>
+                    <div class="tg-demo">
+                      <div class="tg-pops">
+                        <div class="popup-parent">
+                          <div class="popup-text"><p class="popup-title">회원님 아이디 <b>testID</b></p></div>
+                          <button class="popup-button" type="button">확인</button>
+                        </div>
+                        <div class="popup-parent">
+                          <div class="popup-text">
+                            <p class="popup-title">데이터를 보내시겠습니까?</p>
+                            <p class="form-text red">*데이터를 한번 보내시면<br />수정하실 수 없습니다.</p>
+                          </div>
+                          <div class="popup-buttons">
+                            <button class="popup-button cancel" type="button">취소</button>
+                            <button class="popup-button" type="button">확인</button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <ul class="tg-rules">
+                      <li>결과 팝업은 버튼 하나(확인 → 로그인). 강조할 값만 &lt;b&gt; 로 감싸면 primary 색이 됩니다.</li>
+                      <li>확인 팝업은 취소 / 확인 두 버튼(.popup-buttons). form 에 data-confirm 을 달면 js/confirm.js 가 제출을 막고 띄웁니다.</li>
+                      <li>되돌릴 수 없는 동작에만 빨간 보조 문구(.form-text.red)를 붙입니다. 수정하기는 “수정하시겠습니까?” 만.</li>
+                    </ul>
+                  </article>
+
+                  <article class="tg-comp rv" style="--d: 1">
+                    <div class="tg-comp-head"><h3>Steps</h3></div>
+                    <div class="tg-demo">
+                      <ol class="signup-group" id="stepsDemo" aria-label="등록 단계">
+                        <li class="signup-step step-user is-current" aria-current="step" aria-label="1단계 기본 정보"></li>
+                        <li class="signup-step step-check" aria-label="2단계 성별"></li>
+                        <li class="signup-step step-pin" aria-label="3단계 주소"></li>
+                        <li class="signup-step step-phone" aria-label="4단계 전화번호"></li>
+                        <li class="signup-step step-body" aria-label="5단계 신체 정보"></li>
+                      </ol>
+                      <p class="tg-steps-cap" id="stepsCap">1 / 5 · 기본 정보</p>
+                    </div>
+                    <ul class="tg-rules">
+                      <li>지름 40 원 + 마스크 아이콘. 현재 단계만 primary 로 채웁니다.</li>
+                      <li>현재 단계에는 aria-current="step" 을 함께 붙입니다.</li>
+                    </ul>
+                  </article>
+
+                  <article class="tg-comp wide rv">
+                    <div class="tg-comp-head"><h3>Tab Bar</h3></div>
+                    <div class="tg-demo">
+                      <div style="max-width: 375px; margin: 0 auto">
+                        <nav class="tab-bar" id="tabDemo" aria-label="탭바 예시">
+                          <button class="tab-button on" type="button" data-k="home"><span class="tab-icon"><img src="resources/html/tracker/public/tab-home-on.svg" alt="" /></span><span class="tab-name">홈</span></button>
+                          <button class="tab-button" type="button" data-k="location"><span class="tab-icon"><img src="resources/html/tracker/public/tab-location-off.svg" alt="" /></span><span class="tab-name">위치 데이터</span></button>
+                          <button class="tab-button" type="button" data-k="heatmap"><span class="tab-icon"><img src="resources/html/tracker/public/tab-heatmap-off.svg" alt="" /></span><span class="tab-name">히트맵</span></button>
+                          <button class="tab-button" type="button" data-k="setting"><span class="tab-icon"><img src="resources/html/tracker/public/tab-setting-off.svg" alt="" /></span><span class="tab-name">환경설정</span></button>
+                        </nav>
+                      </div>
+                    </div>
+                    <ul class="tg-rules">
+                      <li>탭은 네 개로 고정: 홈 · 위치 데이터 · 히트맵 · 환경설정. 아이콘과 이름을 항상 함께 둡니다.</li>
+                      <li>선택된 탭은 .on 과 -on.svg 아이콘. 눌러서 바꿔 볼 수 있습니다.</li>
+                    </ul>
+                  </article>
+
+                  <article class="tg-comp wide rv">
+                    <div class="tg-comp-head"><h3>Graph</h3></div>
+                    <div class="tg-demo">
+                      <div class="tg-graphs">
+                        <section class="graph-section">
+                          <div class="graph-head">
+                            <h4 class="graph-title">오늘의 노출 시간</h4>
+                            <p class="graph-sub">단계별 머문 시간 비율</p>
+                          </div>
+                          <div class="graph-card donut-card">
+                            <svg class="donut" id="donut" viewBox="0 0 200 200" role="img" aria-label="단계별 노출 시간 도넛 그래프"></svg>
+                            <dl class="donut-legend" id="donutLegend"></dl>
+                          </div>
+                        </section>
+                        <section class="graph-section">
+                          <div class="graph-head">
+                            <h4 class="graph-title">시간대별 초미세먼지</h4>
+                            <p class="graph-sub">일 평균 <b id="avgValue">31</b>㎍/㎥</p>
+                          </div>
+                          <div class="graph-card bar-card" id="barCard">
+                            <svg class="bar-chart bar-axis" id="barAxis" aria-hidden="true"></svg>
+                            <div class="bar-scroll">
+                              <svg class="bar-chart" id="barChart" role="img" aria-label="시간대별 초미세먼지 막대 그래프"></svg>
+                            </div>
+                            <div class="graph-tip" id="barTip"></div>
+                          </div>
+                        </section>
+                      </div>
+                    </div>
+                    <ul class="tg-rules">
+                      <li>색은 단계 토큰(--color-good · normal · bad · verybad)만 씁니다. 그래프만을 위한 새 색은 만들지 않습니다.</li>
+                      <li>도넛은 하루 24시간을 단계별로 나눈 비율, 막대는 시간대별 농도입니다. 막대에 마우스를 올리면 시간 · 수치 · 단계가 뜹니다.</li>
+                      <li>막대는 가로로 스크롤되고 세로축(0 · 25 · 50 · 75 · 100)은 고정됩니다. 화면에 들어올 때 한 번만 자라납니다.</li>
+                    </ul>
+                  </article>
+                </div>
+              </div>
+            </section>
+
+            <!-- ============================== 05 FLOW -->
+            <section class="tg-sec" id="ds-flow">
+              <div class="tg-wrap">
+                <div class="tg-head">
+                  <div>
+                    <p class="tg-eyebrow rv"><b>05</b>Flow Chart</p>
+                    <h2 class="tg-h2 rv" style="--d: 1">처음 열고,<br />매일 쓰기까지</h2>
+                  </div>
+                  <p class="tg-lead rv" style="--d: 2">
+                    가입 8단계와 매일 쓰는 네 개의 탭을 한 장에 그렸습니다. 이번 리뉴얼에서 바뀐 곳은 점으로 표시했고,
+                    상자에 마우스를 올리면 <b>이어진 경로</b>만 진하게 보입니다.
+                  </p>
+                </div>
+
+                <div class="tg-index">
+                  <div class="tg-card rv">
+                    <h4>Index</h4>
+                    <ul class="tg-legend">
+                      <li><span class="tg-dot" style="--c: var(--color-normal)"></span>핵심 기능</li>
+                      <li><span class="tg-dot" style="--c: var(--color-bad)"></span>검토 필요</li>
+                      <li><span class="tg-dot" style="--c: var(--color-verybad)"></span>수정 · 추가 사항</li>
+                    </ul>
+                  </div>
+                  <div class="tg-card rv" style="--d: 1">
+                    <h4>Node</h4>
+                    <ul class="tg-legend">
+                      <li><span class="tg-shape"></span>화면 · 선택</li>
+                      <li><span class="tg-shape input"></span>입력</li>
+                      <li><span class="tg-shape decision"></span>판단</li>
+                      <li><span class="tg-shape tab"></span>하단 탭</li>
+                      <li><span class="tg-shape info"></span>화면 속 정보</li>
+                    </ul>
+                  </div>
+                  <div class="tg-card rv" style="--d: 2">
+                    <h4>User_DB</h4>
+                    <div class="tg-db">
+                      <span class="h">data</span><span class="h">datatype</span>
+                      <span>name · rrn</span><span>text</span>
+                      <span>gender</span><span>text</span>
+                      <span>address · work-address</span><span>text</span>
+                      <span>phone</span><span>text</span>
+                      <span>height · weight</span><span>number</span>
+                      <span>history</span><span>List of text</span>
+                      <span>disability-type</span><span>List of text</span>
+                      <span>disability-level</span><span>text</span>
+                      <span>agree-location</span><span>boolean</span>
+                    </div>
+                  </div>
+                  <div class="tg-card rv" style="--d: 3">
+                    <h4>Air_DB</h4>
+                    <div class="tg-db">
+                      <span class="h">data</span><span class="h">datatype</span>
+                      <span>date</span><span>date</span>
+                      <span>location</span><span>text</span>
+                      <span>pm25</span><span>number</span>
+                      <span>stage</span><span>good … verybad</span>
+                      <span>route</span><span>List of point</span>
+                      <span>exposure-time</span><span>number</span>
+                      <span>timeline</span><span>List of text</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="tg-chart-box rv">
+                  <p class="tg-chart-hint"><span>상자에 마우스를 올리면 <b>이어진 경로</b>가 강조됩니다.</span><span>Tracker · Flow v2.0</span></p>
+                  <div class="tg-chart-scroll"><div class="tg-chart" id="chart"></div></div>
+                </div>
+              </div>
+            </section>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="padding-up">
+                <div>
+                    <img style="width: 100%; border-radius: 5rem;" src="resources/img/port/port-1-bg-2.png">
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="design-detail">
+                <div class="dd-stage">
+                    <div class="dd-cards">
+                        <div class="dd-cards-track">
+                            <img class="dd-card" src="resources/img/port/port-1-de-3.png" alt="매우나쁨 단계 메인 화면">
+                            <img class="dd-card" src="resources/img/port/port-1-de-2.png" alt="나쁨 단계 메인 화면">
+                            <img class="dd-card" src="resources/img/port/port-1-de-1.png" alt="보통 단계 메인 화면">
+                        </div>
+                    </div>
+                    <div class="dd-phone">
+                        <div class="dd-phone-screen">
+                            <img src="resources/img/port/메인_좋음.png" alt="좋음 단계 메인 화면">
+                        </div>
+                        <img class="dd-phone-frame" src="resources/img/port/iphone-frame.png" alt="" aria-hidden="true">
+                    </div>
+                    <div class="dd-side">
+                        <div class="dd-text">
+                            <div class="dd-title">Main Page</div>
+                            <div class="dd-desc">핵심 수치와 상태 정보를 중심으로 콘텐츠의 크기와 배치를 재구성하여 현재 환경 상태를 한눈에 파악할 수 있도록 개선했습니다.</div>
+                        </div>
+                        <div class="dd-chips">
+                            <div class="dd-chips-track">
+                                <img class="dd-chip" src="resources/img/port/port-1-ui1.png" alt="보통 단계 안내 문구">
+                                <img class="dd-chip" src="resources/img/port/port-1-ui2.png" alt="나쁨 단계 안내 문구">
+                                <img class="dd-chip" src="resources/img/port/port-1-ui3.png" alt="매우나쁨 단계 안내 문구">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="design-detail" style="padding-bottom: 0;">
+                <div class="location-de">
+                    <div class="dd-text">
+                        <div class="dd-title">위치 데이터 / 히트맵</div>
+                        <div class="dd-desc">지도와 시간별 측정 데이터를 하나의 화면으로 연결하고, 날짜 선택과 상세 데이터를 함께 탐색할 수 있게 구성하여 데이터의 시간적·공간적 맥락을 직관적으로 파악할 수 있도록 개선했습니다.</div>
+                    </div>
+                    <div class="ld-phones">
+                        <img src="resources/img/port/port-1-task2.png" alt="위치 데이터/히트맵 화면">
+                    </div>
+                </div>
+                <!-- 위치 데이터 화면의 기능 소개: 사진 + 실제 컴포넌트(날짜 검색칸 · 그래프 버튼) + 그래프 화면 -->
+                <div class="location-feature">
+                    <div class="lf-top">
+                        <div class="lf-photo"><img src="resources/img/port/port-1-task1.png" alt="위치 데이터 화면을 띄운 스마트폰"></div>
+                        <div class="lf-side">
+                            <!-- 흰 박스 안의 날짜 검색칸과 그래프 버튼은 그림이 아니라 Tracker 실제 컴포넌트 (.design-system 범위의 스타일 사용) -->
+                            <div class="lf-card lf-card-cal">
+                                <div class="lf-live" data-w="262" data-h="296">
+                                    <div class="design-system">
+                                        <div class="search-input" data-calendar="single" id="lfCalendar">
+                                            <input type="text" placeholder="날짜 선택" readonly aria-haspopup="dialog" aria-label="날짜 선택" />
+                                            <img src="resources/html/tracker/public/icon-calendar.svg" alt="" />
+                                            <div class="calendar" role="dialog" aria-label="날짜 선택"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lf-card lf-card-graph">
+                                <div class="lf-live" data-w="50" data-h="50">
+                                    <div class="design-system">
+                                        <button class="map-float-button" type="button" aria-label="그래프 보기" tabindex="-1"><img src="resources/html/tracker/public/icon-graph.svg" alt="" /></button>
+                                    </div>
+                                </div>
+                                <div class="lf-text">
+                                    <div class="dd-title">그래프 아이콘</div>
+                                    <div class="dd-desc">일일 그래프 페이지로 이동하는 버튼</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="lf-wide"><img src="resources/img/port/port-1-task1-1.png" alt="그래프 화면을 띄운 스마트폰"></div>
+                </div>
+                <div class="location-de location-de-mockup">
+                    <div class="ms" data-delay="2500">
+                        <div class="ms-viewport">
+                            <div class="ms-track">
+                                <div class="ms-slide"><img src="resources/img/port/port-1-task3-1.png" alt=""></div>
+                                <div class="ms-slide"><img src="resources/img/port/port-1-task3-2.png" alt=""></div>
+                                <div class="ms-slide"><img src="resources/img/port/port-1-task3-3.png" alt=""></div>
+                                <div class="ms-slide"><img src="resources/img/port/port-1-task3-4.png" alt=""></div>
+                            </div>
+                        </div>
+                        <div class="ms-frame"><img src="resources/img/port/iphone-frame.png" alt="" aria-hidden="true"></div>
+                        <div class="ms-side dd-text">
+                            <div class="dd-title">환경설정</div>
+                            <div class="dd-desc">모든 설정을 한 화면에 몰아넣었던 폼을 목적별 화면으로 나누고, 현재 정보를 먼저 보여 준 뒤 수정하는 흐름으로 바꿔 사용자가 무엇을 바꾸는지 명확히 알 수 있게 했습니다.</div>
+                        </div>
+                    </div>
+                    <!-- 타임라인 데이터 보내기 화면 사진 두 장 (.lf-top 과 같은 배치, 오른쪽 박스 대신 사진) -->
+                    <div class="lf-top lf-pair">
+                        <div class="lf-photo"><img src="resources/img/port/port-1-task1-2.png" alt="데이터 보내기 확인 팝업이 뜬 스마트폰 화면"></div>
+                        <div class="lf-photo"><img src="resources/img/port/port-1-task1-3.png" alt="타임라인 데이터 보내기 화면을 띄운 스마트폰"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="ending-curtain">
+            <div class="ending-post">
+                <div>
+                    <img src="resources/img/port/tracker_end.png">
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<div class="outro-spacer" aria-hidden="true"></div>
+
+<section class="section" id="outro">
+    <div class="goodbye-section">
+        <div class="goodbye-group">
+            <div class="goodbye-left">
+                <div class="goodbye-bold">
+                    <span>Ctrl + S.</span>
+                    <span>Portfolio saved.</span>
+                </div>
+                <div class="goodbye-thin">Produced by Song Eunsun</div>
+            </div>
+            <div class="goodbye-right">
+                <a class="goodbye-box" data-nav="prev" href="#">
+                    <div class="goodbye-box-label">
+                        <span>Prev Project</span>
+                        <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+                    </div>
+                    <div class="prev-img"><img src="" alt=""></div>
+                </a>
+                <a class="goodbye-box" data-nav="next" href="#">
+                    <div class="goodbye-box-label">
+                        <span>Next Project</span>
+                        <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+                    </div>
+                    <div class="prev-img"><img src="" alt=""></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="port-footer">
+        <div class="blob-words"
+             data-trigger=".outro-spacer"
+             data-words="UX/UI,반응형,디자인시스템,Portfolio"
+             data-bg="#ffffff" data-fill="#ffffff" data-border="#111111" data-text="#111111"
+             data-font="Inter" data-unit="5" data-seed="7"
+             data-scale="1" data-speed="1" data-blobbiness="1" data-wobble="1">
+        </div>
+    </div>
+</section>
+
+</body>
+
+</html>    

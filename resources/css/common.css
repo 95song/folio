@@ -1,0 +1,58 @@
+* {
+  font-family: 'Pretendard', sans-serif;
+   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  word-break: keep-all;
+}
+
+/* 커서 따라다니는 동그라미 스타일 */
+.cursor-follower {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 40px;
+  height: 40px;
+  background-color: #FF3D32;
+  opacity: 0.3;
+  border-radius: 50%;
+  pointer-events: none; /* 클릭 이벤트 통과 (필수) */
+  z-index: 9999;
+  transform: translate(-50%, -50%); /* 중심점 맞춤 */
+}
+/* 컨셉 1: 크기 확대 + 투명도 증가 */
+.cursor-follower.hover-concept-1 {
+  width: 65px;
+  height: 65px;
+  background-color: #FF3D32;
+  opacity: 0.3;
+  mix-blend-mode: normal;
+  transition: width 0.3s ease, height 0.3s ease, opacity 0.3s ease;
+}
+
+h1{
+    font-size: unset;
+    margin: 0;
+}
+p{
+    margin: 0;
+}
+.fullpage{
+  width: 100%;
+}
+.section{
+    box-sizing: border-box;
+}
+
+html,
+body {
+  font-family: 'Pretendard', sans-serif;
+  height: auto;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+

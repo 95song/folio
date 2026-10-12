@@ -1,0 +1,354 @@
+/* ==================================================================
+   profile.css — profile.html 전용 스타일
+   컬러: 기존 포트폴리오 컬러 그대로 / 폰트: G마켓 산스
+   ================================================================== */
+
+@font-face { font-family: "Gmarket Sans"; font-weight: 300; font-display: swap;
+  src: local("Gmarket Sans Light"), url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff") format("woff"); }
+@font-face { font-family: "Gmarket Sans"; font-weight: 500; font-display: swap;
+  src: local("Gmarket Sans Medium"), url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff"); }
+@font-face { font-family: "Gmarket Sans"; font-weight: 700; font-display: swap;
+  src: local("Gmarket Sans Bold"), url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff") format("woff"); }
+
+:root {
+  --ink: #111111;
+  --red: #FF3D32;
+  --paper: #F7F7F7;
+  --white: #ffffff;
+  --gray: #969696;
+  --mute: #b6b6b6;
+  --gut: clamp(1.25rem, 4.5vw, 5.25rem);
+  --ease: cubic-bezier(.19, 1, .22, 1);
+}
+
+html, body { background: var(--white); }
+body {
+  color: var(--ink);
+  line-height: 1.5;
+  letter-spacing: -0.02em;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+body, body * { font-family: "Gmarket Sans", "Pretendard", sans-serif; }
+::selection { background: var(--red); color: var(--white); }
+a { color: inherit; text-decoration: none; }
+img { display: block; max-width: 100%; }
+
+/* 햄버거: 어두운/밝은 섹션 모두에서 보이도록 */
+.ham { mix-blend-mode: difference; }
+.ham span, .ham.active span { background: var(--white) !important; }
+
+/* 필름 그레인 */
+.grain {
+  position: fixed; inset: -50%; z-index: 9990; pointer-events: none; opacity: .035;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 1.2s steps(6) infinite;
+}
+@keyframes grain {
+  0% { transform: translate(0, 0); } 20% { transform: translate(-3%, 2%); } 40% { transform: translate(2%, -3%); }
+  60% { transform: translate(-2%, -1%); } 80% { transform: translate(3%, 3%); } 100% { transform: translate(0, 0); }
+}
+
+/* 공통 타이포 조각 */
+.tag { display: inline-block; font-weight: 300; font-size: clamp(.8rem, .95vw, 1rem); letter-spacing: 0; }
+.tag::before { content: "("; } .tag::after { content: ")"; }
+.ch_wrap { display: inline-block; overflow: hidden; vertical-align: top; padding: .16em 0 .1em; margin: -.16em 0 -.1em; }
+.ch { display: inline-block; will-change: transform; }
+.sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+
+/* ================= 0. 로더 ================= */
+.loader {
+  position: fixed; inset: 0; z-index: 9995; background: var(--white); color: var(--ink);
+  display: flex; flex-direction: column; justify-content: space-between; padding: 2rem var(--gut);
+}
+.loader_top, .loader_bottom { display: flex; justify-content: space-between; align-items: flex-end; font-weight: 300; font-size: .85rem; color: var(--gray); }
+.loader_name { font-weight: 700; font-size: clamp(3rem, 13vw, 14rem); line-height: .85; letter-spacing: -.05em; color: var(--ink); }
+.loader_name .dot { color: var(--red); }
+.loader_count { font-weight: 300; font-size: clamp(2rem, 5vw, 5rem); color: var(--ink); font-variant-numeric: tabular-nums; }
+.loader_bar { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--red); transform-origin: left; transform: scaleX(0); }
+
+/* ================= 1. HERO : 스크롤 타이포 (헤맴 → 탐색 → 발견) =================
+   JS가 .hero-sticky 에 진행도 변수를 넣어줌
+   --p  : 전체 0~1       --p1/--p2/--p3 : 1·2·3단계 각각의 0~1
+   --w-fade : 키워드 사라짐   --l-fade : 안내문 사라짐   --s-o : 문장 등장
+   --k-fade : 나머지 단어 사라짐   --k-swap : 핵심 단어 교체   --k-move : 중앙 이동/확대
+   --k-fill : 왼쪽부터 채움   --kw : 굵기   --f-o : 마무리 문구 등장
+   ※ 레이아웃 속성 없이 transform / opacity / filter / background-position 만 변화 */
+.hero { position: relative; background: var(--white); color: var(--ink); }
+.hero-track { position: relative; height: 400vh; }
+.hero-sticky {
+  --p: 0; --p1: 0; --w-fade: 0; --l-fade: 0; --s-o: 0; --k-fade: 0; --k-swap: 0; --k-move: 0; --k-fill: 0; --kw: 200; --f-o: 0;
+  --kx: 0; --ky: 0; --ks: .3;
+  position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden;
+}
+
+.hero_meta { position: absolute; top: 1.9rem; left: var(--gut); right: calc(var(--gut) + 4.5rem); display: flex; justify-content: space-between; align-items: center; font-size: .85rem; z-index: 3; }
+.hero_logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -.02em; }
+.hero_logo i { font-style: normal; color: var(--red); }
+.hero_status { display: inline-flex; align-items: center; gap: .55rem; font-weight: 300; font-size: .85rem; color: var(--ink); }
+.hero_status i { position: relative; width: .5rem; height: .5rem; border-radius: 50%; background: var(--red); }
+.hero_status i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--red); animation: ping 1.8s var(--ease) infinite; }
+@keyframes ping { from { transform: scale(1); opacity: .6; } to { transform: scale(3.2); opacity: 0; } }
+.hero_clock { font-weight: 300; font-size: .85rem; color: var(--gray); font-variant-numeric: tabular-nums; }
+.hero_clock b { color: var(--ink); font-weight: 500; margin-left: .4rem; }
+
+/* 1단계 · 헤맴 : 흐릿하게 흩어진 트렌드 키워드 (단어마다 다른 속도·방향) */
+.hero-words { position: absolute; inset: 0; pointer-events: none; }
+.hero-word {
+  position: absolute; left: var(--x); top: var(--y); white-space: nowrap; letter-spacing: -.03em; line-height: 1;
+  filter: blur(var(--b));
+  opacity: calc(var(--o) * (1 - var(--w-fade)));
+  transform: translate3d(calc(var(--vx) * var(--p1) * 1vw), calc(var(--vy) * var(--p1) * 1vh), 0);
+  will-change: transform, opacity;
+}
+.hero-word.size-0 { font-weight: 300; font-size: clamp(1.1rem, 2.2vw, 2.2rem); }
+.hero-word.size-1 { font-weight: 500; font-size: clamp(1.6rem, 3.8vw, 3.8rem); }
+.hero-word.size-2 { font-weight: 700; font-size: clamp(2.4rem, 6.4vw, 6.6rem); }
+
+.hero-lead {
+  position: absolute; left: 50%; top: 50%; z-index: 2; text-align: center; width: min(90vw, 40rem);
+  transform: translate3d(-50%, calc(-50% - var(--l-fade) * 40px), 0); opacity: calc(1 - var(--l-fade));
+}
+.hero-lead .tag { color: var(--red); }
+.hero-lead p { margin-top: 1.2rem; font-weight: 500; font-size: clamp(1.25rem, 2.4vw, 2.2rem); line-height: 1.4; letter-spacing: -.04em; }
+.hero-lead small { display: block; margin-top: 1.6rem; font-weight: 300; font-size: .85rem; color: var(--gray); }
+
+/* 2단계 · 탐색 : 스크롤 진행도만큼 앞에서부터 해독되는 문장 */
+.hero-sentence {
+  position: absolute; left: var(--gut); right: var(--gut); top: 50%; z-index: 2; margin: 0; text-align: center;
+  font-weight: 700; font-size: clamp(1.7rem, 5.2vw, 5.8rem); line-height: 1.28; letter-spacing: -.045em;
+  transform: translate3d(0, -50%, 0);
+  opacity: var(--s-o); filter: blur(calc((1 - var(--s-o)) * 10px));
+}
+.decode .sw { display: inline-block; white-space: nowrap; }                   /* 단어 단위 줄바꿈 유지 */
+.hero-sentence .sk { display: inline-block; opacity: calc(1 - var(--k-fade));
+  transform: translate3d(0, calc(var(--k-fade) * -14px), 0); filter: blur(calc(var(--k-fade) * 6px)); }
+.hero-sentence .sk.is-key { opacity: calc(1 - var(--k-swap)); transform: none; filter: none; }
+/* 스크램블 글자 (히어로 문장 · LIFE NOW 공용) */
+.decode .sc { position: relative; display: inline-block; }
+.decode .sc.is-scr { color: transparent; }                            /* 원래 글자 자리는 유지(폭 고정) */
+.decode .sc.is-scr::after {
+  content: attr(data-r); position: absolute; left: 50%; top: 0; transform: translateX(-50%);
+  color: var(--mute); font-weight: 300;
+}
+.decode .sc.is-head::after { color: var(--red); font-weight: 700; }
+
+/* 3단계 · 발견 : 핵심 단어만 남아 중앙으로, 아웃라인 → 왼쪽부터 채움, 굵기 얇게 → 굵게 */
+.hero-key {
+  position: absolute; left: 50%; top: 50%; z-index: 3; display: inline-block; padding: .14em 0; white-space: nowrap;
+  font-family: "Pretendard Variable", "Pretendard", sans-serif !important;
+  font-size: clamp(4.4rem, 19vw, 18rem); line-height: 1; letter-spacing: -.05em;
+  font-weight: var(--kw); font-variation-settings: "wght" var(--kw);
+  /* 가변 폰트는 획 윤곽이 겹쳐 있어, 채움이 끝나갈수록 아웃라인을 걷어냄 */
+  color: transparent; -webkit-text-stroke: 1.5px rgb(17 17 17 / calc(1 - var(--k-fill) * var(--k-fill)));
+  background: linear-gradient(90deg, var(--ink) 0 50%, transparent 50% 100%);
+  background-size: 200% 100%; background-position: calc(100% - var(--k-fill) * 100%) 0;
+  -webkit-background-clip: text; background-clip: text;
+  opacity: var(--k-swap);
+  transform:
+    translate3d(-50%, -50%, 0)
+    translate3d(calc(var(--kx) * (1 - var(--k-move)) * 1px), calc(var(--ky) * (1 - var(--k-move)) * 1px), 0)
+    scale(calc(var(--ks) + (1 - var(--ks)) * var(--k-move)));
+  will-change: transform, opacity;
+}
+.hero-found {
+  position: absolute; left: 50%; top: calc(50% + clamp(3.4rem, 12vw, 11rem)); z-index: 3; width: min(90vw, 34rem); text-align: center;
+  transform: translate3d(-50%, calc((1 - var(--f-o)) * 18px), 0); opacity: var(--f-o);
+  font-weight: 300; font-size: clamp(.9rem, 1.1vw, 1.1rem); line-height: 1.7; color: var(--gray);
+}
+.hero-found .tag { color: var(--red); margin-right: .5rem; }
+.hero-found b { color: var(--ink); font-weight: 500; }
+
+/* 하단 HUD : 단계 표시 + 진행 막대 */
+.hero-hud { position: absolute; left: var(--gut); right: var(--gut); bottom: 1.8rem; z-index: 3; display: flex; justify-content: space-between; align-items: center; font-weight: 300; font-size: .8rem; color: var(--mute); }
+.hero-hud ol { display: flex; gap: 1.6rem; list-style: none; }
+.hero-hud li { transition: color .4s; }
+.hero-hud li.is-on { color: var(--ink); }
+.hero-hud li.is-on::before { content: "● "; color: var(--red); font-size: .6em; vertical-align: .2em; }
+.hero-hud output { color: var(--ink); font-variant-numeric: tabular-nums; }
+.hero-bar { position: absolute; left: 0; right: 0; top: -1.1rem; height: 1px; background: rgba(17,17,17,.12); }
+.hero-bar i { position: absolute; inset: 0; background: var(--red); transform-origin: left; transform: scaleX(var(--p)); }
+
+/* ================= 3. ABOUT (manifesto) =================
+   수정 포인트는 .about 의 변수에서:
+   --about-key-size : 왼쪽 키워드 크기     --about-step : 오른쪽 항목 간격(항목 하나가 차지하는 높이)
+   --about-w-min / --about-w-max : 문장 포커스 굵기 범위
+   --about-dim / --about-ink : 문장 색(멀 때 / 중앙일 때)     --about-desc : 설명 색 */
+.about {
+  --about-key-size: clamp(4.5rem, 7.6vw, 10rem);
+  --about-step: 90vh;
+  --about-w-min: 300; --about-w-max: 600;
+  --about-dim: #bbbbbb; --about-ink: #111111; --about-desc: #666666;
+  position: relative; background: var(--white); color: var(--ink);
+}
+
+/* 헤드 (일반 스크롤) */
+.about_head { display: flex; justify-content: space-between; align-items: flex-end; gap: 2.4rem; padding: 18vh var(--gut) 6vh; }
+.about_head .tag { display: block; margin-bottom: 1.4rem; color: var(--gray); }
+.about_title { font-weight: 700; font-size: clamp(2.6rem, 7vw, 8.4rem); line-height: .98; letter-spacing: -.03em; }
+/* 같은 Gmarket Sans 안에서 Bold(700) ↔ Light(300) 굵기 대비로 포인트 */
+.about_title em { font-style: normal; font-weight: 300; letter-spacing: -.03em; color: var(--red); }
+.about_lead { max-width: 22rem; padding-bottom: .8rem; font-family: "Pretendard Variable", "Pretendard", sans-serif; font-weight: 400; font-size: 1.0625rem; line-height: 1.75; color: var(--about-desc); }
+
+/* 본문: 왼쪽 sticky(45%) + 오른쪽 스크롤(55%) */
+.about_body { display: grid; grid-template-columns: 45fr 55fr; padding: 0 var(--gut); }
+.about_sticky { position: sticky; top: 0; align-self: start; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; }
+
+/* 오도미터: 마스크 안에서 위로 빠지고 아래에서 올라오며 교체 */
+.odo { position: relative; overflow: hidden; }
+.odo_item { position: absolute; left: 0; top: 0; white-space: nowrap; transform: translate3d(0, 105%, 0); transition: transform .6s cubic-bezier(.76, 0, .24, 1); will-change: transform; }
+.odo_item.is-above { transform: translate3d(0, -105%, 0); }
+.odo_item.is-on { transform: translate3d(0, 0, 0); }
+.odo-num { width: 1.4em; height: 1.5em; font-weight: 300; font-size: clamp(.95rem, 1.1vw, 1.15rem); line-height: 1.5; color: var(--red); font-variant-numeric: tabular-nums; }
+.about_count { display: flex; align-items: center; gap: .5rem; font-weight: 300; font-size: clamp(.95rem, 1.1vw, 1.15rem); color: var(--mute); }
+.odo-key { height: 1.12em; margin-top: 1.2rem; font-weight: 700; font-size: var(--about-key-size); line-height: 1.12; letter-spacing: -.045em; color: var(--ink); }
+
+.about_list { list-style: none; padding: calc((100vh - var(--about-step)) / 2) 0; }
+.about_item { min-height: var(--about-step); display: flex; flex-direction: column; justify-content: center; padding-left: 2vw; }
+.about_m_key { display: none; }
+
+/* 문장: 화면 중앙에 가까울수록(--focus 0→1) 굵고 진해짐 */
+.about_text {
+  --focus: 0;
+  font-family: "Pretendard Variable", "Pretendard", sans-serif;
+  font-size: clamp(26px, 2.4vw, 40px); line-height: 1.4; letter-spacing: -.025em;
+  font-weight: calc(var(--about-w-min) + (var(--about-w-max) - var(--about-w-min)) * var(--focus));
+  font-variation-settings: "wght" calc(var(--about-w-min) + (var(--about-w-max) - var(--about-w-min)) * var(--focus));
+  color: color-mix(in srgb, var(--about-ink) calc(var(--focus) * 100%), var(--about-dim));
+}
+.about_desc { margin-top: 1.8rem; max-width: 30rem; font-family: "Pretendard Variable", "Pretendard", sans-serif; font-weight: 400; font-size: clamp(16px, 1.05vw, 17px); line-height: 1.75; color: var(--about-desc); }
+
+/* ================= 4. LIFE (가로 스크롤) ================= */
+.life { position: relative; background: var(--white); color: var(--ink); border-top: 1px solid rgba(17,17,17,.12); overflow: hidden; }
+.life_pin { position: relative; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: space-between; padding: 6.5rem var(--gut) 3.4rem; }
+.life_head { position: absolute; top: 2.2rem; left: var(--gut); right: var(--gut); display: flex; justify-content: space-between; z-index: 3; }
+.life_head .tag { color: var(--gray); }
+.life_head p { font-weight: 300; font-size: .9rem; color: var(--gray); }
+.life_head p b { color: var(--ink); font-weight: 500; }
+
+.life_intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; }
+.life_intro h2 { font-weight: 700; font-size: clamp(2.2rem, 4.8vw, 5.8rem); line-height: 1.02; letter-spacing: -.055em; }
+.life_intro h2 em { font-style: normal; color: var(--red); }
+.life_intro p { font-weight: 300; color: var(--gray); font-size: 1rem; padding-bottom: .4rem; }
+.life_intro p::after { content: " →"; color: var(--red); }
+
+/* 가로 타임라인: 5개 지점이 한 화면에, 지점은 각 칸의 왼쪽 끝(점) 위에 놓임 */
+.life_line { position: relative; list-style: none; display: grid; grid-template-columns: repeat(5, 1fr); gap: 0 1.6rem; padding-top: 2.4rem; }
+.life_progress { position: absolute; left: 0; top: 0; width: calc(80% - .32rem); height: 1px; background: rgba(17,17,17,.14); }   /* 첫 점 → 마지막 점 */
+.life_progress i { --lp: 0; position: absolute; inset: 0; background: var(--red); transform-origin: left; transform: scaleX(var(--lp)); }
+
+.life_point { position: relative; opacity: .25; filter: blur(2px); transition: opacity .7s var(--ease), filter .7s var(--ease); }
+.life_point.is-on { opacity: 1; filter: none; }
+.life_dot { position: absolute; left: 0; top: -2.4rem; width: 11px; height: 11px; margin: -5px 0 0 -5px; border-radius: 50%; background: var(--white); border: 1px solid var(--ink); transition: background .5s, border-color .5s, transform .5s var(--ease); }
+.life_point.is-on .life_dot { background: var(--red); border-color: var(--red); transform: scale(1.25); }
+
+.life_year { font-weight: 700; font-size: clamp(4rem, 6.4vw, 7.5rem); line-height: 1; letter-spacing: -.06em; padding-top: .08em; white-space: nowrap; }
+.life_point.is-now .life_year { color: var(--red); }
+.life_events { list-style: none; margin-top: 1.4rem; display: grid; gap: .55rem; }
+.life_events li { display: flex; gap: .9rem; align-items: baseline; }
+.life_month { flex: none; min-width: 1.6rem; font-weight: 300; font-size: .9rem; color: var(--red); font-variant-numeric: tabular-nums; }
+.life_event { font-weight: 500; font-size: clamp(1rem, 1.25vw, 1.35rem); letter-spacing: -.035em; line-height: 1.4; }
+
+/* ================= 5. SKILLS ================= */
+.skills { background: var(--white); border-top: 1px solid rgba(17,17,17,.12); padding: 18vh 0 14vh; }
+.skills_head { padding: 0 var(--gut); display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 9vh; gap: 2rem; }
+.skills_head .tag { color: var(--gray); display: block; margin-bottom: 1.4rem; }
+.skills_head h2 { font-weight: 700; font-size: clamp(2.6rem, 7.6vw, 9rem); line-height: .92; letter-spacing: -.055em; }
+.skills_head h2 em { font-style: normal; color: var(--red); }
+.skills_head p { font-weight: 300; font-size: 1rem; line-height: 1.8; color: #555; max-width: 20rem; padding-bottom: .6rem; }
+
+.skill_list { list-style: none; border-top: 1px solid var(--ink); }
+.skill_row { position: relative; border-bottom: 1px solid rgba(17,17,17,.16); overflow: hidden; }
+.skill_row a { position: relative; z-index: 1; display: grid; grid-template-columns: 5rem 3.4rem 1fr 18rem; align-items: center; gap: 1.6rem; padding: 1.8rem var(--gut); transition: color .5s var(--ease); }
+.skill_row::before { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleY(0); transform-origin: 50% 100%; transition: transform .6s var(--ease); }
+.skill_row:hover::before { transform: scaleY(1); transform-origin: 50% 0; }
+.skill_row:hover a { color: var(--white); }
+.skill_idx { font-weight: 300; font-size: .9rem; color: var(--gray); }
+.skill_icon { width: 3.4rem; height: 3.4rem; object-fit: contain; transition: transform .6s var(--ease); }
+.skill_row:hover .skill_icon { transform: rotate(-12deg) scale(1.08); }
+.skill_name { font-weight: 700; font-size: clamp(2rem, 5.6vw, 6.4rem); line-height: 1; letter-spacing: -.05em; transition: transform .6s var(--ease); }
+.skill_row:hover .skill_name { transform: translateX(1.2rem); }
+.skill_meter { display: flex; align-items: center; gap: 1.2rem; }
+.skill_bar { flex: 1; height: 2px; background: rgba(17,17,17,.12); position: relative; }
+.skill_row:hover .skill_bar { background: rgba(255,255,255,.18); }
+.skill_bar i { position: absolute; inset: 0; background: var(--red); transform-origin: left; transform: scaleX(0); }
+.skill_pct { font-weight: 300; font-size: clamp(1.4rem, 2.2vw, 2.4rem); min-width: 4.2rem; text-align: right; font-variant-numeric: tabular-nums; }
+.skill_row:hover .skill_pct { color: var(--red); }
+
+/* ================= 6. MARQUEE ================= */
+.bands { position: relative; background: var(--white); padding: 12vh 0 16vh; overflow: hidden; }
+.band { white-space: nowrap; overflow: hidden; padding: 1.6rem 0; }
+.band_track { display: inline-flex; will-change: transform; }
+.band_track span { font-weight: 700; font-size: clamp(2.4rem, 6vw, 7rem); letter-spacing: -.04em; padding-right: 3rem; line-height: 1; }
+.band_track span i { font-style: normal; font-weight: 300; margin-left: 3rem; }
+.band.red { background: var(--red); color: var(--white); transform: rotate(-3deg); position: relative; z-index: 2; width: 110%; margin-left: -5%; }
+.band.ink { background: var(--white); color: var(--ink); border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink); transform: rotate(2.2deg); margin-top: -2.2rem; width: 110%; margin-left: -5%; }
+.band.ink span:nth-child(even) { color: transparent; -webkit-text-stroke: 1px var(--ink); }
+
+/* ================= 7. CLOSING ================= */
+.closing { position: relative; background: var(--white); color: var(--ink); border-top: 1px solid rgba(17,17,17,.12); min-height: 100vh; min-height: 100svh; padding: 16vh var(--gut) 2.4rem; display: flex; flex-direction: column; justify-content: space-between; overflow: hidden; }
+.closing .tag { color: var(--gray); }
+.closing_title { font-weight: 700; font-size: clamp(3rem, 6.5vw, 13.5rem); line-height: 1.1; letter-spacing: -.06em; margin-top: 2rem; }
+.closing_title em { font-style: normal; color: var(--red); }
+.closing_row { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-top: 4rem; }
+.closing_row p { font-weight: 300; color: var(--gray); line-height: 1.8; max-width: 22rem; }
+
+.cta {
+  position: relative; flex: none; width: clamp(9rem, 15vw, 15rem); aspect-ratio: 1; border-radius: 50%;
+  background: var(--red); color: var(--white); display: grid; place-items: center; text-align: center;
+  font-weight: 700; font-size: clamp(1rem, 1.4vw, 1.4rem); letter-spacing: -.02em; will-change: transform;
+}
+.cta span { display: block; pointer-events: none; }
+.cta small { display: block; font-weight: 300; font-size: .75rem; margin-top: .5rem; opacity: .8; }
+.cta::after { content: ""; position: absolute; inset: -14px; border-radius: 50%; border: 1px solid rgba(255,61,50,.4); transition: transform .8s var(--ease); }
+.cta:hover::after { transform: scale(1.12); }
+
+.foot { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(17,17,17,.12); margin-top: 10vh; padding-top: 1.6rem; font-weight: 300; font-size: .8rem; color: var(--gray); }
+.foot button { background: none; border: 0; color: var(--ink); font: inherit; letter-spacing: 0; cursor: pointer; }
+.foot button:hover { color: var(--red); }
+
+/* ================= 반응형 ================= */
+@media (max-width: 1100px) {
+  .skill_row a { grid-template-columns: 3rem 2.6rem 1fr 11rem; gap: 1rem; }
+  .skill_icon { width: 2.6rem; height: 2.6rem; }
+}
+@media (max-width: 768px) {
+  .hero_status { display: none; }
+  .hero-hud ol { gap: .9rem; }
+  .hero_meta { right: calc(var(--gut) + 3.5rem); }
+  .about_head, .skills_head, .closing_row { flex-direction: column; align-items: flex-start; }
+  /* ABOUT: sticky 2단 해제 → 항목마다 키워드 → 문장 → 설명 (롤링 생략) */
+  .about_body { grid-template-columns: 1fr; }
+  .about_sticky { display: none; }
+  .about_list { padding: 2rem 0 8rem; }
+  .about_item { min-height: 0; padding: 0; }
+  .about_item + .about_item { margin-top: 6rem; }
+  .about_m_key { display: flex; align-items: baseline; gap: .8rem; margin-bottom: 1.2rem; font-weight: 700; font-size: clamp(2.8rem, 13vw, 4.4rem); line-height: 1.1; letter-spacing: -.045em; }
+  .about_m_key i { font-style: normal; font-weight: 300; font-size: .95rem; letter-spacing: 0; color: var(--red); }
+  /* LIFE: 세로 타임라인 (선은 왼쪽, 지점은 위→아래) */
+  .life_pin { height: auto; padding: 3rem var(--gut) 5rem; }
+  .life_head { position: relative; top: 0; left: 0; right: 0; flex-direction: column; gap: .4rem; margin-bottom: 2.4rem; }
+  .life_intro { flex-direction: column; align-items: flex-start; margin-bottom: 3.6rem; }
+  .life_intro p::after { content: " ↓"; }
+  .life_line { grid-template-columns: 1fr; gap: 3rem; padding: 0 0 0 2rem; }
+  .life_progress { width: 1px; height: auto; top: .55rem; bottom: auto; }
+  .life_progress i { transform-origin: top; transform: scaleY(var(--lp)); }
+  .life_dot { top: .55rem; left: -2rem; }
+  .life_year { font-size: clamp(3rem, 15vw, 4.4rem); }
+  .life_events { margin-top: .9rem; }
+  .life_event { font-size: 1.05rem; }
+  .skill_row a { grid-template-columns: 2.4rem 1fr 4rem; padding: 1.4rem var(--gut); }
+  .skill_icon { display: none; }
+  .skill_bar { display: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .grain, .hero_status i::after { animation: none; }
+  /* 모션 감소: 스크롤 연출 없이 최종(발견) 상태만 한 화면으로 */
+  .hero-track { height: 100vh; height: 100svh; }
+  .hero-words, .hero-lead, .hero-bar { display: none; }
+  .life_point { opacity: 1; filter: none; transition: none; }
+  /* ABOUT: 키워드 즉시 전환, 문장 굵기·색 고정 */
+  .odo_item { transition: none; }
+  .about_text { font-weight: 500; font-variation-settings: "wght" 500; color: var(--about-ink); }
+}

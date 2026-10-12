@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main">
+      <section class="map-view">
+        <div class="map-layer">
+          <img class="map-img" src="./public/map.png" alt="" />
+          <svg class="map-route" width="222" height="76" viewBox="0 0 222 76" fill="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="route" x1="0" y1="0" x2="222" y2="0" gradientUnits="userSpaceOnUse">
+                <stop offset="0" stop-color="#fff" />
+                <stop offset="0.35" stop-color="#fff" />
+                <stop offset="1" stop-color="#8fc3e8" />
+              </linearGradient>
+            </defs>
+            <path d="M0 50.5L20 6Q24 -1 29 6L38 26Q44 40 70 44L134 50.5L175 50.5Q205 52 221 75" stroke="url(#route)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <span class="map-pin" style="left:17px; top:218px">7</span>
+          <span class="map-pin" style="left:151px; top:218px">8</span>
+          <span class="map-pin" style="left:235px; top:245px">10</span>
+          <span class="map-pin" style="left:239px; top:245px">9</span>
+          <span class="map-pin" style="left:241px; top:243px">11</span>
+        </div>
+        <div class="map-search">
+          <div class="search-input" data-calendar>
+            <input type="text" placeholder="날짜 선택" readonly aria-haspopup="dialog" />
+            <img src="./public/icon-calendar.svg" alt="" />
+            <div class="calendar" role="dialog" aria-label="기간 선택"></div>
+          </div>
+          <button class="search-button" type="button">검색</button>
+        </div>
+      </section>
+
+      <section class="location-sheet" id="locationSheet">
+        <!-- 시트 안에 두어 시트를 닫으면 함께 내려감 -->
+        <button class="map-float-button" type="button" aria-label="그래프 보기" onclick="location.href='./graph.html'">
+          <img src="./public/icon-graph.svg" alt="" />
+        </button>
+        <button class="sheet-handle" type="button" aria-label="목록 열고 닫기"></button>
+        <div class="segment" role="tablist">
+          <button type="button">어제</button>
+          <button class="on" type="button">오늘</button>
+        </div>
+        <ul class="location-list">
+          <li class="location-item">
+            <div class="location-text">
+              <p class="location-time">11:24 AM<span>2025.06.18</span></p>
+              <p class="location-place"><b>서울시 종로구</b>실내</p>
+            </div>
+            <button class="location-link" type="button">
+              <img src="./public/icon-location-dark.svg" alt="" />
+              위치
+            </button>
+          </li>
+          <li class="location-item">
+            <div class="location-text">
+              <p class="location-time">11:24 AM<span>2025.06.18</span></p>
+              <p class="location-place"><b>서울시 종로구</b>실내</p>
+            </div>
+            <button class="location-link" type="button">
+              <img src="./public/icon-location-dark.svg" alt="" />
+              위치
+            </button>
+          </li>
+          <li class="location-item">
+            <div class="location-text">
+              <p class="location-time">11:24 AM<span>2025.06.18</span></p>
+              <p class="location-place"><b>서울시 종로구</b>실내</p>
+            </div>
+            <button class="location-link" type="button">
+              <img src="./public/icon-location-dark.svg" alt="" />
+              위치
+            </button>
+          </li>
+          <li class="location-item">
+            <div class="location-text">
+              <p class="location-time">11:24 AM<span>2025.06.18</span></p>
+              <p class="location-place"><b>서울시 종로구</b>실내</p>
+            </div>
+            <button class="location-link" type="button">
+              <img src="./public/icon-location-dark.svg" alt="" />
+              위치
+            </button>
+          </li>
+        </ul>
+      </section>
+
+      <nav class="tab-bar">
+        <button class="tab-button" type="button" onclick="location.href='./main-good.html'">
+          <span class="tab-icon"><img src="./public/tab-home-off.svg" alt="" /></span>
+          <span class="tab-name">홈</span>
+        </button>
+        <button class="tab-button on" type="button" onclick="location.href='./location.html'">
+          <span class="tab-icon"><img src="./public/tab-location-on.svg" alt="" /></span>
+          <span class="tab-name">위치 데이터</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./heatmap.html'">
+          <span class="tab-icon"><img src="./public/tab-heatmap-off.svg" alt="" /></span>
+          <span class="tab-name">히트맵</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./mypage.html'">
+          <span class="tab-icon"><img src="./public/tab-setting-off.svg" alt="" /></span>
+          <span class="tab-name">환경설정</span>
+        </button>
+      </nav>
+    </div>
+
+    <script>
+      // 바텀시트 열기/닫기 (닫힌 상태 = 위치데이터_2)
+      const sheet = document.getElementById('locationSheet');
+      sheet.querySelector('.sheet-handle').addEventListener('click', () => {
+        sheet.classList.toggle('close');
+      });
+
+      // 어제/오늘 선택
+      document.querySelectorAll('.segment button').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.segment button').forEach(b => b.classList.remove('on'));
+          btn.classList.add('on');
+        });
+      });
+    </script>
+    <script src="./js/calendar.js"></script>
+  </body>
+</html>

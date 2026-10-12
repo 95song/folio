@@ -1,0 +1,177 @@
+/************************** 페이지 뼈대 */
+.main {
+  position: relative;
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* 배경 */
+.main.bg-primary {
+  background: var(--color-primary);
+}
+.main.bg-fade {
+  background: linear-gradient(180deg, var(--color-primary-light), rgba(255, 255, 255, 0));
+}
+/* 미세먼지 단계 테마: --theme 하나로 배경·강조색을 함께 바꿈 */
+.main.theme-good    { --theme: var(--color-good); }
+.main.theme-normal  { --theme: var(--color-normal); }
+.main.theme-bad     { --theme: var(--color-bad); }
+.main.theme-verybad { --theme: var(--color-verybad); }
+.main.theme {
+  background: linear-gradient(180deg, var(--theme) 15%, var(--bg-default));
+}
+
+/************************** 섹션 */
+/* 화면 정중앙 배치 (로딩, 로그인) */
+.center-section {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 30px;
+}
+.center-div {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 메인 상단 (헤더 + 위치 + 구체) */
+.hero-section {
+  padding-top: var(--status-bar);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 메인 하단 흰색 카드 */
+.card-section {
+  flex: 1;
+  margin-top: 35px;
+  padding: 34px 24px calc(var(--tab-bar) + 36px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: var(--bg-default);
+  border-radius: var(--br-15) var(--br-15) 0 0;
+}
+
+/* 설정 화면 하단 흰색 패널 */
+.panel-section {
+  flex: 1;
+  margin-top: 35px;
+  padding: 25px 24px calc(var(--tab-bar) + 30px);
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-default);
+  border-radius: var(--br-15) var(--br-15) 0 0;
+}
+
+/* 지도 화면 */
+.map-view {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background-color: #f7f7f7;
+}
+.map-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 375px;
+  height: 812px;
+}
+
+/* ======================================================================
+   busan_renew 페이지 뼈대 (값은 Tracker 토큰)
+   ====================================================================== */
+
+/* 상단 제목줄: 왼쪽 아이콘 · 가운데 제목 · 오른쪽 아이콘(또는 빈칸) */
+.top-section {
+  margin-top: var(--status-bar);
+  padding: 0 24px;
+  border-bottom: 1px solid var(--border-list);
+}
+.top-section.unline {
+  border-bottom: 0;
+}
+.top-title {
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.title-b {
+  flex: 1;
+  font-size: var(--fs-20);
+  font-weight: 700;
+  line-height: 27px;
+  text-align: center;
+  color: var(--text);
+}
+.icon-arrow,
+.icon-close {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+.spacer-24 {
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+}
+
+/* 입력 폼 본문 */
+.form-section {
+  margin-top: 30px;
+  padding: 0 24px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* 회색 본문 (약관 전문) */
+.gray-section {
+  flex: 1;
+  padding: 30px 24px;
+  background-color: var(--bg-segment);
+}
+
+/* 하단 버튼 영역 */
+.bottom-section {
+  padding: 15px 24px 40px;
+  background-color: var(--bg-default);
+}
+.bottom-button {
+  display: flex;
+  gap: 10px;
+}
+
+/* 하단 버튼은 항상 화면 아래로 */
+.bottom-section {
+  margin-top: auto;
+}
+
+/* 안내 박스 영역 */
+.text-section {
+  margin-top: 20px;
+  padding: 0 24px;
+}
+
+/* 배경 그라데이션을 위쪽 절반에만 (로그인·찾기·회원가입) */
+.main.bg-half {
+  background: linear-gradient(180deg, var(--color-primary-light) 0%, rgba(255, 255, 255, 0) 50%), var(--bg-default);
+}
+/* 이전(라인) · 다음(채움) 버튼 높이를 맞춘다 */
+.bottom-button .button {
+  height: 44px;
+}

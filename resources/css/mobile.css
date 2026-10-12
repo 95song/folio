@@ -1,0 +1,56 @@
+@media all and (max-width: 767px) { 
+	
+	html { font-size: 12px; }
+
+	html,body { width: 100%; overflow-x: hidden; }
+
+	.pc { display: none !important; }
+	.mo { display: block !important; }
+
+    /* .all_wrap { width: 100dvw; } */
+
+    .main_skip_bt { width: 60px; height: 60x; right: 1%; bottom: 1%; }
+    .main_skip_bt>div { width: 60px; height: 60px; }
+    .main_skip_bt>div p { font-size: 12px; }
+    .main_skip_bt>div:before { width: 75px; height: 75px; left: -8px; top: -8px; }
+    
+    .button{ width: 50px; height: 50px; margin: 20px;}
+    .button-elem{width: 18px; height: 18px; margin: 15px 16px 0 16px;}
+    
+/*  */
+    .main_tit2 h1 { line-height: 115%; }
+
+    .main_txt_box h4 { font-size: 1.125rem; }
+    .main_txt_box h2 { font-size: 1.25rem; margin-top: 0.875rem; text-align: center; }
+    .main_txt_box>div>div img { right: -2.25rem; top: 1.5rem; width: 22rem; }
+    .main_txt_box h1 { width: 100%; margin-left: 0; margin-top: 0.5rem; font-size: 4.5rem; line-height: 114%; letter-spacing: 0.875rem; padding-left: 0.875rem; }
+    .main_txt_box h5 { font-size: 1.25rem; margin-top: 1.875rem; text-align: center; }
+    .main_txt_box h3 { font-size: 1.875rem; text-align: center; }
+    .main_txt_box>div>div img { display: none; }
+
+    .main_wrap.intro3 .main_img_slide { clip-path: circle(10rem at 50% 50%); }
+    .main_wrap.intro9 .main_img_slide { clip-path: circle(100% at 50% 50%); }
+    .main_wrap.intro9 .main_img::after { height: 0%; transition: 1.0s 0s; }
+
+    .main_wrap.intro9 .main_txt_box h2{ margin-top:13rem ;}
+
+    .footer { padding: 3rem 5% 5.5rem; display: block; }
+
+    .footer>div:first-child { font-size: 0.875rem; display: block; }
+    
+    .footer_left ul { flex-wrap: wrap; margin-top: 1.125rem; gap: 1rem 0; }
+    .footer_left ul li { padding: 0 1rem; }
+    .footer_left ul li:first-child { padding-left : 1rem; }
+    .footer_left ul li img { margin-right: 0.875rem; transform: scale(1); }
+
+    .footer_info { margin-top: 2.5rem; }
+    .footer_info p br.mo { display: block; }
+    .footer_info ul { width: 140%; margin-left: -20%; margin-top: 0.375rem; }
+    .footer_info ul li { font-size: 0.875rem; padding: 0 0.5rem; }
+    .footer_info ul li:after { right: -1px; }
+
+    .footer>div h6 { margin-top: 2.5rem; }
+
+    .footer_right { margin-top: 4.5rem; }
+
+}

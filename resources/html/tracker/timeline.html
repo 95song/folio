@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main bg-fade">
+      <header class="page-header">
+        <h1 class="page-title">타임라인 데이터 보내기</h1>
+        <button class="icon-button" type="button" aria-label="닫기" onclick="location.href='./mypage.html'">
+          <img src="./public/icon-close.svg" alt="" />
+        </button>
+      </header>
+
+      <section class="info-card">
+        <h2 class="form-title">사고개요</h2>
+        <dl class="info-list">
+            <div class="info-row"><dt>사고일시</dt><dd>2025-08-08 03:00</dd></div>
+            <div class="info-row"><dt>사고위치</dt><dd>울산광역시 남구 신정동 720-4</dd></div>
+            <div class="info-row"><dt>사고물질</dt><dd>포름알데히드</dd></div>
+        </dl>
+      </section>
+
+      <section class="panel-section">
+        <form data-confirm="#confirmPop" data-confirm-next="./mypage.html">
+          <h2 class="form-title">사고개요 확인 후 정보 입력</h2>
+          <div class="form-rows">
+              <div class="form-row">
+                <label class="form-label" for="name">신청인 이름</label>
+                <div class="field">
+                  <input id="name" type="text" placeholder="이름을 입력해 주세요" />
+                </div>
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="gender">성별</label>
+                <div class="field">
+                  <select id="gender"><option>남성</option><option>여성</option></select>
+                </div>
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="birth">생년월일</label>
+                <div class="field" data-calendar="single">
+                  <input id="birth" type="text" placeholder="1990.11.21" readonly aria-haspopup="dialog" />
+                  <img src="./public/icon-calendar.svg" alt="" />
+                  <div class="calendar" role="dialog" aria-label="날짜 선택"></div>
+                </div>
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="weight">체중</label>
+                <div class="field">
+                  <input id="weight" type="text" inputmode="decimal" placeholder="80" />
+                  <span class="input-unit">kg</span>
+                </div>
+              </div>
+              <div class="form-row">
+                <label class="form-label" for="phone">휴대폰 번호</label>
+                <div class="field">
+                  <input id="phone" type="tel" placeholder="휴대폰 번호를 입력해주세요" />
+                </div>
+              </div>
+            <button class="button line" type="button">구글 타입라인 데이터 첨부</button>
+            <label class="input-check-square">
+              <input type="checkbox" required />
+              <span class="mark"></span>
+              사고 피해분석을 위한 개인정보 활용에 동의합니다(필수)
+            </label>
+          </div>
+          <button class="button square" type="submit">보내기</button>
+        </form>
+      </section>
+
+      <nav class="tab-bar">
+        <button class="tab-button" type="button" onclick="location.href='./main-good.html'">
+          <span class="tab-icon"><img src="./public/tab-home-off.svg" alt="" /></span>
+          <span class="tab-name">홈</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./location.html'">
+          <span class="tab-icon"><img src="./public/tab-location-off.svg" alt="" /></span>
+          <span class="tab-name">위치 데이터</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./heatmap.html'">
+          <span class="tab-icon"><img src="./public/tab-heatmap-off.svg" alt="" /></span>
+          <span class="tab-name">히트맵</span>
+        </button>
+        <button class="tab-button on" type="button" onclick="location.href='./mypage.html'">
+          <span class="tab-icon"><img src="./public/tab-setting-on.svg" alt="" /></span>
+          <span class="tab-name">환경설정</span>
+        </button>
+      </nav>
+    </div>
+
+    <!-- 확인 팝업 (js/confirm.js) -->
+    <div class="pop_wrap" id="confirmPop" role="dialog" aria-modal="true" aria-labelledby="confirmTitle">
+      <div class="popup-parent">
+        <div class="popup-text">
+          <p class="popup-title" id="confirmTitle">데이터를 보내시겠습니까?</p>
+          <p class="form-text red">*데이터를 한번 보내시면<br />수정하실 수 없습니다.</p>
+        </div>
+        <div class="popup-buttons">
+          <button class="popup-button cancel" type="button">취소</button>
+          <button class="popup-button" type="button">확인</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./js/select.js"></script>
+    <script src="./js/calendar.js"></script>
+    <script src="./js/confirm.js"></script>
+  </body>
+</html>

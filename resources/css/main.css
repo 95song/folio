@@ -1,0 +1,191 @@
+:root {
+  --bg: #F7F7F7;
+  --ink: #111111;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Pretendard', sans-serif;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  font-family: 'Pretendard', sans-serif;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+}
+
+.main_wrap{
+    font-family: "Inter Tight", system-ui, sans-serif !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ================= HERO 배경 영상 섹션 ================= */
+
+@font-face {
+  font-family: "Gmarket Sans";
+  font-weight: 300;
+  src: local("Gmarket Sans Light"),
+       url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff") format("woff");
+}
+@font-face {
+  font-family: "Gmarket Sans";
+  font-weight: 500;
+  src: local("Gmarket Sans Medium"),
+       url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+}
+@font-face {
+  font-family: "Gmarket Sans";
+  font-weight: 700;
+  src: local("Gmarket Sans Bold"),
+       url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff") format("woff");
+}
+
+.hero_video_wrap {
+  overflow: hidden;
+  background: #000;
+}
+
+.hero_bg_video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero_copy {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  font-family: "Gmarket Sans", "Pretendard", sans-serif;
+  color: #111111;
+  pointer-events: none;
+}
+
+.hero_copy_top {
+  position: absolute;
+  top: 4%;
+  left: 3%;
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(2.2rem, 7.6vw, 8.4rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+.hero_copy_mid {
+  position: absolute;
+  top: 50%;
+  left: 80%;
+  transform: translate(-50%, -50%);
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 2.1vw, 1.5rem);
+  line-height: 1.5;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.hero_copy_mid .typing_cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  margin-left: 2px;
+  background: currentColor;
+  vertical-align: -0.15em;
+  animation: hero_cursor_blink 0.8s step-end infinite;
+}
+
+@keyframes hero_cursor_blink {
+  50% { opacity: 0; }
+}
+
+.hero_copy_bottom {
+  position: absolute;
+  right: 4%;
+  bottom: 3%;
+  margin: 0;
+  font-weight: 700;
+  font-size: clamp(2.6rem, 8.2vw, 8.8rem);
+  line-height: 1;
+  letter-spacing: -0.02em;
+  text-align: right;
+}
+
+.hero_copy_top .scramble_char,
+.hero_copy_bottom .scramble_char {
+  opacity: 0.5;
+}
+
+/* 영상과 같은 비율로 cover 배치되는 레이어 → 사료 더미 위치에 고정 */
+.hero_copy { container-type: size; }
+
+.hero_stage {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100cqw, calc(100cqh * 1892 / 1096));
+  aspect-ratio: 1892 / 1096;
+  transform: translate(-50%, -50%);
+}
+
+.hero_copy_note {
+  position: absolute;
+  right: 84.1%;
+  top: 80.1%;
+  transform: translateY(-50%);
+  font-weight: 500;
+  font-size: clamp(0.75rem, 1.05vw, 1.05rem);
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+}
+
+.hero_note_line {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.hero_note_line polyline {
+  fill: none;
+  stroke: #111111;
+  stroke-width: 1;
+  vector-effect: non-scaling-stroke;
+}
+
+/* 영상 좌측이 크게 잘리는 좁은 비율: 문구를 지시선 가로 구간 위로 올림 */
+@media (max-aspect-ratio: 3/2) {
+  .hero_copy_note {
+    right: auto;
+    left: max(16.3%, calc((100% - 100cqw) / 2 + 3cqw));
+    transform: translateY(calc(-100% - 4px));
+  }
+}
+
+@media (max-width: 640px) {
+  .hero_copy_top { top: 6%; left: 5%; }
+  .hero_copy_mid { left: 50%; top: 38%; white-space: normal; width: 80%; }
+  .hero_copy_bottom { right: 5%; bottom: 6%; }
+  .hero_stage { position: static; width: auto; aspect-ratio: auto; transform: none; }
+  .hero_copy_note { left: 5%; right: auto; top: auto; bottom: 14%; transform: none; white-space: normal; }
+  .hero_note_line { display: none; }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main bg-primary">
+      <section class="center-section">
+        <div class="center-div">
+          <img class="intro-sphere" src="./public/sphere.gif" alt="" />
+          <p class="logo-text white">Tracker</p>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // 로딩 화면 1초 노출 후 로그인으로 이동 (뒤로가기 시 로딩 화면으로 돌아오지 않도록 replace)
+      setTimeout(() => {
+        location.replace('./login.html');
+      }, 1000);
+    </script>
+  </body>
+</html>

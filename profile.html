@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="끊임없이 새로운 꿈을 꾸며 발전하는 디자이너">
+<title>PortFolio — Profile</title>
+<link rel="shortcut icon" href="resources/img/common/favicon.png" type="image/x-icon">
+
+<!-- 공통 (햄버거 메뉴 · 커서) -->
+<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="resources/css/menu.css">
+
+<!-- 히어로 핵심 단어의 가변 굵기(wght 100~900)용 폰트 -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<script src="resources/js/common.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+
+<link rel="stylesheet" href="resources/css/profile.css">
+</head>
+
+<body class="main">
+
+<div class="cursor-follower"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- 0. 로더 -->
+<div class="loader" aria-hidden="true">
+  <div class="loader_top"><span>(Profile)</span><span>Designer &amp; Publisher</span></div>
+  <div class="loader_bottom">
+    <div class="loader_name"><span data-split>EUNSUN</span><span class="dot">.</span></div>
+    <div class="loader_count"><span id="loaderCount">000</span></div>
+  </div>
+  <i class="loader_bar"></i>
+</div>
+
+<!-- 메뉴 -->
+<div class="ham sitemap-open-btn btn">
+  <span class="bar1"></span><span class="bar2"></span><span class="bar3"></span>
+</div>
+<div class="site_wrap">
+  <div class="site_map">
+    <div>
+      <ul>
+        <li class="sitemap_dep1"><a href="index.html"><span>HOME</span><span>HOME</span></a></li>
+        <li class="sitemap_dep1"><a href="profile.html"><span>ABOUT</span><span>ABOUT</span></a></li>
+        <li class="sitemap_dep1"><a href="portfolio.html"><span>Portfolio</span><span>Portfolio</span></a></li>
+      </ul>
+      <h6> © 2026 EUNSUN .ALL RIGHTS RESERVED</h6>
+    </div>
+  </div>
+</div>
+<div class="site_bg"></div>
+
+<main>
+
+  <!-- 1. HERO : 헤맴 → 탐색 → 발견 (문구·키워드·구간은 아래 HERO_CONFIG 에서 수정) -->
+  <section class="hero" id="hero">
+    <div class="hero-track" id="heroTrack">
+      <div class="hero-sticky" id="heroSticky">
+
+        <div class="hero_meta">
+          <a href="index.html" class="hero_logo">EUNSUN<i>.</i></a>
+          <span class="hero_status"><i></i>Now finding the direction</span>
+          <span class="hero_clock">Seoul<b id="heroClock">00:00:00</b></span>
+        </div>
+
+        <div class="hero-words" id="heroWords" aria-hidden="true"></div>
+
+        <div class="hero-lead" aria-hidden="true">
+          <span class="tag">01 — Wander</span>
+          <p>수많은 트렌드 사이에서,<br>어디로 가야 할까?</p>
+          <small>(Scroll) ↓</small>
+        </div>
+
+        <h1 class="hero-sentence decode" id="heroSentence"></h1>
+        <span class="hero-key" id="heroKey" aria-hidden="true"></span>
+        <p class="hero-found" id="heroFound"></p>
+
+        <div class="hero-hud" aria-hidden="true">
+          <div class="hero-bar"><i></i></div>
+          <ol id="heroStages"><li>01 헤맴</li><li>02 탐색</li><li>03 발견</li></ol>
+          <output id="heroPct">000</output>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. ABOUT : 왼쪽 키워드 오도미터(sticky) + 오른쪽 문장 스크롤 -->
+  <section class="about" id="about">
+    <div class="about_head">  <!-- header 태그는 menu.css 에서 position: fixed 라 div 사용 -->
+      <div>
+        <h2 class="about_title">Finding the <em>Direction.</em></h2>
+      </div>
+      <p class="about_lead">빠르게 바뀌는 유행 속에서 오래 남을 방향을 고르고, 그 방향을 화면 끝까지 직접 만들어내는 디자이너입니다.</p>
+    </div>
+
+    <div class="about_body">
+      <!-- 시각 전용: 스크린리더는 오른쪽 항목의 sr-only 제목을 읽음 -->
+      <div class="about_sticky" aria-hidden="true">
+        <div class="about_count">
+          <div class="odo odo-num" id="aboutNum"><span class="odo_item is-on">01</span><span class="odo_item">02</span><span class="odo_item">03</span></div>
+          <span>/ 03</span>
+        </div>
+        <div class="odo odo-key" id="aboutKey"><span class="odo_item is-on">Trend</span><span class="odo_item">Direction</span><span class="odo_item">Craft</span></div>
+      </div>
+
+      <ol class="about_list">
+        <li class="about_item">
+          <h3 class="sr-only">01 Trend</h3>
+          <span class="about_m_key" aria-hidden="true"><i>01</i>Trend</span>
+          <p class="about_text">어제의 촌스러움이 오늘의 갬성이 되는 순간을, 먼저 알아챕니다.</p>
+          <p class="about_desc">빙글빙글 돌아가는 트렌드 속에서 오래 쓸 것과 금방 지나갈 것을 구분합니다.</p>
+        </li>
+        <li class="about_item">
+          <h3 class="sr-only">02 Direction</h3>
+          <span class="about_m_key" aria-hidden="true"><i>02</i>Direction</span>
+          <p class="about_text">길은 헤매도, 방향은 잃지 않습니다.</p>
+          <p class="about_desc">“이 방향이 아닌가?” 싶을 때마다 다시 지도를 펼치고, 사용자에게 맞는 길을 찾습니다.</p>
+        </li>
+        <li class="about_item">
+          <h3 class="sr-only">03 Craft</h3>
+          <span class="about_m_key" aria-hidden="true"><i>03</i>Craft</span>
+          <p class="about_text">디자인에서 퍼블리싱까지, 화면 끝까지 책임집니다.</p>
+          <p class="about_desc">기획한 의도가 실제 화면에서도 그대로 살아있도록 HTML·CSS·JS로 직접 마무리합니다.</p>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 4. LIFE : 그 디자이너의 인생방향 -->
+  <section class="life" id="life">
+    <div class="life_pin">
+      <div class="life_head">
+        <p><b>1995</b> — Now</p>
+      </div>
+
+      <div class="life_intro">
+        <h2>그 디자이너의<br><em>인생방향</em>은<br>이렇습니다.</h2>
+        <p>옆으로 따라가 보세요</p>
+      </div>
+
+      <ol class="life_line" id="lifeLine">
+        <li class="life_progress" aria-hidden="true"><i id="lifeProgress"></i></li>
+        <li class="life_point">
+          <span class="life_dot"></span>
+          <div class="life_year">1995</div>
+          <ul class="life_events"><li><span class="life_month">02</span><p class="life_event">배꼽빠진 날</p></li></ul>
+        </li>
+        <li class="life_point">
+          <span class="life_dot"></span>
+          <div class="life_year">2013</div>
+          <ul class="life_events"><li><span class="life_month">02</span><p class="life_event">선화예술고등학교 졸업</p></li></ul>
+        </li>
+        <li class="life_point">
+          <span class="life_dot"></span>
+          <div class="life_year">2020</div>
+          <ul class="life_events"><li><span class="life_month">09</span><p class="life_event">컬러리스트산업기사 취득</p></li></ul>
+        </li>
+        <li class="life_point">
+          <span class="life_dot"></span>
+          <div class="life_year">2021</div>
+          <ul class="life_events">
+            <li><span class="life_month">02</span><p class="life_event">한성대 디자인 아트교육원 졸업</p></li>
+            <li><span class="life_month">03</span><p class="life_event">(주)NCL 입사</p></li>
+          </ul>
+        </li>
+        <li class="life_point is-now">
+          <span class="life_dot"></span>
+          <div class="life_year">NOW</div>
+          <ul class="life_events"><li><span class="life_month">—</span><p class="life_event decode" id="lifeNow">다음 방향을 찾는 중...</p></li></ul>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- 5. SKILLS -->
+  <section class="skills" id="skills">
+    <div class="skills_head">
+      <div>
+        <h2><span data-split>손에 익은</span><br><em data-split>도구들.</em></h2>
+      </div>
+      <p>디자인 툴부터 마크업·스크립트까지. 아이디어가 실제 화면이 될 때까지 필요한 도구를 직접 다룹니다.</p>
+    </div>
+
+    <ul class="skill_list">
+      <li class="skill_row"><a><span class="skill_idx">01</span><img class="skill_icon" src="resources/img/common/skill-1.png" alt=""><span class="skill_name">Illustrator</span><span class="skill_meter"><span class="skill_bar"><i></i></span><span class="skill_pct" data-pct="95">0</span></span></a></li>
+      <li class="skill_row"><a><span class="skill_idx">02</span><img class="skill_icon" src="resources/img/common/skill-2.png" alt=""><span class="skill_name">Photoshop</span><span class="skill_meter"><span class="skill_bar"><i></i></span><span class="skill_pct" data-pct="90">0</span></span></a></li>
+      <li class="skill_row"><a><span class="skill_idx">03</span><img class="skill_icon" src="resources/img/common/skill-3.png" alt=""><span class="skill_name">XD</span><span class="skill_meter"><span class="skill_bar"><i></i></span><span class="skill_pct" data-pct="93">0</span></span></a></li>
+      <li class="skill_row"><a><span class="skill_idx">04</span><img class="skill_icon" src="resources/img/common/skill-4.png" alt=""><span class="skill_name">InDesign</span><span class="skill_meter"><span class="skill_bar"><i></i></span><span class="skill_pct" data-pct="82">0</span></span></a></li>
+      <li class="skill_row"><a><span class="skill_idx">05</span><img class="skill_icon" src="resources/img/common/skill-5.png" alt=""><span class="skill_name">Figma</span><span class="skill_meter"><span class="skill_bar"><i></i></span><span class="skill_pct" data-pct="92">0</span></span></a></li>
+      <li class="skill_row"><a><span class="skill_idx">06</span><img class="skill_icon" src="resources/img/common/skill-6.png" alt=""><span class="skill_name">HTML</span><span class="skill_meter"><span class="skill_bar"><i></i></span><span class="skill_pct" data-pct="95">0</span></span></a></li>
+      <li class="skill_row"><a><span class="skill_idx">07</span><img class="skill_icon" src="resources/img/common/skill-7.png" alt=""><span class="skill_name">CSS</span><span class="skill_meter"><span class="skill_bar"><i></i></span><span class="skill_pct" data-pct="95">0</span></span></a></li>
+      <li class="skill_row"><a><span class="skill_idx">08</span><img class="skill_icon" src="resources/img/common/skill-8.png" alt=""><span class="skill_name">JavaScript</span><span class="skill_meter"><span class="skill_bar"><i></i></span><span class="skill_pct" data-pct="85">0</span></span></a></li>
+      <li class="skill_row"><a><span class="skill_idx">09</span><img class="skill_icon" src="resources/img/common/skill-9.png" alt=""><span class="skill_name">Notion</span><span class="skill_meter"><span class="skill_bar"><i></i></span><span class="skill_pct" data-pct="72">0</span></span></a></li>
+    </ul>
+  </section>
+
+  <!-- 6. MARQUEE BANDS -->
+  <section class="bands" aria-hidden="true">
+    <div class="band red"><div class="band_track" data-dir="-1">
+      <span>UX/UI Design<i>✦</i></span><span>Publishing<i>✦</i></span><span>Color Direction<i>✦</i></span><span>Editorial<i>✦</i></span>
+      <span>UX/UI Design<i>✦</i></span><span>Publishing<i>✦</i></span><span>Color Direction<i>✦</i></span><span>Editorial<i>✦</i></span>
+    </div></div>
+    <div class="band ink"><div class="band_track" data-dir="1">
+      <span>Trend</span><span>Direction</span><span>Designer</span><span>Trend</span><span>Direction</span><span>Designer</span>
+      <span>Trend</span><span>Direction</span><span>Designer</span><span>Trend</span><span>Direction</span><span>Designer</span>
+    </div></div>
+  </section>
+
+  <!-- 7. CLOSING -->
+  <section class="closing" id="closing">
+    <div>
+      <h2 class="closing_title"><span data-split>방향을 찾았다면,</span><br><span data-split>이제</span> <em data-split>결과물</em><span data-split>로.</span></h2>
+    </div>
+
+    <div>
+      <div class="closing_row">
+        <p>말보다 화면이 더 많은 걸 설명해 줍니다.<br>지금까지 찾아낸 방향들을 직접 확인해 보세요.</p>
+        <a href="portfolio.html" class="cta" id="cta"><span>Portfolio →<small>View all works</small></span></a>
+      </div>
+      <div class="foot">
+        <span>© 2026 EUNSUN. ALL RIGHTS RESERVED</span>
+        <button type="button" id="toTop">Back to top ↑</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<script src="resources/js/profile.js"></script>
+</body>
+</html>

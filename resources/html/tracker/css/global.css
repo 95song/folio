@@ -1,0 +1,134 @@
+/************************** 폰트 */
+@font-face {
+  font-family: "GmarketSans";
+  font-weight: 300;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff") format("woff");
+}
+@font-face {
+  font-family: "GmarketSans";
+  font-weight: 500;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff") format("woff");
+}
+@font-face {
+  font-family: "GmarketSans";
+  font-weight: 700;
+  font-display: swap;
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansBold.woff") format("woff");
+}
+/* 띄어쓰기 보정
+   웹폰트 파일에서 빈칸(space)을 시스템 글꼴로 대신 그리는데, 시스템 글꼴의 위아래 높이가 커서
+   빈칸이 있는 글줄이 약 2.5px 아래로 밀린다 (예: 버튼 '패스워드 찾기').
+   빈칸만 Gmarket Sans와 같은 높이(위 81.25% · 아래 37.5%)로 맞춘 대체 글꼴로 그린다. */
+@font-face {
+  font-family: "GmarketSans Space";
+  src: local("Malgun Gothic"), local("Apple SD Gothic Neo"), local("Arial");
+  unicode-range: U+0020, U+00A0;
+  ascent-override: 81.25%;
+  descent-override: 37.5%;
+  line-gap-override: 0%;
+}
+
+/************************** 토큰 (Figma 기준) */
+:root {
+  /* Color - 브랜드 */
+  --color-primary: #8fc3e8;
+  --color-primary-light: #c6deef;
+  --color-primary-dark: #4f94c6;
+  --color-primary-tint: rgba(143, 195, 232, 0.3);
+  /* 인터랙션 상태 (Figma 원본에는 없어 브랜드색에서 명도만 낮춰 정의) */
+  --color-primary-hover: #7ab4de;
+  --color-primary-press: #65a5d3;
+  --color-primary-soft: #eef6fc;
+  --focus-ring: 0 0 0 3px rgba(79, 148, 198, 0.35);
+
+  /* Color - 미세먼지 단계 */
+  --color-good: #8fc3e8;
+  --color-normal: #a7c658;
+  --color-bad: #fdc645;
+  --color-verybad: #f0897d;
+
+  /* Color - 알림 */
+  --color-error: #ea5433;
+  --color-purple: #8976c9; /* 약관 동의 체크 (busan_renew 값 유지) */
+  --dim: rgba(0, 0, 0, 0.3); /* 팝업 뒤 배경 */
+
+  /* Color - 텍스트 */
+  --text: #151515;
+  --text-sub: #999;
+  --text-placeholder: #c1c1c1;
+  --text-chip: #2e3e4a;
+
+  /* Color - 라인/배경 */
+  --bg-default: #fff;
+  --bg-input: rgba(255, 255, 255, 0.65);
+  --border-default: #dfdfdf;
+  --border-check: #c1c1c1;
+  --border-line: #d0dfeb;
+  --border-field: #e6e6e6;
+  --border-list: #eee;
+  --bg-segment: #f4f4f4;
+  --text-disabled: #ccc;
+
+  /* Font */
+  --font-base: "GmarketSans", "GmarketSans Space", sans-serif;
+  --fs-10: 10px;
+  --fs-12: 12px;
+  --fs-14: 14px;
+  --fs-16: 16px;
+  --fs-18: 18px;
+  --fs-20: 20px;
+  --fs-30: 30px;
+  --fs-40: 40px;
+  --fs-50: 50px;
+
+  /* Radius */
+  --br-4: 4px;
+  --br-5: 5px; /* 모든 입력칸 (지도 날짜 검색칸 제외) */
+  --br-8: 8px;
+  --br-10: 10px;
+  --br-12: 12px;
+  --br-15: 15px;
+  --br-30: 30px;
+  --br-full: 100px;
+
+  /* Shadow */
+  --shadow-tab: 0 -0.5px 0 rgba(0, 0, 0, 0.1);
+  --shadow-float: 0 4px 10px rgba(0, 0, 0, 0.15);
+  --shadow-pop: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+  /* Size */
+  --status-bar: 44px;
+  --tab-bar: 76px;
+}
+
+/************************** 리셋 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  line-height: normal;
+  font-family: var(--font-base);
+  font-weight: 500;
+  color: var(--text);
+  background-color: var(--bg-default);
+  -webkit-font-smoothing: antialiased;
+}
+p {
+  margin: 0;
+}
+img {
+  display: block;
+}
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+button {
+  cursor: pointer;
+}

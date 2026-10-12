@@ -1,0 +1,55 @@
+@charset 'UTF-8';
+
+/********* reset.css **********/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ul, ol, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	-webkit-box-sizing:border-box; 
+	-moz-box-sizing:border-box; 
+	box-sizing:border-box;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+
+h1,h2,h3,h4,h5,h6 {font-size:1em; font-weight:normal;}
+ul,ol,li {list-style-type:none;}
+a {color: #333; text-decoration:none;}
+img {max-width:100%; max-height:100%; border:0 none; vertical-align:top;}
+address {font-style:normal;}
+/* 에디터 삽입 컨텐츠 내 테이블 스타일 적용을 위해 주석처리.
+table {width:100%; border-spacing: 0; border-collapse:collapse; table-layout:fixed;} 
+*/
+button {margin:0; padding:0; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; border:0 none; background-color:transparent; font-family:inherit; font-size:inherit; cursor:pointer;}
+input {-webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; padding:0; font-family:inherit;}
+input:disabled {background-color: #e5f0ff !important;}
+input:read-only {background-color: #edeef0 !important;}
+input::-webkit-input-placeholder { /* Chrome/Opera/Safari */ color: #ccc; letter-spacing: -0.5px;}
+input::-moz-placeholder { /* Firefox 19+ */ color: #ccc; letter-spacing: -0.5px;}
+input:-ms-input-placeholder { /* IE 10+ */ color: #ccc; letter-spacing: -0.5px;}
+input:-moz-placeholder { /* Firefox 18- */ color: #ccc; letter-spacing: -0.5px;}
+textarea {width:100%; color: #999; font-family: "Noto Sans KR"; font-size: inherit; -webkit-box-sizing:border-box; -moz-box-sizing:border-box; box-sizing:border-box; letter-spacing: -0.5px;}
+textarea::-webkit-input-placeholder { /* Chrome/Opera/Safari */ color: #bbb; letter-spacing: -0.5px;}
+textarea::-moz-placeholder { /* Firefox 19+ */ color: #bbb; letter-spacing: -0.5px;}
+textarea:-ms-input-placeholder { /* IE 10+ */ color: #bbb; letter-spacing: -0.5px;}
+textarea:-moz-placeholder { /* Firefox 18- */ color: #bbb; letter-spacing: -0.5px;}
+select {color: #555; font-family:"Noto Sans KR"; letter-spacing: -0.5px; cursor:pointer;}
+select::-ms-expand {padding-right: 10px; background-color: #fff; border-width: 0;}

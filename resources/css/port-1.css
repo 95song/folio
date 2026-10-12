@@ -1,0 +1,1894 @@
+.quick-nav{
+    position: fixed;
+    left: 50%;
+    bottom: 50px;
+    transform: translateX(-50%);
+    z-index: 998;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    height: 3.325rem;
+    padding: 0 1rem;
+    box-sizing: border-box;
+    border-radius: 100px;
+    background-color: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(3px) brightness(0.9) saturate(1.2);
+    backdrop-filter: blur(3px) brightness(0.9) saturate(1.2);
+    box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.3);
+}
+
+.quick-nav::before,
+.quick-nav::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+.quick-nav::before{
+    padding: 2px;
+    background: radial-gradient(30px 30px at 15px 6px, rgba(255,255,255,.85), rgba(255,255,255,0));
+}
+.quick-nav::after{
+    padding: 2px;
+    background: radial-gradient(25px 25px at calc(100% - 8px) calc(100% - 13px), rgba(255,255,255,.3), rgba(255,255,255,0));
+}
+.quick-nav-side{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    text-decoration: none;
+    color: #111111 !important;
+    font-family: 'Pretendard', sans-serif;
+    font-weight: 500;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+.quick-nav-arrow{
+    height: 1.1rem;
+    display: flex;
+    flex-shrink: 0;
+}
+.quick-nav-arrow img{
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+.quick-nav-arrow-right img{
+    transform: rotate(180deg);
+}
+.quick-nav-center{
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background-color: #111111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+.quick-nav-center img{
+    width: 1.2rem;
+    height: auto;
+    display: block;
+}
+
+.section#port{
+    height: 100vh;
+}
+.section#port .portfolio_wrap{
+    padding: 0;
+}
+
+.portfolio_wrap{
+    width: 100%;
+    height: 100%;
+}
+.port-main{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.port-main.port-1{
+  background-color: #8FC3E8;
+}
+.main-title{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-size: 9.5rem;
+    font-weight: 700;
+}
+.port-gif{
+    background-image: url(../img/port/port-1-bg.gif);
+    background-repeat: no-repeat;
+    background-size: 54rem;
+    background-position: 50% 50%;
+    width: 100%;
+    height: 100%;
+}
+
+.overview, .port-goal{
+    padding: 5.25rem;
+}
+.port-goal{
+    text-align: center;
+}
+.port-tittle-gray{
+    font-size: 1.25rem;
+    color: #969696;
+    margin-bottom: 3rem;
+}
+.port-title{
+    font-size: 1.875rem;
+    font-weight: 700;
+    margin-bottom: 1.25rem;
+    color: #111111;
+    justify-content: space-between;
+    display: flex;
+}
+.port-title.port-1{
+    color: #8FC3E8;
+}
+.port-title.port-2{
+  background: linear-gradient(to right, #279171, #347EBA);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+.port-title.port-3{
+    color: #F28121;
+}
+.port-title.port-4{
+  background: linear-gradient(to right, #65C2BA, #3f8dd5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+.port-title.port-6{
+    color: #98D6F5;
+}
+.port-title p{
+  max-width: 50%;
+  color: #969696;
+  font-size: 16.5px;
+  font-weight: 500;
+}
+.port-coment{
+    font-size: 1.25rem;
+    line-height: 1.75;
+    text-align: justify;
+    max-width: 1300px;
+}
+.overview-bottom{
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-top: 3.75rem;
+}
+.port-graph{
+    display: flex;
+    width: 18.75rem;
+    height: 100%;
+    padding: 0.5rem 0;
+}
+
+.port-percent{
+  height: 1rem;
+  background-color: #111111;
+  margin-right: 0.5rem;
+}
+.port-percent.per-100{
+    width: 100%;
+}
+.port-percent.per-95{
+    width: 95%;
+}
+
+.port-t{
+    width: 4rem;
+}
+.port-day{
+    width: 100%;
+}
+.port-day div{
+    text-align: right;
+}
+.graph-div{
+    display: flex;
+    width: 14.75rem;
+    align-items: center;
+}
+.direct-btn{
+    font-size: 1rem;
+    background-color: #FFFFFF;
+    border: 1px solid #969696;
+    border-radius: 1000px;
+    padding: 0.7rem 1.5rem;
+}
+
+.port-3-bg{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+/* port-6 메인 타이틀: 글자가 하나씩 통통 떠오른 뒤 둥실둥실 떠다닌다 */
+@font-face {
+    font-family: 'MaplestoryOTFBold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-04@2.1/MaplestoryOTFBold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+.port-6-title{
+    position: absolute;
+    top: 27%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+    font-family: 'MaplestoryOTFBold', 'Pretendard', sans-serif;
+    font-size: clamp(2.5rem, 8.5vw, 11rem);
+    line-height: 1;
+    color: #ffffff;
+    text-shadow: 0 0.04em 0.12em rgba(20, 90, 170, 0.25);
+    pointer-events: none;
+}
+.port-6-space{
+    width: 0.35em;
+}
+.port-6-char,
+.port-6-char i{
+    font-family: inherit;
+    font-weight: normal;
+}
+.port-6-char{
+    display: inline-block;
+    opacity: 0;
+    animation: port6CharIn 0.9s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    animation-delay: calc(0.4s + var(--i) * 0.16s);
+}
+.port-6-char i{
+    display: inline-block;
+    font-style: normal;
+    animation: port6CharFloat 3.2s ease-in-out infinite;
+    animation-delay: calc(var(--i) * -0.45s);
+}
+@keyframes port6CharIn{
+    0%{
+        opacity: 0;
+        transform: translateY(0.7em) scale(0.5);
+    }
+    100%{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+@keyframes port6CharFloat{
+    0%, 100%{
+        transform: translateY(-0.06em) rotate(-2deg);
+    }
+    50%{
+        transform: translateY(0.06em) rotate(2deg);
+    }
+}
+@media (prefers-reduced-motion: reduce){
+    .port-6-char{
+        opacity: 1;
+        animation: none;
+    }
+    .port-6-char i{
+        animation: none;
+    }
+}
+
+.port-half{
+    display: flex;
+    margin-top: 3rem;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+.task-group{
+    display: flex;
+    box-sizing: border-box;
+    gap: 1.25rem;
+}
+.task-list{
+    width: 50%;
+    display: flex;
+    gap: 1.25rem;
+    border-radius: 30px;
+    border: 1px solid #969696;
+    padding: 2.25rem;
+    align-items: center;
+}
+
+.task-text{
+    font-size: 1.25rem;
+    line-height: 1.75;
+    text-align: justify;
+    color: #969696;
+}
+.goal-box{
+  display: flex;
+  flex-direction: column;
+  gap: 13rem;
+  margin-top: 6.25rem;
+}
+
+.goal-flex{
+  display: flex;
+  gap: 3.25rem;
+  align-items: flex-start;
+}
+.goal-top{
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.875rem;
+  margin-bottom: 6.25rem;
+  color: #111111;
+}
+.goal-bold{
+  font-weight: 700;
+}
+.goal-number{
+  text-align: left;
+}
+.goal-icon{
+  width: 35px;
+  height: 35px;
+  fill: #F28121;
+}
+.goal-text {
+  font-size: clamp(1.25rem, 1.9vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  text-align: right;
+  color: #111111;
+}
+.goal-img{
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+.goal-img.goal-2{
+  text-align: left;
+  height: unset;
+  width: 70%;
+}
+.goal-img.goal-2 img{
+  border: 1px solid #E4E4E4;
+  width: 100%;
+}
+
+/* goal-4: .port-goal의 padding(5.25rem)을 무시하고 이미지가 화면 폭 기준으로
+   꽉 차게(full-bleed) 만들기 위해 그만큼 음수 마진을 줘서 밖으로 확장한다. */
+.goal-list#goal-4 {
+  width: calc(100% + 10.5rem);
+  margin-left: -5.25rem;
+  margin-right: -5.25rem;
+}
+.goal4-shot {
+  position: relative;
+  width: 100%;
+  container-type: inline-size;
+}
+.goal4-shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.goal4-callout {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+.goal4-callout-text {
+  position: absolute;
+  left: 9.4%; 
+  top: 42.5%;  
+  max-width: 42%;
+  text-align: left;
+}
+.goal4-title {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 2.4cqw;
+  font-weight: 700;
+  color: #141413;
+  line-height: 1.3;
+  white-space: nowrap;
+}
+.goal4-desc {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 1.41cqw;
+  font-weight: 400;
+  color: #767676;
+  line-height: 1.55;
+  margin-top: 0.8cqw;
+  white-space: nowrap;
+}
+.goal4-arrow-line,
+.goal4-arrow-head {
+  fill: none;
+  stroke: #141413;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.goal4-arrow-line {
+  stroke-linejoin: round;
+  stroke-dasharray: 665;
+  stroke-dashoffset: 665;
+  animation: goal4-line-draw 2.6s ease-in-out infinite;
+}
+.goal4-arrow-head {
+  /* 화살촉 크기 조절: 이 값만 바꾸면 됨 (1 = 원본 크기, 0.6 = 60%) */
+  --goal4-arrowhead-scale: 0.6;
+  transform-box: fill-box;
+  transform-origin: 0% 50%;
+  transform: scale(var(--goal4-arrowhead-scale));
+  opacity: 0;
+  animation: goal4-head-fade 2.6s ease-in-out infinite;
+}
+@keyframes goal4-line-draw {
+  0% { stroke-dashoffset: 665; }
+  45% { stroke-dashoffset: 0; }
+  75% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -665; }
+}
+@keyframes goal4-head-fade {
+  0%, 38% { opacity: 0; }
+  46%, 75% { opacity: 1; }
+  85%, 100% { opacity: 0; }
+}
+
+/* ================= goal-5: 반응형 디자인 (pad/phone 스크린샷이 무한 루프로 계속 위로 흐르는 마퀴) =================
+   pad 트랙은 서로 다른 이미지 3장, phone 트랙은 2장을 넣고 그 뒤에 똑같은
+   순서로 한 번 더 복제해서(각각 총 6장/4장) 정확히 "세트 1개 분량"만큼
+   위로 이동시키면, 마지막 이미지 다음에 다시 첫 이미지가 이어지는 것처럼
+   보이는 끊김 없는 무한 스크롤(마퀴) 효과가 된다. 예전처럼 올라갔다 내려오길
+   반복(alternate)하는 게 아니라 한 방향으로 계속 흐른다(linear infinite). */
+/* goal-4와 같은 방식으로 .port-goal의 padding(5.25rem)을 무시하고 배경색을
+   화면 전체 폭으로 꽉 차게(full-bleed) 확장한다. 다만 goal-4와 달리 콘텐츠
+   (goal5-row)까지 늘어나면 안 되므로, 늘어난 만큼을 goal5-row에 좌우
+   padding으로 다시 돌려줘서 실제 콘텐츠 위치는 원래 자리 그대로 유지한다. */
+.goal-list#goal-5 {
+  width: calc(100% + 10.5rem);
+  margin-left: -5.25rem;
+  margin-right: -5.25rem;
+  background: #FEF2E9;
+}
+.goal-list#goal-5 .goal5-row {
+  padding: 0 5.25rem;
+  box-sizing: border-box;
+}
+.goal5-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 4rem;
+}
+/* pad:phone 가로 비율(약 2.3:1). */
+.goal5-track {
+  position: relative;
+  overflow: hidden;
+  height: 120vh;
+}
+.goal5-track.goal5-track-pad {
+  flex: 2.3 2.3 0%;
+}
+.goal5-track.goal5-track-phone {
+  flex: 1 1 0%;
+}
+.goal5-track-inner {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 1.25rem;
+  width: 100%;
+}
+.goal5-track-item {
+  display: block;
+  width: 100%;
+  height: auto;
+  flex-shrink: 0;
+}
+/* 픽셀 이동 속도(px/s)가 두 트랙에서 비슷하게 느껴지도록, 실측한 콘텐츠
+   전체 높이(세트 1개 분량 이동 거리) 비율만큼 재생시간도 비례해서 잡았다. */
+.goal5-track-pad .goal5-track-inner {
+  animation: goal5-track-scroll 90s linear infinite;
+}
+.goal5-track-phone .goal5-track-inner {
+  animation: goal5-track-scroll 77s linear infinite;
+}
+.goal5-track:hover .goal5-track-inner {
+  animation-play-state: paused;
+}
+/* 이미지 6장(세트 2개) 전체 높이는 "세트 2개(6H) + gap 5개"인데, 이음매 없이
+   반복되려면 "세트 1개(3H) + gap 3개"만큼만 이동해야 한다 - 정확히 50%가
+   아니라 gap 0.5개(0.625rem)만큼 더 이동해야 하는 차이를 calc()로 보정했다. */
+@keyframes goal5-track-scroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-50% - 0.625rem)); }
+}
+
+#goal-5 .goal4-callout-text {
+  position: static;
+  left: auto;
+  top: auto;
+  max-width: 20rem; /* flex:1이어도 이 값 이상으로는 안 넓어지게 상한을 둬서,
+                        폰 옆에 딱 붙었을 때 줄바꿈 없이 옆으로 계속 늘어나
+                        화면 밖으로 넘치던 문제를 막는다. */
+  flex: 1;
+}
+#goal-5 .goal4-title {
+  font-size: clamp(1.75rem, 2.2vw, 2.75rem);
+  white-space: normal;
+}
+#goal-5 .goal4-desc {
+  font-size: clamp(1rem, 1.1vw, 1.25rem);
+  white-space: normal;
+  margin-top: 1rem;
+}
+
+
+/* 금화C&E 로딩페이지 */
+.loading-page {
+    background: #fff;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+}
+#svg-container {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#svg-container svg {
+    width: 100%;
+    height: 100%;
+}
+
+.name-container {
+    height: 30px;
+    overflow: hidden;
+}
+.name-container {
+    height: 30px;
+    overflow: hidden;
+}
+.logo-name {
+    color: #F28121;
+    font-size: 20px;
+    letter-spacing: 12px;
+    text-transform: uppercase;
+    margin-left: 20px;
+    font-weight: bolder;
+    animation: textFade 4s ease-in-out infinite;
+}
+@keyframes textFade {
+    0%, 40% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    65%, 90% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+/* ================= Line Reveal Testimonials (port-3 전용) ================= */
+
+.testimonial-box {
+  display: flex;
+  gap: 10rem;
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #969696;
+  border-radius: 30px;
+  padding: 2.75rem 3rem;
+  text-align: left;
+  color: #111111;
+}
+
+.testimonial-toolbar {
+  display: flex;
+  flex-shrink: 0;
+  justify-content: space-between;
+  margin-bottom: 3rem;
+}
+
+/* .testimonial-box가 가로 flex라 이 콘텐츠 영역이 기본 min-width:auto로
+   인해 긴 한 줄(white-space:nowrap) 텍스트만큼 억지로 늘어나며
+   testimonial-box 밖으로 넘치던 문제를 막는다 */
+.testimonial-content {
+  flex: 1 1 0%;
+  min-width: 0;
+}
+
+.testimonial-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.testimonial-nav-btn {
+  width: 2.5rem;
+  height: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(17, 17, 17, 0.18);
+  border-radius: 0.5rem;
+  background: transparent;
+  cursor: pointer;
+  color: #111111;
+  transition: border-color 0.2s ease, background 0.2s ease, transform 0.15s ease, color 0.2s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.testimonial-nav-btn:hover {
+  border-color: #FF3D32;
+  color: #FF3D32;
+  background: #ff3c3210;
+}
+.testimonial-nav-btn:active {
+  transform: scale(0.94);
+}
+.testimonial-nav-btn svg {
+  width: 1rem;
+  height: 1rem;
+  display: block;
+}
+
+.testimonial-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.875rem;
+  font-size: 0.95rem;
+}
+.testimonial-meta .testimonial-count {
+  color: #969696;
+  font-variant-numeric: tabular-nums;
+}
+.testimonial-meta .testimonial-label {
+  color: #969696;
+  font-weight: 600;
+}
+
+.testimonial-quote {
+  font-size: clamp(1.25rem, 1.9vw, 1.75rem);
+  font-weight: 700;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  margin: 0 0 2.75rem 0;
+}
+
+.testimonial-quote .line-mask {
+  overflow: hidden;
+  display: block;
+}
+.testimonial-quote .line-inner {
+  display: block;
+  white-space: nowrap;
+  transform: translateY(110%);
+  opacity: 0;
+  filter: blur(6px);
+  transition: transform 0.62s cubic-bezier(0.22, 0.88, 0.3, 1), opacity 0.5s ease, filter 0.5s ease;
+}
+.testimonial-quote .line-inner.in {
+  transform: translateY(0);
+  opacity: 1;
+  filter: blur(0);
+}
+.testimonial-quote .line-inner.out {
+  transform: translateY(-70%);
+  opacity: 0;
+  filter: blur(6px);
+  transition: transform 0.38s cubic-bezier(0.5, 0, 0.75, 0), opacity 0.3s ease, filter 0.3s ease;
+}
+
+.testimonial-goal {
+  transition: opacity 0.25s ease;
+}
+.testimonial-goal.is-swapping {
+  opacity: 0;
+}
+.testimonial-goal .testimonial-meta {
+  justify-content: flex-end;
+  text-align: right;
+}
+
+@media (max-width: 640px) {
+  .testimonial-box {
+    padding: 1.75rem 1.5rem;
+  }
+  .testimonial-toolbar {
+    margin-bottom: 2rem;
+  }
+  .testimonial-quote {
+    margin-bottom: 1.75rem;
+  }
+}
+
+/* ================= Design System Guide 발췌 (goal-2 전용, 섹션 01·02·03·07) =================
+   커스텀 프로퍼티를 :root가 아닌 .dsg-guide에만 스코프해서 사이트 전역 변수와
+   충돌하지 않도록 했고, 원본의 3단 그리드+반응형 대신 작은 화면 레이아웃(1단 스택)만
+   고정으로 사용한다. */
+
+.dsg-guide {
+  --dsg-org-10:#FDF0E4; --dsg-org-20:#FBD9BC; --dsg-org-30:#F8C090; --dsg-org-40:#F5A058;
+  --dsg-org-50:#F28121; --dsg-org-60:#CE6E1C; --dsg-org-70:#A55816; --dsg-org-80:#794010; --dsg-org-90:#4D290B;
+  --dsg-org-hover:#DF771E; --dsg-org-pressed:#D06F1C;
+  --dsg-ink-90:#111111; --dsg-ink-80:#222222; --dsg-ink-70:#303030;
+  --dsg-ink-50:#5C5C5C; --dsg-ink-30:#999999; --dsg-ink-20:#A9A9A9;
+  --dsg-ink-soft:#5C5C5C; --dsg-ink-faint:#A9A9A9;
+  --dsg-line-10:#E5E5E5; --dsg-line-20:#DDDDDD; --dsg-line-30:#E2E2E2; --dsg-line-40:#EEEEEE;
+  --dsg-bg-tint:#F5F5F5;
+  --dsg-surface:#FFFFFF; --dsg-surface-sunken:#FAFAFA; --dsg-border:#E4E4E4;
+  --dsg-shadow: 0 1px 2px rgba(20,20,20,.04), 0 8px 24px rgba(20,20,20,.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 70px;
+  width: 100%;
+  margin-bottom: 20px;
+  color: var(--dsg-ink-70);
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+  text-align: left;
+  font-size: 14px;
+  box-sizing: border-box;
+}
+.dsg-guide *{ box-sizing: border-box; }
+
+.dsg-card {
+  background: var(--dsg-surface);
+}
+
+.dsg-card-head { margin-bottom: 18px; }
+.dsg-card-num { font-size: 1.25rem; color: #969696;}
+.dsg-card-title { font-size: 1.875rem; font-weight: 800; margin-bottom: 1.25rem; letter-spacing: -.01em; color: #111111; }
+.dsg-card-desc { font-size: 1.25rem; line-height: 1.65; color: #6C6C6C; margin: 0; }
+
+.dsg-section { margin-top: 22px; }
+.dsg-section:first-of-type { margin-top: 0; }
+.dsg-section-label { font-size: 12px; font-weight: 700; color: var(--dsg-ink-faint); text-transform: uppercase; letter-spacing: .08em; margin: 0 0 10px; display: flex; align-items: center; gap: 8px; }
+.dsg-section-label .dsg-hex { font-weight: 600; text-transform: none; letter-spacing: 0; font-size: 11px; }
+
+.dsg-swatch-row { display: flex; flex-wrap: wrap; gap: 8px; }
+.dsg-swatch { width: 48px; }
+.dsg-swatch-chip { width: 48px; height: 48px; border: 1px solid rgba(0,0,0,.06); }
+.dsg-swatch-label { font-size: 9.5px; color: var(--dsg-ink-faint); margin-top: 6px; text-align: center; line-height: 1.3; }
+.dsg-swatch-label b { display: block; color: var(--dsg-ink-soft); font-size: 9.5px; font-weight: 700; }
+
+.dsg-chip-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.dsg-chip-row {
+  display: flex;
+  gap: 2px;
+}
+.dsg-chip {
+  position: relative;
+  flex: 1 1 0%;
+  aspect-ratio: 4 / 3;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.dsg-chip-name {
+  font-size: 12.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .03em;
+}
+.dsg-chip-hex {
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  opacity: .85;
+}
+
+.dsg-type-table { display: flex; flex-direction: column; }
+.dsg-type-row { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 14px; align-items: baseline; padding-block: 13px; border-top: 1px solid var(--dsg-border); }
+.dsg-type-row:first-child { border-top: none; padding-top: 0; }
+.dsg-type-sample { color: var(--dsg-ink-90); overflow-wrap: anywhere; }
+.dsg-type-meta { text-align: right; white-space: nowrap; font-size: 11px; color: var(--dsg-ink-faint); font-variant-numeric: tabular-nums; }
+.dsg-type-meta b { display: block; font-size: 12px; color: var(--dsg-ink-soft); font-weight: 700; margin-bottom: 2px; }
+
+.dsg-radius-row { display: flex; flex-wrap: wrap; gap: 10px; }
+.dsg-table-scroll { overflow-x: auto; }
+.dsg-btn-matrix { width: 100%; border-collapse: collapse; font-size: 12px; }
+.dsg-btn-matrix th { text-align: left; font-size: 10.5px; color: var(--dsg-ink-faint); font-weight: 700; text-transform: uppercase; letter-spacing: .04em; padding: 0 6px 10px; }
+.dsg-btn-matrix td { padding: 7px 6px; vertical-align: middle; border-top: 1px solid var(--dsg-border); }
+.dsg-btn-matrix td:first-child, .dsg-btn-matrix th:first-child { padding-left: 0; font-weight: 700; color: var(--dsg-ink-soft); }
+
+.dsg-btn { appearance: none; border: none; cursor: pointer; font-weight: 700; display: inline-flex; align-items: center; justify-content: center; gap: 6px; font-family: inherit; }
+
+/* ================= port-footer: blob-words 애니메이션 =================
+   구이 SVG 필터로 칩끼리 뭉쳐 보이는 효과 + 스프링 물리 등장.
+   의존성 없는 순수 JS로 만들었다.
+   실제 등장/흔들림 로직은 resources/js/blob-words.js. */
+.port-footer {
+  height: 300px;
+  flex-shrink: 0;
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.blob-words {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+.blob-words .bw-stage { position: absolute; inset: 0; transform-origin: center center; }
+.blob-words .bw-layer { position: absolute; inset: 0; }
+.blob-words .bw-shape,
+.blob-words .bw-text {
+  position: absolute; left: 0; top: 0;
+  will-change: transform, opacity;
+}
+.blob-words .bw-text { display: flex; align-items: center; justify-content: center; }
+.blob-words .bw-text span { font-weight: 600; letter-spacing: 0.03em; white-space: nowrap; }
+.dsg-btn-sm { height: 38px; padding-inline: 16px; font-size: 12.5px; }
+.dsg-btn-primary { background: var(--dsg-org-50); color: #fff; }
+.dsg-btn-navy { background: var(--dsg-navy); color: #fff; }
+.dsg-btn-outline { background: transparent; color: var(--dsg-org-60); border: 1.5px solid var(--dsg-org-50); }
+.dsg-btn-disabled { background: var(--dsg-line-10); color: var(--dsg-ink-20); cursor: not-allowed; }
+
+/* ================= 제품소개 메가메뉴 데모 iframe (goal-3 전용) =================
+   iframe 자체는 항상 1600x900로 렌더링하고(내부 CSS가 반응형이 아니라 실제
+   사이트 레이아웃 그대로 나오게 하기 위함), CSS transform:scale()로 박스
+   너비에 맞춰 시각적으로만 축소한다. */
+.megamenu-embed {
+  position: relative;
+  width: 80%;
+  margin: 0 auto;
+  overflow: hidden;
+  border: 1.5vw solid #111111;
+  border-radius: 12px;
+  line-height: 0;
+}
+.megamenu-embed iframe {
+  display: block;
+  width: 1600px;
+  height: 900px;
+  border: 0;
+  transform-origin: top left;
+}
+
+/* ================= DESIGN CONCEPT (port-2) ================= */
+.design-concept{
+  --concept-blue: #347EBA;
+  --concept-bg: #EAF4F0;
+  padding: 5.25rem;
+  background: var(--concept-bg);
+  text-align: center;
+}
+.concept-list{
+  --circle: min(23.5rem, 24vw);
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 5rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+/* 원과 원을 잇는 가로선: 첫 번째 원 중심 ~ 마지막 원 중심. 원 안쪽은 배경색으로 덮어서 가린다 */
+.concept-list::before{
+  content: "";
+  position: absolute;
+  top: calc(var(--circle) / 2);
+  left: 16.666%;
+  right: 16.666%;
+  height: 2px;
+  background: var(--concept-blue);
+  transform: translateY(-50%);
+}
+.concept-item{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.concept-circle{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--circle);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--concept-bg);
+  color: var(--concept-blue);
+}
+/* 원마다 회전 각도를 달리해 굵은 부분/얇은 부분 위치가 겹치지 않게 한다 */
+.concept-ring{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  transform: rotate(var(--ring-rotate, 0deg));
+  /* 붓 링은 채운 모양(path)이라 선 길이로 그릴 수 없어서, 원뿔 마스크를 0°→360°로 열어 그려지는 것처럼 보이게 한다.
+     링이 --ring-rotate만큼 돌아가 있으므로 마스크 시작점을 반대로 돌려 세 원 모두 12시 방향부터 그려지게 맞춘다 */
+  -webkit-mask: conic-gradient(from calc(-1 * var(--ring-rotate, 0deg)), #000 var(--ring-sweep), transparent 0);
+          mask: conic-gradient(from calc(-1 * var(--ring-rotate, 0deg)), #000 var(--ring-sweep), transparent 0);
+}
+/* --ring-sweep 기본값은 360deg(다 그려진 상태). port.js가 애니메이션을 쓸 수 있을 때만 .is-ring-ready를 붙여 0°에서 시작한다 */
+@property --ring-sweep{
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 360deg;
+}
+.concept-list.is-ring-ready .concept-ring{ --ring-sweep: 0deg; }
+.concept-list.is-ring-ready.is-ring-drawn .concept-ring{
+  animation: concept-ring-draw 1.6s cubic-bezier(.65, 0, .35, 1) forwards;
+}
+.concept-list.is-ring-ready.is-ring-drawn .concept-item:nth-child(2) .concept-ring{ animation-delay: .3s; }
+.concept-list.is-ring-ready.is-ring-drawn .concept-item:nth-child(3) .concept-ring{ animation-delay: .6s; }
+@keyframes concept-ring-draw{
+  from{ --ring-sweep: 0deg; }
+  to{ --ring-sweep: 360deg; }
+}
+.concept-name{
+  font-size: 2.25rem;
+  font-weight: 500;
+}
+.concept-desc{
+  max-width: 26rem;
+  margin-top: 4rem;
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: #969696;
+  word-break: keep-all;
+}
+/* goal-4와 같은 방식: .design-concept의 좌우 padding(5.25rem)을 음수 마진으로 무시하고 전체 폭으로 채운다 */
+.concept-visual{
+  position: relative;
+  width: calc(100% + 10.5rem);
+  margin: 12rem -5.25rem 0;
+  border-radius: 6.25rem;
+  overflow: hidden;
+}
+.concept-visual img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.concept-badge{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 3rem;
+  border-radius: 1000px;
+  background: #fff;
+  color: var(--concept-blue);
+  font-size: 2.25rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+@media (max-width: 900px){
+  .concept-list{ --circle: 16rem; grid-template-columns: 1fr; gap: 4rem; }
+  .concept-list::before{ display: none; }
+  .concept-desc{ margin-top: 2rem; }
+  .concept-visual{ margin-top: 6rem; border-radius: 3rem; }
+  .concept-badge{ padding: 0.75rem 2rem; font-size: 1.5rem; }
+}
+
+.web-design{
+  padding: 5.25rem;
+}
+.web-design-group{
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+.web-design-group.port-2{
+  margin-top: 5rem;
+}
+.web-design-box{
+  display: flex;
+  width: 100%;
+}
+.web-design-box div{
+  width: 70%;
+  border: 1px solid #e4e4e4;
+}
+.web-design-box.right{
+  display: flex;
+  justify-content: flex-end;
+}
+.web-design-box img{
+  width: 100%;
+  object-fit: cover;
+}
+
+.ending-post img{
+  width: 100%;
+  height: 100vh;
+  object-fit: cover;
+}
+/* ================= 커튼 공개(reveal footer): #outro =================
+   #outro(Ctrl+S 화면 + 라벨 애니메이션)를 .page-content 흐름 밖으로 빼서
+   화면 하단에 항상 고정(position:fixed)해둔다. .page-content가 z-index로
+   그 위를 덮고 있다가, 스크롤이 .outro-spacer 지점까지 다 내려가야
+   .page-content가 지나가고 그 뒤에 있던 #outro가 드러난다 - GSAP pin/scrub
+   같은 스크롤 계산이 전혀 필요 없는, 브라우저 기본 스택 규칙만으로
+   동작하는 방식이라 더 안정적이다. */
+.page-content{
+  position: relative;
+  z-index: 1;
+  background: #fff; /* 반드시 불투명해야 밑의 #outro가 안 비쳐 보인다 */
+}
+.outro-spacer{
+  height: 100vh; /* JS(goodbye-reveal.js)가 #outro 실제 높이로 자동 맞춘다 */
+}
+#outro{
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.goodbye-section{
+  flex: 1 1 auto;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 5.25rem;
+  box-sizing: border-box;
+}
+.goodbye-group{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 2rem;
+}
+.goodbye-left{
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.goodbye-bold{
+  display: flex;
+  flex-direction: column;
+}
+.goodbye-left span{
+  font-size: clamp(2.5rem, 6vw, 7rem);
+  line-height: 1.05;
+  color: #111111;
+  white-space: nowrap;
+}
+.goodbye-left span:first-child{
+  font-weight: 700;
+}
+.goodbye-thin{
+  font-size: 1.5rem;
+  color: #969696;
+}
+.goodbye-right{
+  display: flex;
+  gap: 1.5rem;
+  flex-shrink: 0;
+}
+.goodbye-box{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  text-decoration: none;
+  color: #111111;
+}
+.goodbye-box-label{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  white-space: nowrap;
+  max-width: 20.5rem; /* .prev-img 폭과 동일 */
+}
+.goodbye-box-arrow{
+  width: 1em;
+  height: 1em;
+  display: flex;
+  flex-shrink: 0;
+}
+.goodbye-box-arrow img{
+  width: 100%;
+  height: 100%;
+  display: block;
+  transform: rotate(180deg); /* chevron-left-thin.svg를 오른쪽으로 향하게 */
+}
+.goodbye-box-label span:first-child{
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 프로젝트 명이 이미지 폭을 넘으면 말줄임 */
+}
+.prev-img{
+  box-sizing: border-box;
+  border: 1px solid #111111;
+  width: 20.5rem; /* 328px */
+  height: 26.3571rem; /* 328/224(14rem) 비율 그대로 늘린 높이(약 421.7px) */
+  background: #e4e4e4;
+  overflow: hidden;
+}
+.prev-img img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* =====================================================================
+   제품 핫스팟 + 상세 패널. *, html/body, button 같은 전역 선택자가
+   사이트 전역에 영향을 주지 않도록 전부 ".hotspot-demo" 아래로
+   스코프를 걸었다. 또한 .port-goal의
+   padding(5.25rem)을 무시하고 화면 전체 폭을 쓰도록 goal-4와 같은 방식의
+   음수 마진 full-bleed 처리를 추가했다. */
+.hotspot-demo {
+  --hs-bg: #ddeef8;
+  --hs-panel: #f3f6f9;
+  --hs-ink: #17191c;
+  --hs-ink-soft: #3b4047;
+  --hs-hotspot: #ffffff;
+  --hs-accent: #e9f53a;
+  --hs-gap: 2.5rem; /* 40px */
+  --hs-panel-w: 27rem; /* 432px */
+  --hs-img-ratio: 1.5; /* 2000 / 1333 */
+  --hs-ease-out: cubic-bezier(.16, 1, .3, 1);
+  --hs-ease-in: cubic-bezier(.7, 0, .84, 0);
+  --hs-ease-in-out: cubic-bezier(.65, 0, .35, 1);
+
+  width: calc(100% + 10.5rem);
+  margin-left: -5.25rem;
+  margin-right: -5.25rem;
+  font-family: "Inter Tight", system-ui, sans-serif;
+  color: var(--hs-ink);
+  text-align: left; /* .port-goal{text-align:center}가 상속되는 걸 막는다 */
+  -webkit-font-smoothing: antialiased;
+}
+/* 사이트 전역 리셋(theartpixel.css/menu.css의 button{...}, profile.css의
+   button svg{width:2.5rem;height:1.5rem;color:#111111} 등)이 낮은 상세도로도
+   이 컴포넌트의 버튼/아이콘에 직접 매칭돼 크기·색이 깨지므로 먼저 중화한다. */
+.hotspot-demo button { font: inherit; color: inherit; border: 0; background: none; padding: 0; cursor: pointer; }
+.hotspot-demo svg { width: auto; height: auto; color: inherit; vertical-align: baseline; overflow: visible; }
+
+.hotspot-demo .stage {
+  position: relative;
+  width: 100%; /* 이미 full-bleed된 래퍼 폭에 맞춰 100% */
+  height: 100vh;
+  background: var(--hs-bg);
+  transition: background-color .9s var(--hs-ease-in-out);
+  overflow: hidden;
+}
+/* 모든 장면(.product)을 담는 레이어. 패널이 열리면 묶음 전체가 옆으로 비켜난다 */
+.hotspot-demo .scenes {
+  position: absolute;
+  inset: 0;
+  transition: transform .6s var(--hs-ease-in-out);
+}
+.hotspot-demo .stage.panel-open .scenes {
+  transform: translateX(calc((var(--hs-panel-w) + var(--hs-gap)) / -2));
+  transition-duration: .85s;
+}
+/* 장면 하나 = 배경 이미지 + 핫스팟. 활성 장면만 보이고, 전환 시 크로스페이드 */
+.hotspot-demo .product {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100vw, calc(100dvh * var(--hs-img-ratio)));
+  aspect-ratio: var(--hs-img-ratio);
+  transform: translate(-50%, -50%) scale(1.04);
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity .7s var(--hs-ease-in-out),
+    transform 1.1s var(--hs-ease-out),
+    visibility 0s linear .7s;
+}
+.hotspot-demo .product.is-active {
+  transform: translate(-50%, -50%);
+  opacity: 1;
+  visibility: visible;
+  transition:
+    opacity .7s var(--hs-ease-in-out),
+    transform 1.1s var(--hs-ease-out),
+    visibility 0s;
+}
+.hotspot-demo .product > img { display: block; width: 100%; height: 100%; user-select: none; -webkit-user-drag: none; }
+
+.hotspot-demo .hotspot {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: 3.25rem; /* 52px */
+  height: 3.25rem; /* 52px */
+  margin: -1.625rem 0 0 -1.625rem; /* -26px */
+  border-radius: 50%;
+  background: var(--hs-hotspot);
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0.25rem 1rem rgb(20 40 70 / .18); /* 0 4px 16px */
+  transition: background-color .45s var(--hs-ease-out), transform .45s var(--hs-ease-out);
+  -webkit-tap-highlight-color: transparent;
+}
+/* 장면이 나타날 때 핫스팟이 하나씩 순서대로 등장 */
+.hotspot-demo .product.is-active .hotspot {
+  animation: hsSpotIn .6s var(--hs-ease-out) both;
+  animation-delay: calc(.35s + var(--i, 0) * .07s);
+}
+@keyframes hsSpotIn { from { opacity: 0; scale: .4; } }
+.hotspot-demo .hotspot::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: inherit;
+  opacity: .5;
+  animation: hsPulse 2.4s var(--hs-ease-out) infinite;
+  animation-delay: var(--d, 0s);
+  z-index: -1;
+}
+.hotspot-demo .hotspot svg { width: 1rem; height: 1rem; transition: transform .5s var(--hs-ease-out); }
+.hotspot-demo .hotspot:hover { transform: scale(1.08); }
+.hotspot-demo .hotspot:active { transform: scale(.94); }
+.hotspot-demo .hotspot[aria-expanded="true"] { background: var(--hs-accent); }
+.hotspot-demo .hotspot[aria-expanded="true"]::before { animation: none; opacity: 0; }
+.hotspot-demo .hotspot[aria-expanded="true"] svg { transform: rotate(135deg); }
+.hotspot-demo .hotspot:focus-visible { outline: 2px solid var(--hs-ink); outline-offset: 3px; }
+@keyframes hsPulse {
+  0%   { transform: scale(1);   opacity: .5; }
+  70%  { transform: scale(1.6); opacity: 0; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.hotspot-demo .panel {
+  position: absolute; /* .stage 내부로 옮겨진 뒤라 .stage(position:relative) 기준으로 배치됨 */
+  top: var(--hs-gap);
+  right: var(--hs-gap);
+  bottom: var(--hs-gap);
+  width: var(--hs-panel-w);
+  background: var(--hs-panel);
+  border-radius: 2rem; /* 32px */
+  padding: 0.625rem; /* 10px */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 1.875rem 5rem -1.25rem rgb(30 60 100 / .3); /* 0 30px 80px -20px */
+  transform: translateX(calc(100% + var(--hs-gap) + 1.25rem)); /* 20px */
+  visibility: hidden;
+  transition: transform .6s var(--hs-ease-in), visibility 0s linear .6s;
+  z-index: 10;
+}
+.hotspot-demo .panel.is-open {
+  transform: none;
+  visibility: visible;
+  transition: transform .85s var(--hs-ease-out), visibility 0s;
+}
+
+.hotspot-demo .media {
+  position: relative;
+  flex: 0 0 auto;
+  aspect-ratio: 4 / 3;
+  border-radius: 1.5rem; /* 24px */
+  overflow: hidden;
+  background: var(--hs-bg);
+}
+.hotspot-demo .media > .layer { position: absolute; inset: 0; }
+.hotspot-demo .media .crop, .hotspot-demo .media .layer > img {
+  width: 100%; height: 100%; display: block; object-fit: cover;
+}
+.hotspot-demo .media .crop { background-repeat: no-repeat; }
+.hotspot-demo .close {
+  position: absolute;
+  top: 1rem; right: 1rem; /* 16px */
+  width: 2.75rem; height: 2.75rem; /* 44px */
+  border-radius: 50%;
+  background: #fff;
+  display: grid; place-items: center;
+  z-index: 2;
+  transition: transform .3s var(--hs-ease-out);
+}
+.hotspot-demo .close:hover { transform: rotate(90deg); }
+.hotspot-demo .close svg { width: 0.875rem; height: 0.875rem; color: var(--hs-ink); } /* 14px */
+
+.hotspot-demo .body {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+.hotspot-demo .body > .layer {
+  position: absolute;
+  inset: 0;
+  padding: 2.25rem 1.375rem 0; /* 36px 22px 0 */
+  overflow: auto;
+}
+/* 제목 위 장면 표시 (예: "02 위치 데이터 · 1/3") */
+.hotspot-demo .body .eyebrow {
+  display: block;
+  margin: 0 0 0.75rem; /* 12px */
+  font-size: 0.8125rem; /* 13px */
+  font-weight: 500;
+  letter-spacing: .04em;
+  color: #7b828b;
+  font-variant-numeric: tabular-nums;
+}
+.hotspot-demo .body h2 {
+  margin: 0 0 1.125rem; /* 18px */
+  font-size: 2.125rem; /* 34px */
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -.035em;
+  text-wrap: balance;
+  color: var(--hs-ink);
+}
+.hotspot-demo .body p {
+  margin: 0 0 1.125rem; /* 18px */
+  font-size: 1.25rem; /* 15.5px */
+  line-height: 1.32;
+  color: var(--hs-ink-soft);
+  text-wrap: pretty;
+}
+
+.hotspot-demo .nav {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1.375rem 1.375rem; /* 12px 22px 22px */
+}
+.hotspot-demo .arrow {
+  width: 2.75rem; height: 2.75rem; /* 44px */
+  border-radius: 50%;
+  display: grid; place-items: center;
+  transition: transform .3s var(--hs-ease-out), opacity .3s;
+}
+.hotspot-demo .arrow svg { width: 1rem; height: 1rem; } /* 16px */
+.hotspot-demo .arrow.prev { background: #fff; color: var(--hs-ink); }
+.hotspot-demo .arrow.next { background: var(--hs-ink); color: #fff; }
+.hotspot-demo .arrow:hover { transform: scale(1.08); }
+.hotspot-demo .arrow:active { transform: scale(.94); }
+.hotspot-demo .dots { display: flex; gap: 0.375rem; } /* 6px */
+.hotspot-demo .dot {
+  width: 0.4375rem; height: 0.4375rem; /* 7px */
+  border-radius: 50%;
+  background: #b6bcc4;
+  transition: background-color .3s, transform .3s var(--hs-ease-out);
+  position: relative;
+}
+.hotspot-demo .dot::after { content: ""; position: absolute; inset: -0.5rem -0.1875rem; } /* -8px -3px */
+.hotspot-demo .dot[aria-current="true"] { background: var(--hs-ink); transform: scale(1.1); }
+.hotspot-demo .close:focus-visible,
+.hotspot-demo .arrow:focus-visible,
+.hotspot-demo .dot:focus-visible { outline: 2px solid var(--hs-ink); outline-offset: 3px; }
+
+.hotspot-demo .layer.enter { animation: hsLayerIn .7s var(--hs-ease-out) both; }
+.hotspot-demo .layer.leave { animation: hsLayerOut .45s var(--hs-ease-in-out) both; pointer-events: none; }
+.hotspot-demo .media .layer.enter { animation: hsMediaIn .9s var(--hs-ease-out) both; }
+.hotspot-demo .media .layer.leave { animation: hsFadeOut .5s var(--hs-ease-in-out) both; }
+@keyframes hsLayerIn  { from { opacity: 0; transform: translateY(1rem); filter: blur(0.375rem); } } /* 16px, 6px */
+@keyframes hsLayerOut { to   { opacity: 0; transform: translateY(-0.625rem); filter: blur(0.375rem); } } /* -10px, 6px */
+@keyframes hsMediaIn  { from { opacity: 0; transform: scale(1.08); } }
+@keyframes hsFadeOut  { to   { opacity: 0; } }
+
+@media (max-width: 45rem) { /* 720px */
+  .hotspot-demo { --hs-gap: 0.75rem; } /* 12px */
+  .hotspot-demo .hotspot { width: 2.5rem; height: 2.5rem; margin: -1.25rem 0 0 -1.25rem; } /* 40px, -20px */
+  .hotspot-demo .hotspot svg { width: 0.8125rem; height: 0.8125rem; } /* 13px */
+  .hotspot-demo .product { width: 200vw; }
+  .hotspot-demo .stage.panel-open .scenes { transform: translateY(-22dvh); }
+  .hotspot-demo .panel {
+    top: auto;
+    left: var(--hs-gap);
+    width: auto;
+    height: min(78dvh, 40rem); /* 640px */
+    border-radius: 1.625rem; /* 26px */
+    transform: translateY(calc(100% + var(--hs-gap) + 1.25rem)); /* 20px */
+  }
+  .hotspot-demo .media { aspect-ratio: 16 / 10; }
+  .hotspot-demo .body > .layer { padding: 1.375rem 0.875rem 0; } /* 22px 14px 0 */
+  .hotspot-demo .body h2 { font-size: 1.625rem; margin-bottom: 0.75rem; } /* 26px, 12px */
+  .hotspot-demo .body p { font-size: 0.90625rem; margin-bottom: 0.75rem; } /* 14.5px, 12px */
+  .hotspot-demo .nav { padding: 0.5rem 0.875rem 0.875rem; } /* 8px 14px 14px */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hotspot-demo .hotspot::before { animation: none; }
+  .hotspot-demo .product.is-active .hotspot { animation: none; }
+  .hotspot-demo .product, .hotspot-demo .product.is-active { transform: translate(-50%, -50%); }
+  .hotspot-demo .panel, .hotspot-demo .panel.is-open { transition-duration: .01s; }
+  .hotspot-demo .layer.enter, .hotspot-demo .media .layer.enter { animation: hsFadeIn .25s linear both; }
+  .hotspot-demo .layer.leave, .hotspot-demo .media .layer.leave { animation: hsFadeOut .2s linear both; }
+  @keyframes hsFadeIn { from { opacity: 0; } }
+}
+
+/* =====================================================================
+   design-detail: Main Page 리디자인 쇼케이스. 가운데 폰 목업(iphone-frame +
+   메인_좋음.png)을 중심으로 왼쪽엔 다른 농도 단계 카드 2장(de-1/2), 오른쪽엔
+   타이틀+설명 텍스트와 그 아래로 안내 문구 칩 3장(ui1~3)을 배치한다.
+   첨부 이미지에서 실측한 비율: 카드 454x586, 칩 289x129/249x125,
+   iphone-frame 1668x3384(화면 컷아웃 left 3.72%/right 3.78%/top·bottom 1.95% -
+   goal-5에서 알파 채널로 실측한 값과 동일한 프레임이라 그대로 재사용). */
+.design-detail{
+  padding: 5.25rem;
+}
+/* 가운데 열(폰)은 auto, 양옆은 같은 1fr 이라 폰이 항상 화면 정중앙에 온다.
+   .design-detail 의 padding(5.25rem)은 음수 마진으로 무시하고 화면 전체 폭을 쓴다.
+   스크롤 연동 펼침: 카드와 칩은 처음에 폰 뒤에 숨어 있다가, 스크롤을 내리면
+   폰에서 가까운 것부터 한 장씩 양옆으로 펼쳐진다 (올리면 다시 접힌다).
+   - 아래 CSS 는 "다 펼쳐진 모습"이고, 숨는 위치와 진행 정도는 port.js 가
+     카드 · 칩마다 transform 으로 준다. 스크립트가 없으면 펼쳐진 채로 보인다.
+   - 폰(.dd-phone)이 z-index 로 위에 있어 뒤로 들어간 카드 · 칩을 가린다.
+   - 화면 양쪽 끝은 .dd-stage 의 overflow:hidden 이 잘라 가로 스크롤이 생기지 않는다. */
+.dd-stage{
+  --dd-gap: 0.75rem;     /* 카드 사이 · 칩 사이 · 폰과의 간격 */
+  --dd-side-gap: 3rem;   /* 폰과 오른쪽 글 사이 간격 */
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: stretch;
+  width: calc(100% + 10.5rem);
+  margin-left: -5.25rem;
+  margin-right: -5.25rem;
+  overflow: hidden;
+}
+/* 카드 줄: 오른쪽 끝을 폰에 붙이고 왼쪽으로 넘친다. 폰 윗모서리 곡선 아래에서 시작 */
+.dd-cards{
+  position: relative;
+  z-index: 1;
+  align-self: start;
+  margin-top: 1.75rem;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+.dd-cards-track{
+  display: flex;
+  align-items: flex-start;
+  flex: none;
+  gap: var(--dd-gap);
+  margin-right: var(--dd-gap);
+  width: max-content;
+}
+.dd-card{
+  display: block;
+  flex: none;
+  width: 19rem;
+  height: auto;
+  aspect-ratio: 454 / 586;   /* 원본 비율 그대로 */
+  object-fit: cover;
+  border-radius: 0.5rem;
+  will-change: transform;
+}
+.dd-phone{
+  position: relative;
+  z-index: 2;                /* 카드 · 칩이 이 뒤에 숨는다 */
+  flex-shrink: 0;
+  width: 21.5rem;
+  aspect-ratio: 1668 / 3384;
+}
+.dd-phone-screen{
+  position: absolute;
+  left: 3.72%;
+  right: 3.78%;
+  top: 0.95%;
+  bottom: 0.95%;
+  overflow: hidden;
+  border-radius: 2.25rem;
+  background: #fff;
+}
+.dd-phone-screen img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.dd-phone-frame{
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  pointer-events: none;
+}
+/* 오른쪽: 위에 글, 아래에 칩 줄. 칩은 폰 아랫모서리 곡선 위쪽에 오도록 아래를 띄운다 */
+.dd-side{
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 2.5rem 0 6rem var(--dd-side-gap);
+}
+.dd-text{
+  max-width: 26rem; /* 타이틀/설명 글줄만 읽기 좋은 폭으로 제한 */
+}
+.dd-title{
+  font-size: 2rem;
+  font-weight: 700;
+  color: #111111;
+  margin-bottom: 1.25rem;
+}
+.dd-desc{
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: #555555;
+  text-align: justify;
+}
+/* 칩 줄: 글의 왼쪽 여백을 되돌려 폰 바로 옆에서 시작한다 */
+.dd-chips{
+  margin-left: calc(var(--dd-gap) - var(--dd-side-gap));
+  min-width: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+.dd-chips-track{
+  display: flex;
+  align-items: flex-end;
+  flex: none;
+  gap: var(--dd-gap);
+  width: max-content;
+}
+/* 칩은 높이만 맞추고 폭은 원본 비율대로 (289x129, 249x125 가 섞여 있어 폭을 고정하면 찌그러진다) */
+.dd-chip{
+  display: block;
+  flex: none;
+  width: auto;
+  height: 6rem;
+  will-change: transform, opacity;
+}
+
+/* 자동 순환(port.js): 다 펼쳐진 뒤에만 .is-cycling 이 붙어 자리 이동이 부드럽게 이어진다.
+   스크롤로 접고 펼 때는 이 전환 없이 스크롤을 바로 따라간다. 시간은 port.js 의 MOVE_MS 와 같게. */
+.dd-stage.is-cycling .dd-card{
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.dd-stage.is-cycling .dd-chip{
+  transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s ease;
+}
+.dd-card,
+.dd-chip{
+  position: relative;
+  cursor: pointer;
+}
+.dd-card:focus-visible,
+.dd-chip:focus-visible{
+  outline: 2px solid #4f94c6;
+  outline-offset: 3px;
+}
+
+@media (max-width: 900px){
+  .design-detail{ padding: 2rem 1.25rem; }
+  .dd-stage{
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 2rem;
+    width: calc(100% + 2.5rem);
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+  }
+  /* 세로로 쌓이면 폰 옆이 아니므로 펼침 없이 가운데 정렬로 보여 준다 (port.js 도 이 폭에서는 쉰다) */
+  .dd-cards{ order: 2; align-self: stretch; margin-top: 0; justify-content: center; }
+  .dd-cards-track{ margin-right: 0; }
+  .dd-card{ width: 11rem; }
+  .dd-phone{ order: 1; width: 16rem; }
+  .dd-side{ order: 3; width: 100%; padding: 0; gap: 2rem; align-items: center; text-align: center; }
+  .dd-text{ max-width: 100%; padding: 0 1.25rem; }
+  .dd-chips{ margin-left: 0; width: 100%; justify-content: center; }
+  .dd-chip{ height: 4.5rem; }
+  .dd-card,
+  .dd-chip{ cursor: default; }
+}
+
+/* =====================================================================
+   location-de: 위치 데이터/히트맵 쇼케이스. goal-4/dd-stage와 같은 방식으로
+   .design-detail의 padding(5.25rem)을 무시하고 배경(#ddeef8, 첨부 이미지에서
+   실측한 색 - hotspot-demo의 --hs-bg와 동일)만 화면 전체 폭으로 깔고, 안쪽
+   콘텐츠(텍스트/이미지)는 다시 padding으로 원래 자리로 되돌린다. 오른쪽
+   이미지(port-1-task2.png)는 폰 두 대가 겹쳐진 합성 이미지를 통째로 쓴다. */
+.location-de{
+  width: calc(100% + 10.5rem);
+  margin-left: -5.25rem;
+  margin-right: -5.25rem;
+  padding: 5.25rem;
+  box-sizing: border-box;
+  background: #ddeef8;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 3rem;
+}
+.location-de .dd-text{
+  flex-shrink: 0;
+  text-align: justify;
+}
+.ld-phones{
+  flex: 1 1 0%;
+  display: flex;
+  justify-content: flex-end;
+  min-width: 0;
+}
+.ld-phones img{
+  display: block;
+  width: 100%;
+  max-width: 42rem;
+  height: auto;
+  margin-right: 10vw;
+}
+
+@media (max-width: 900px){
+  .location-de{
+    width: calc(100% + 2.5rem);
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    padding: 2.5rem 1.25rem;
+    flex-direction: column;
+    text-align: center;
+  }
+  .location-de .dd-text{ max-width: 100%; }
+  .ld-phones{ justify-content: center; }
+}
+
+/* =====================================================================
+   location-feature: 위치 데이터 기능 소개 (.location-de 와 .location-de-mockup 사이).
+   .location-de 와 같은 방식으로 .design-detail 의 padding(5.25rem)을 무시하고
+   배경(#ddeef8)을 화면 전체 폭으로 깐 뒤, 안쪽은 다시 padding 5.25rem.
+   첫 줄: 사진 박스 + 흰 박스 두 개(실제 날짜 검색칸 · 그래프 버튼),
+   둘째 줄: 그래프 화면 사진(높이 855px). 박스 모서리는 모두 100px. */
+.location-feature{
+  --lf-gap: 3.5rem;
+  --lf-radius: 100px;
+  width: calc(100% + 10.5rem);
+  margin-left: -5.25rem;
+  margin-right: -5.25rem;
+  padding: 5.25rem;
+  box-sizing: border-box;
+  background: #ddeef8;
+  display: flex;
+  flex-direction: column;
+  gap: var(--lf-gap);
+}
+.lf-top{
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: var(--lf-gap);
+}
+.lf-photo,
+.lf-wide,
+.lf-card{
+  border-radius: 50px;
+  overflow: hidden;
+}
+.lf-photo{ aspect-ratio: 1 / 1; }
+.lf-photo img,
+.lf-wide img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.lf-wide{ height: 855px; }
+.lf-side{
+  display: grid;
+  grid-template-rows: minmax(0, 1.45fr) minmax(0, 1fr);
+  gap: var(--lf-gap);
+  min-height: 0;
+}
+.lf-card{
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 0;
+  min-height: 0;
+}
+.lf-card-graph{
+  justify-content: flex-start;
+  gap: 2.5rem;
+  padding: 0 5rem;
+}
+.lf-card-graph .dd-title{ margin-bottom: 0.75rem; }
+.lf-text{ min-width: 0; }
+/* 실제 컴포넌트를 담는 틀: 원래 크기(data-w × data-h)로 그린 뒤 박스 크기에 맞춰
+   port.js 가 --lf-k 배율로 키운다. 틀 자체가 배율만큼의 자리를 차지한다. */
+.lf-live{
+  position: relative;
+  flex: none;
+  width: calc(var(--lf-w) * var(--lf-k, 1) * 1px);
+  height: calc(var(--lf-h) * var(--lf-k, 1) * 1px);
+}
+.lf-live > .design-system{
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: calc(var(--lf-w) * 1px);
+  height: calc(var(--lf-h) * 1px);
+  background: none;
+  transform: scale(var(--lf-k, 1));
+  transform-origin: 0 0;
+}
+/* 앱과 같은 글꼴(Gmarket Sans)로 그린다 */
+.lf-live .design-system,
+.lf-live .design-system *{ font-family: var(--font-base); }
+/* 캘린더는 항상 펼친 상태로, 검색칸 바로 아래에 고정 */
+.lf-card-cal .design-system .search-input{ width: 100%; }
+.lf-card-cal .design-system .search-input .calendar{
+  display: block;
+  top: calc(100% + 6px);
+  bottom: auto;
+}
+/* 지도 위에 떠 있던 버튼을 박스 안 제자리에 둔다 */
+.lf-card-graph .design-system .map-float-button{
+  position: static;
+  cursor: default;
+}
+
+@media (max-width: 900px){
+  .location-feature{
+    --lf-gap: 1.25rem;
+    --lf-radius: 2.5rem;
+    width: calc(100% + 2.5rem);
+    margin-left: -1.25rem;
+    margin-right: -1.25rem;
+    padding: 2.5rem 1.25rem;
+  }
+  .lf-top{ grid-template-columns: minmax(0, 1fr); }
+  .lf-side{ grid-template-rows: auto auto; }
+  .lf-card-cal{ padding: 2.5rem 0; }
+  .lf-card-graph{ padding: 2rem; gap: 1.25rem; }
+  .lf-wide{ height: auto; aspect-ratio: 3 / 2; }
+}
+
+.location-de-mockup{
+  display: block;
+  padding: 9rem 0;
+}
+
+/* 목업 슬라이더(.ms) 아래 사진 두 장: .lf-top 과 같은 2칸 배치에 정사각형 사진 박스 두 개.
+   .location-feature 밖에 있으므로 간격 변수를 여기서 다시 주고,
+   좌우 여백은 .location-feature 와 같은 5.25rem. 모서리는 .lf-photo 공통 값을 따른다. */
+.lf-pair{
+  --lf-gap: 3.5rem;
+  padding: 0 5.25rem;
+  margin-top: 2rem;
+}
+
+@media (max-width: 900px){
+  .location-de-mockup{ padding: 0; }
+  .lf-pair{
+    --lf-gap: 1.25rem;
+    padding: 0 1.25rem 2.5rem;
+    margin-top: 0;
+  }
+}
+
+/* =====================================================================
+   목업 슬라이더(원래 resources/css/mockup-slider.css 를 합침) - 가운데 고정된 아이폰 프레임 안으로 왼쪽에
+   줄 서 있던 화면이 한 장씩 오른쪽으로 밀려 들어온다. 프레임 오른쪽 가장자리 밖은 clip-path로 잘라서, 밀려난 화면은
+   프레임 안에서 사라지는 것처럼 보인다. iphone-frame 1668x3384, 화면
+   컷아웃은 위 .dd-phone-screen과 같은 값(left 3.72% / right 3.78% /
+   top·bottom 0.95%). */
+.ms{
+  --ms-w: 21.5rem;                       /* 프레임 폭 - 이 값 하나로 전체 크기 조절 */
+  --ms-gap: 2.5rem;                      /* 화면(슬라이드) 사이 간격 */
+  --ms-screen-w: calc(var(--ms-w) * 0.925);
+  --ms-screen-h: calc(var(--ms-w) * 3384 / 1668 * 0.981);
+  --ms-radius: calc(var(--ms-w) * 0.105);
+  position: relative;
+  width: 100%;
+  padding: 5rem 0;
+  overflow: hidden;
+}
+.ms-viewport{
+  width: 100%;
+  /* 오른쪽은 프레임 "화면" 오른쪽 끝(프레임 바깥선 - 베젤 3.78%)에서, 화면과
+     같은 radius로 둥글게 자른다. 프레임 바깥선에서 직각으로 자르면 넘어가는
+     중에 프레임 둥근 모서리 바깥으로 슬라이드 귀퉁이가 삐져나온다.
+     왼쪽은 -100px로 밀어서 둥근 모서리가 화면 밖에 걸리게 한다. */
+  clip-path: inset(0 calc(50% - var(--ms-w) / 2 + var(--ms-w) * 0.0378) 0 -100px round var(--ms-radius));
+}
+.ms-track{
+  display: flex;
+  align-items: center;
+  gap: var(--ms-gap);
+  width: max-content;
+  will-change: transform;
+}
+.ms-track.is-moving{
+  transition: transform 1s cubic-bezier(0.65, 0, 0.35, 1);
+}
+.ms-slide{
+  flex-shrink: 0;
+  width: var(--ms-screen-w);
+  height: var(--ms-screen-h);
+  border-radius: var(--ms-radius);
+  overflow: hidden;
+  background: #f2f2f2;
+}
+.ms-slide img{
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.ms-frame{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--ms-w);
+  aspect-ratio: 1668 / 3384;
+  transform: translate(-50%, -50%);
+  z-index: 2;
+  pointer-events: none;
+}
+.ms-frame img{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+@media screen and (max-width: 1024px){
+  .ms{ --ms-w: 17rem; --ms-gap: 1.75rem; }
+}
+@media screen and (max-width: 640px){
+  .ms{ --ms-w: 13rem; --ms-gap: 1.25rem; padding: 3rem 0; }
+}
+
+/* 프레임 오른쪽 텍스트 - .ms-viewport 밖이라 clip-path에 안 잘리고,
+   슬라이드 JS와도 무관하다. 프레임 중심(50%) 기준으로 붙여서
+   --ms-w가 바뀌어도 항상 프레임 옆에 위치 */
+.ms-side{
+  position: absolute;
+  z-index: 2;
+  top: calc(50% - var(--ms-w) * 3384 / 1668 / 2 + 1.5rem);  /* 프레임 윗선 + 1.5rem */
+  left: calc(50% + var(--ms-w) / 2 + 3.5rem);              /* 프레임 오른쪽 + 3.5rem */
+  right: 2rem;                                             /* 좁은 폭(900~1100px)에서 오른쪽 밖으로 넘치지 않게 */
+}
+
+@media (max-width: 900px){
+  /* 좁은 화면에선 오른쪽 공간이 없으니 프레임 아래로 */
+  .ms-side{
+    position: static;
+    max-width: none;
+    margin-top: 2rem;
+    padding: 0 1.25rem;
+    text-align: center;
+  }
+}
+
+.padding-up{
+  padding: 9.5rem 0;
+}

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main">
+      <section class="top-section">
+        <div class="top-title">
+          <div class="spacer-24"></div>
+          <h1 class="title-b">개인 정보 등록</h1>
+          <button class="icon-close" type="button" aria-label="닫기" onclick="location.href='./login.html'"><img src="./public/icon-close.svg" alt="" /></button>
+        </div>
+      </section>
+      <ol class="signup-group" aria-label="등록 단계">
+        <li class="signup-step step-user" aria-label="1단계 기본 정보"></li>
+        <li class="signup-step step-check" aria-label="2단계 성별"></li>
+        <li class="signup-step step-pin" aria-label="3단계 주소"></li>
+        <li class="signup-step step-phone" aria-label="4단계 전화번호"></li>
+        <li class="signup-step step-body is-current" aria-current="step" aria-label="5단계 신체 정보"></li>
+      </ol>
+
+      <section class="form-section">
+        <h2 class="form-tittle">참여자님의 개인정보를 입력해주세요</h2>
+        <div class="form-group">
+          <label class="form-name" for="height">키</label>
+          <div class="field lg">
+            <input id="height" type="text" inputmode="decimal" placeholder="키를 입력해 주세요" />
+            <span class="input-unit">cm</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-name" for="weight">체중</label>
+          <div class="field lg">
+            <input id="weight" type="text" inputmode="decimal" placeholder="체중을 입력해 주세요" />
+            <span class="input-unit">kg</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="bottom-section">
+        <div class="bottom-button">
+          <button class="button line" type="button" onclick="location.href='./peronalinfo-4.html'">이전</button>
+          <button class="button square stanby" type="button" onclick="location.href='./peronalinfo-6.html'">다음</button>
+        </div>
+      </section>
+    </div>
+  </body>
+</html>

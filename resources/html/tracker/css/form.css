@@ -1,0 +1,506 @@
+/************************** 폼 그룹 */
+.form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/************************** 인풋 (라운드) */
+.form-input {
+  width: 100%;
+  height: 44px;
+  padding: 0 20px;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--br-full); /* 로그인 입력칸만 알약 모양 유지 */
+  background-color: var(--bg-input);
+  font-size: var(--fs-14);
+  font-weight: 500;
+  line-height: 14px;
+  color: var(--color-primary);
+  outline: none;
+}
+.form-input::placeholder {
+  color: var(--text-placeholder);
+}
+/* 입력 중: 테두리를 진하게 + 바깥 링 (.is-focus 는 가이드용 고정 상태) */
+.form-input {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+.form-input:focus,
+.form-input.is-focus {
+  border-color: var(--color-primary-dark);
+  background-color: var(--bg-default);
+  box-shadow: var(--focus-ring);
+}
+
+/************************** 체크박스 (원형) */
+.input-checkbox {
+  align-self: flex-start;
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  cursor: pointer;
+  font-size: var(--fs-14);
+  line-height: 24px;
+  color: var(--text-sub);
+}
+.input-checkbox input {
+  display: none;
+}
+.input-checkbox .mark {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-check);
+  border-radius: 50%;
+  background-color: var(--bg-default);
+  transition: background-color 0.2s, border-color 0.2s;
+}
+.input-checkbox input:checked + .mark {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  box-shadow: inset 0 0 0 4px var(--bg-default);
+}
+
+/************************** 버튼 */
+/* line-height 없이 높이를 고정하고 flex로 글자를 정가운데에 둔다 */
+.button {
+  width: 100%;
+  height: 46px;
+  padding: 0 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-primary);
+  border-radius: var(--br-full);
+  background-color: var(--color-primary);
+  font-size: var(--fs-16);
+  font-weight: 700;
+  color: var(--bg-default);
+  text-align: center;
+}
+
+/* 둥근 사각 버튼 (설정 화면) */
+.button.square {
+  height: 44px;
+  border-radius: var(--br-8);
+}
+.button.line {
+  height: 40px;
+  padding: 0 20px;
+  border-radius: var(--br-8);
+  background-color: var(--bg-default);
+  font-size: var(--fs-14);
+  font-weight: 500;
+  color: var(--color-primary);
+}
+
+/* 버튼 상태: Hover / Active(누름) / Focus(키보드)
+   .is-hover · .is-active · .is-focus 는 가이드에서 상태를 고정해 보여 주기 위한 클래스 */
+.button {
+  transition: background-color 0.15s ease, border-color 0.15s ease, transform 0.1s ease;
+}
+.button:hover,
+.button.is-hover {
+  border-color: var(--color-primary-hover);
+  background-color: var(--color-primary-hover);
+}
+.button:active,
+.button.is-active {
+  border-color: var(--color-primary-press);
+  background-color: var(--color-primary-press);
+  transform: scale(0.98);
+}
+.button.line:hover,
+.button.line.is-hover {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-soft);
+}
+.button.line:active,
+.button.line.is-active {
+  border-color: var(--color-primary-press);
+  background-color: var(--color-primary-light);
+  color: var(--color-primary-dark);
+}
+.button:focus-visible,
+.button.is-focus {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/************************** 폼 타이틀 / 행 */
+.form-title {
+  margin: 0;
+  padding-bottom: 9px;
+  border-bottom: 1px solid var(--border-line);
+  font-size: var(--fs-18);
+  font-weight: 500;
+  line-height: 27px;
+  color: var(--text);
+}
+.form-rows {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.form-row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+.form-label {
+  width: 100px;
+  flex-shrink: 0;
+  font-size: var(--fs-14);
+  line-height: 25px;
+  color: var(--text-sub);
+}
+
+/************************** 필드 (사각 인풋 / 셀렉트) */
+.field {
+  flex: 1;
+  min-width: 0;
+  height: 35px;
+  padding: 0 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--border-field);
+  border-radius: var(--br-5);
+  background-color: var(--bg-default);
+}
+.field input,
+.field select {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  outline: none;
+  background: none;
+  font-size: var(--fs-14);
+  color: var(--text);
+}
+.field input::placeholder {
+  color: var(--text-sub);
+}
+/* 입력 중: 사각 필드는 테두리만 브랜드색으로 (.is-focus 는 가이드용 고정 상태) */
+.field {
+  transition: border-color 0.15s ease;
+}
+.field:focus-within,
+.field.is-focus,
+.field.select-box.is-active {
+  border-color: var(--color-primary);
+}
+/************************** 셀렉트 (커스텀 드롭다운) */
+/* 원본 <select>는 폼 값 저장용으로 숨기고, js/select.js가 아래 UI를 만든다 */
+.field.select-box {
+  position: relative;
+  padding: 0;
+}
+.field.select-box select {
+  display: none;
+}
+.select-trigger {
+  width: 100%;
+  height: 100%;
+  padding: 0 5px;
+  border: 0;
+  background: url("../public/icon-chevron-down.svg") right 5px center no-repeat;
+  font-size: var(--fs-14);
+  text-align: left;
+  color: var(--text);
+}
+.select-list {
+  position: absolute;
+  top: calc(100% + 3px);
+  left: -1px;
+  right: -1px;
+  z-index: 20;
+  max-height: 150px;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  list-style: none;
+  border: 1px solid var(--border-field);
+  border-radius: var(--br-5);
+  background-color: var(--bg-default);
+  scrollbar-width: none;
+  display: none;
+}
+.select-list::-webkit-scrollbar {
+  display: none;
+}
+.select-box.is-active .select-list {
+  display: block;
+}
+.select-option {
+  height: 30px;
+  padding: 0 5px;
+  font-size: var(--fs-14);
+  line-height: 30px;
+  color: var(--text);
+  cursor: pointer;
+}
+.select-option:hover,
+.select-option.is-focus {
+  background-color: var(--bg-segment);
+}
+.select-option.is-selected {
+  display: none;
+}
+
+/************************** 체크박스 (사각) */
+.input-check-square {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-size: var(--fs-14);
+  line-height: 17px;
+  color: var(--text-sub);
+}
+/* 실제 체크박스는 보이지 않게 네모(.mark) 자리에 겹쳐 둔다.
+   display: none 이면 required 일 때 브라우저가 "체크해 주세요" 안내를 띄우지 못해
+   보내기를 눌러도 아무 반응이 없고, 키보드로도 체크할 수 없다. */
+.input-check-square input {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 15px;
+  height: 15px;
+  margin: -7.5px 0 0;
+  opacity: 0;
+  pointer-events: none;
+}
+.input-check-square input:focus-visible + .mark {
+  box-shadow: var(--focus-ring);
+}
+.input-check-square .mark {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  border: 1px solid var(--border-check);
+  border-radius: 3px;
+  background-color: var(--bg-default);
+}
+.input-check-square input:checked + .mark {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  box-shadow: inset 0 0 0 3px var(--bg-default);
+}
+
+/* ======================================================================
+   busan_renew 구조를 가져온 폼 요소 (값은 Tracker 토큰)
+   아이디·패스워드 찾기, 회원가입에서 사용
+   ====================================================================== */
+
+/* 라벨 위 · 입력칸 아래로 쌓는 그룹 */
+.form-section .form-group {
+  gap: 8px;
+}
+.form-name {
+  font-size: var(--fs-14);
+  line-height: 21px;
+  color: var(--text-sub);
+}
+
+/* 큰 필드: 44px (로그인 입력칸과 같은 높이), 값 16px */
+.field.lg {
+  flex: none;
+  width: 100%;
+  height: 44px;
+  padding: 0 15px;
+}
+.field.lg input {
+  font-size: var(--fs-16);
+}
+/* 인증 진행 중인 칸 (busan .form-input.on) */
+.field.on {
+  border-color: var(--color-primary);
+}
+
+/* 입력칸 + 옆 버튼 한 줄 */
+.form-input2 {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.form-input2 .field.lg {
+  flex: 1;
+  width: auto;
+}
+.input-time {
+  flex-shrink: 0;
+  font-size: var(--fs-14);
+  color: var(--color-error);
+}
+
+/* 짧은 버튼 (인증번호) */
+.button.short {
+  width: 94px;
+  height: 44px;
+  flex-shrink: 0;
+  padding: 0;
+  border-radius: var(--br-8);
+  font-size: var(--fs-16);
+  font-weight: 500;
+}
+
+/* 나란히 놓는 버튼 (재발송 / 인증 확인) */
+.button-flex {
+  display: flex;
+  gap: 10px;
+}
+.button-flex .button {
+  flex: 1;
+  height: 44px;
+  padding: 0 10px;
+}
+
+/* 안내 문구 */
+.form-text {
+  font-size: var(--fs-14);
+  line-height: 21px;
+  color: var(--text);
+}
+.form-text.blue {
+  color: var(--color-primary-dark);
+}
+.form-text.red {
+  color: var(--color-error);
+}
+
+/* 대기 버튼: 필요한 값을 다 넣기 전에는 회색 + 누를 수 없음 (busan .stanby)
+   - 섹션 안 입력칸이 모두 채워지면 활성: .form-section:not(:has(input:placeholder-shown))
+   - 입력칸 옆 짧은 버튼은 같은 줄의 입력칸만 보고 활성 */
+.button.stanby,
+.button.stanby:hover,
+.button.stanby:active {
+  border-color: var(--text-disabled);
+  background-color: var(--text-disabled);
+  color: var(--bg-default);
+  transform: none;
+  pointer-events: none;
+}
+.form-section:not(:has(input:placeholder-shown:not([data-optional]))) .button.stanby,
+.form-input2:has(input:not(:placeholder-shown)) .button.stanby,
+.main:has(.option1:checked):has(.option2:checked) .button.stanby {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  pointer-events: auto;
+}
+
+/************************** 약관 체크 (busan .check-box-parent) */
+.check-box-parent {
+  width: 100%;
+  cursor: pointer;
+}
+.check-box-parent input {
+  display: none;
+}
+.check-ui {
+  height: 44px;
+  padding: 0 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  border: 1px solid var(--border-field);
+  border-radius: var(--br-5);
+  background-color: var(--bg-default);
+  color:  var(--text-sub);
+  transition: background-color 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+.check-type {
+  font-size: var(--fs-16);
+  font-weight: 500;
+}
+.check-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: var(--bg-default);
+}
+/* mask 아이콘은 파일 경로 대신 data URI 로 넣는다 (public/icon-check.svg).
+   HTML 을 더블클릭(file://)으로 열면 크롬이 외부 파일 mask 를 보안상 막아 아이콘이 사라지기 때문.
+   원본 SVG 는 public/ 에 그대로 있다. */
+.check-svg {
+  width: 14px;
+  height: 14px;
+  background-color: var(--text-disabled);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.793 6.79272C19.1835 6.4022 19.8165 6.40221 20.207 6.79272C20.5976 7.18324 20.5975 7.81626 20.207 8.20679L10.707 17.7068C10.5195 17.8943 10.2652 17.9998 10 17.9998C9.73478 17.9998 9.4805 17.8943 9.29297 17.7068L4.79297 13.2068C4.40246 12.8163 4.40245 12.1832 4.79297 11.7927C5.1835 11.4022 5.81652 11.4022 6.20703 11.7927L10 15.5857L18.793 6.79272Z' fill='%23CCCCCC'/%3E%3C/svg%3E") center / contain no-repeat;
+  mask: url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M18.793 6.79272C19.1835 6.4022 19.8165 6.40221 20.207 6.79272C20.5976 7.18324 20.5975 7.81626 20.207 8.20679L10.707 17.7068C10.5195 17.8943 10.2652 17.9998 10 17.9998C9.73478 17.9998 9.4805 17.8943 9.29297 17.7068L4.79297 13.2068C4.40246 12.8163 4.40245 12.1832 4.79297 11.7927C5.1835 11.4022 5.81652 11.4022 6.20703 11.7927L10 15.5857L18.793 6.79272Z' fill='%23CCCCCC'/%3E%3C/svg%3E") center / contain no-repeat;
+}
+.check-ui.purple .check-svg {
+  width: 24px;
+  height: 24px;
+}
+/* 선택됨 (개인정보 문항): 브랜드색 */
+.check-box-parent input:checked + .check-ui {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary-soft);
+  color: var(--color-primary-dark);
+}
+.check-box-parent input:checked + .check-ui .check-icon {
+  background-color: var(--color-primary);
+}
+/* 선택됨: busan 보라색 유지 */
+.check-box-parent input:checked + .check-ui.purple {
+  border-color: var(--color-purple);
+  background-color: var(--color-purple);
+  color: var(--bg-default);
+}
+.check-box-parent input:checked + .check-ui.purple .check-icon {
+  background-color: var(--color-purple);
+}
+.check-box-parent input:checked + .check-ui .check-svg {
+  background-color: var(--bg-default);
+}
+
+/* ======================================================================
+   개인 정보 등록 (busan peronalinfo-1~8)
+   ====================================================================== */
+
+/* 하단 '다음' 버튼 활성 조건
+   - 입력 문항 페이지: 본문 입력칸이 모두 채워지면
+   - 선택 문항 페이지: 하나 이상 선택하면 */
+.main:not(:has(.check-box-parent)):not(:has(.form-section input:placeholder-shown:not([data-optional]))) .bottom-section .button.stanby,
+.main:has(.form-section .check-box-parent input:checked) .bottom-section .button.stanby {
+  border-color: var(--color-primary);
+  background-color: var(--color-primary);
+  pointer-events: auto;
+}
+
+/* 단위 (cm, kg) */
+.input-unit {
+  flex-shrink: 0;
+  font-size: var(--fs-16);
+  color: var(--text-sub);
+}
+/* 주민등록번호 사이 '-' */
+.form-input2 .dash {
+  flex-shrink: 0;
+  color: var(--text-sub);
+}
+
+/* 선택 항목 표시 (직장 주소 등) */
+.form-name .optional {
+  color: var(--text-placeholder);
+}
+/* 검색으로만 채우는 주소 칸: 눌러서 검색이 열린다는 것을 커서로 표시 */
+.field input[data-address][readonly] {
+  cursor: pointer;
+}
+/* 설정 화면의 작은 필드(35px) 안 단위는 값과 같은 14px */
+.field:not(.lg) .input-unit {
+  font-size: var(--fs-14);
+}

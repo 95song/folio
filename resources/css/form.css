@@ -1,0 +1,21 @@
+/* 버튼 */
+.main-btn{
+    background: transparent;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    text-decoration: none;
+    cursor: pointer;
+    border: 1px solid #111111;
+    border-radius: 10rem;
+    outline: none;
+    overflow: hidden;
+    color: #111111;
+    transition: color 0.3s 0.1s ease-out;
+    text-align: center;
+}
+.main-btn:hover{
+    border: 1px solid #FF3D32;
+    color: #FF3D32;
+}

@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="끊임없이 새로운 꿈을 꾸며 발전하는 디자이너">
+<meta name="keywords" content="PortFolioㅣUX/UIㅣ디자인ㅣ뚠뚠">
+
+<title>PortFolio</title>
+
+<!-- 파비콘 -->
+<link rel="shortcut icon" href="resources/img/common/favicon.png" type="image/x-icon">
+
+<!-- 기본 css -->
+<link rel="stylesheet" href="resources/css/common.css">
+<link rel="stylesheet" href="resources/css/port-1.css">
+<link rel="stylesheet" type="text/css" href="resources/css/menu.css">
+<link rel="stylesheet" type="text/css" href="resources/css/jauery.fullpage.css">
+<link rel="stylesheet" href="resources/css/form.css">
+<link rel="stylesheet" type="text/css" href="resources/css/pad.css">
+<link rel="stylesheet" href="resources/css/mobile.css">
+
+
+<!-- 웹폰트 -->
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<!-- .port-footer의 blob-words 애니메이션 전용 폰트 -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="resources/js/common.js" defer></script>
+<script src="resources/js/port.js"></script>
+
+</head>
+<body class="main" style="background-color: #fff;" data-project-id="port-3">
+
+<!-- header 시작 -->
+<div class="cursor-follower"></div>
+
+<!-- .quick-nav 유리 굴절(liquid glass) 효과용 SVG 필터. 화면에는 그리지 않고 backdrop-filter에서 참조만 한다 -->
+<svg width="0" height="0" style="position:absolute; overflow:hidden;">
+    <filter id="quickNavGlass" x="-20%" y="-20%" width="140%" height="140%">
+        <feTurbulence type="fractalNoise" baseFrequency="0.009 0.012" numOctaves="2" seed="7" result="noise" />아 이제 bold-word.js port.js
+        <feGaussianBlur in="noise" stdDeviation="3" result="blurredNoise" />
+        <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="26" xChannelSelector="R" yChannelSelector="G" />
+    </filter>
+</svg>
+
+<!-- 하단 고정 퀵 내비게이션 (Figma: Frame 1 / Prev · 메뉴 · Next) -->
+<div class="quick-nav" id="quickNav">
+    <a href="#" class="quick-nav-side quick-nav-prev" data-nav="prev">
+        <span class="quick-nav-arrow quick-nav-arrow-left"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+        <span class="quick-nav-label">Prev</span>
+    </a>
+    <a href="portfolio.html" class="quick-nav-center">
+        <img src="resources/img/common/port-menu-icon.png" alt="메뉴">
+    </a>
+    <a href="#" class="quick-nav-side quick-nav-next" data-nav="next">
+        <span class="quick-nav-label">Next</span>
+        <span class="quick-nav-arrow quick-nav-arrow-right"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+    </a>
+</div>
+
+
+<header>
+    <!--  -->
+            <div class="navi">
+
+                 <h1 id="logo">
+                    <a >
+                    </a>
+                </h1>
+                 <div class="gnb"> 
+                    <ul>
+                        <li>
+                            
+                        </li>                                     
+                    </ul>
+    
+                </div>
+                
+                
+            </div>
+    
+        </header>
+                
+    
+    <!-- 네비게이션 바 -->
+                    
+        <div class="ham sitemap-open-btn btn">	
+             <span class="bar1"></span>
+             <span class="bar2"></span>
+             <span class="bar3"></span>
+        </div>
+    
+    <!-- 네비게이션 -->
+            
+        <div class="site_wrap">
+            <div class="site_map">
+                <div>
+                    <ul>
+                        <li class="sitemap_dep1">
+                            <a href="index.html">
+                                <span>HOME</span><span>HOME</span>
+                            </a>
+                        </li>
+                        <li class="sitemap_dep1">
+                            <a href="profile.html">
+                                <span>ABOUT</span><span>ABOUT</span>
+                            </a>
+                        </li>
+                        <li class="sitemap_dep1">
+                            <a href="portfolio.html">
+                                <span>Portfolio</span><span>Portfolio</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <h6> © 2026 EUNSUN .ALL RIGHTS RESERVED</h6>
+                </div>
+            </div>
+        </div>
+        <div class="site_bg"></div>
+
+    
+    <!-- header 끝 -->
+
+<div class="all_wrap page-content">
+
+
+	<div id="fullpage">
+
+		<section class="section" id="port">
+			<div class="portfolio_wrap">
+                <div class="port-main">
+                    <img class="port-3-bg" src="resources/img/port/port-3-bg.png">
+                </div>
+                
+		    </div>
+        </section>
+
+        <section class="section">
+            <div class="overview">
+                <div class="port-top">
+                    <div class="port-tittle-gray">Overview</div>
+                    <div class="port-title port-3">금화C&E 홈페이지 리뉴얼</div>
+                    <div class="port-coment">
+                        본 프로젝트는 2000년대 초반에 구축되어 노후화된 B2B 거래처 중심의 회사 웹사이트를 현대적인 감각과 웹 표준에 맞춰 전면 리뉴얼한 작업입니다.
+                        일반 소비자가 아닌 주요 비즈니스 파트너와 거래처를 타깃으로 하는 사이트 특성을 고려하여,
+                        핵심 정보에 신속하게 접근할 수 있는 효율적인 동선과 신뢰감을 주는 비주얼 UX/UI를 구현하는 데 초점을 맞추었습니다.<br><br>
+                        초기 기본 메뉴 리스트 수령 이후의 모든 기획부터 정보 구조(IA) 설계, UI/UX 디자인,
+                        그리고 웹 퍼블리싱(HTML/CSS/JS)에 이르기까지 전 과정을 100% 단독으로 수행하며 완성도 높게 프로젝트를 완수했습니다.
+                        이를 통해 복잡한 기업 및 제품 정보를 체계적으로 정돈하여 거래처의 정보 탐색 시간을 단축시켰을 뿐만 아니라,
+                        기획부터 최종 구현까지 스스로 이끌어가는 주도적인 프로젝트 관리 역량을 입증했습니다.
+                    </div>
+                </div>
+                <div class="overview-bottom">
+                    <div class="overview-left">
+                        <div class="port-graph">
+                            <div class="port-t">기간</div>
+                            <div class="port-day">
+                                <div>2024. 07 ~ 2024. 10</div>
+                            </div>
+                        </div>
+                        <div class="port-graph">
+                            <div class="port-t">디자인</div>
+                            <div class="graph-div">
+                                <div class="port-percent per-100 port-3"></div>
+                                <div>100%</div>
+                            </div>
+                        </div>
+                        <div class="port-graph">
+                            <div class="port-t">퍼블리싱</div>
+                            <div class="graph-div">
+                                <div class="port-percent per-100 port-3"></div>
+                                <div>100%</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overview-right">
+                        <button class="direct-btn">
+                            <a href="https://www.geumhwacne.co.kr/main">홈페이지 바로가기</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="port-goal">
+                <div class="port-top">
+                    <div class="port-tittle-gray">Task & Goal</div>
+                    <div class="port-title">고객사의 요청 사항은 무엇이 있었을까요?</div>
+                </div>
+                <div class="port-half">
+
+                    <div class="testimonial-box">
+                        <div class="testimonial-toolbar">
+                            <div class="testimonial-nav">
+                                <button class="testimonial-nav-btn" id="testiPrevBtn" aria-label="이전">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+                                </button>
+                                <button class="testimonial-nav-btn" id="testiNextBtn" aria-label="다음">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                                </button>
+                            </div>
+                
+                        </div>
+                        <div class="testimonial-content">
+                            <div class="testimonial-meta">
+                                <span class="testimonial-count"><span id="testiCountCurrent">1</span> / <span id="testiCountTotal">5</span></span>
+                                <span class="testimonial-label">클라이언트 요청사항</span>
+                            </div>
+                        <blockquote class="testimonial-quote" id="testiQuote">
+                            
+                        </blockquote>
+                        <div class="testimonial-goal" id="testiGoal">
+                            <div class="testimonial-meta">
+                                <span class="testimonial-count"><span id="testiGoalCurrent">1</span> / <span id="testiGoalTotal">5</span></span>
+                                <span class="testimonial-label">디자인 목표</span>
+                            </div>
+                            <div class="goal-text" id="testiGoalText">브랜드 로고를 짧은 모션으로 노출하여, 브랜드 심볼을 각인</div>
+                        </div>
+                        </div>
+
+                        
+                    </div>
+
+                    <div class="goal-box">
+                        <div class="goal-list" id="goal-1">
+                            <div class="goal-number">1/5 디자인 목표</div>
+                            <div class="goal-top">
+                                <div class="goal4-title">인트로 디자인</div>
+                                <div class="goal4-desc">
+                                    인트로에 브랜드 로고를 짧은 모션으로 노출하여, 브랜드 아이덴티티를 강화하였습니다.
+                                </div>
+                            </div>
+                            <div class="goal-img">
+                                <div class="loading-page">
+			                        <div id="svg-container"></div>
+			                        <div class="name-container">
+			                            <div class="logo-name">금화C&E</div>
+			                        </div>
+			                    </div>
+
+			                    <script>
+                                    document.addEventListener("DOMContentLoaded", function() {
+                                        fetch('resources/img/port/logo.svg')
+                                            .then(response => response.text())
+                                            .then(data => {
+                                                const container = document.getElementById('svg-container');
+                                                container.innerHTML = data;
+
+                                                const svg = container.querySelector('svg');
+                                                if (!svg) return;
+
+                                                // SVG 내부의 모든 경로 요소 가져오기
+                                                const paths = svg.querySelectorAll('path, polyline, line, polygon, circle');
+                
+                                                // 각 경로의 전체 길이 계산 및 초기 설정
+                                                const pathData = [];
+                                                paths.forEach(path => {
+                                                    const length = path.getTotalLength ? path.getTotalLength() : 4500;
+                                                    path.style.stroke = '#F28121';
+                                                    path.style.strokeWidth = '2px';
+                                                    path.style.fill = 'transparent';
+                                                    path.style.strokeDasharray = length;
+                                                    path.style.strokeDashoffset = length;
+                                                    pathData.push({ element: path, length: length });
+                                                });
+
+                                                // 17초 동안 무한 반복하는 JS 애니메이션 함수
+                                                const duration = 4000; // 17초 (ms)
+                                                let startTime = null;
+
+                                                function animateSVG(timestamp) {
+                                                    if (!startTime) startTime = timestamp;
+                                                    const elapsed = (timestamp - startTime) % duration;
+                                                    const progress = elapsed / duration; // 0.0 ~ 1.0
+
+                                                    // ease-in-out 가속도 효과 적용
+                                                    const easeProgress = progress < 0.5 
+                                                        ? 2 * progress * progress 
+                                                        : 1 - Math.pow(-2 * progress + 2, 2) / 2;
+
+                                                    pathData.forEach(item => {
+                                                        // 85% 지점까지 그리기를 완료하고, 100%에 다다르면 리셋
+                                                        if (progress <= 0.85) {
+                                                            const currentEase = easeProgress / 0.85;
+                                                            item.element.style.strokeDashoffset = item.length * (1 - Math.min(currentEase, 1));
+                                                            item.element.style.opacity = '1';
+                                                        } else {
+                                                            // 마지막 15% 구간 동안 페이드아웃 후 리셋
+                                                            const fadeProgress = (progress - 0.85) / 0.15;
+                                                            item.element.style.strokeDashoffset = '0';
+                                                            item.element.style.opacity = 1 - fadeProgress;
+                                                        }
+                                                    });
+
+                                                    requestAnimationFrame(animateSVG);
+                                                }
+
+                                                requestAnimationFrame(animateSVG);
+                                            });
+                                    });
+                                </script>
+                                
+                            </div>
+                        </div>
+
+                        <div class="goal-list" id="goal-2">
+                            <div class="goal-number">2/5 디자인 목표</div>
+                            <div class="goal-top">
+                                <div class="goal4-title">디자인 시스템</div>
+                                <div class="goal4-desc">
+                                    디자인 시스템과 그리드 시스템을 바탕으로 정보의 시각적 위계를 정리하고 가독성 향상시켰습니다.
+                                </div>
+                            </div>
+                            <div class="goal-flex">
+                                <div class="dsg-guide">
+
+                                    <div class="dsg-card">
+                                        <div class="dsg-card-head">
+                                            <p class="dsg-card-num">01 · COLOR</p>
+                                            <h2 class="dsg-card-title">Primary Orange</h2>
+                                            <p class="dsg-card-desc">브랜드 컬러인 <b>#F28121</b>를 포인트 컬러로 사용하여 브랜드 아이덴티티를 강조하였습니다.</p>
+                                        </div>
+                                        <div class="dsg-section">
+                                            <div class="dsg-chip-grid">
+                                                <div class="dsg-chip-row">
+                                                    <div class="dsg-chip" style="background:#fff; color:#111111;"><span class="dsg-chip-name">Pure white</span><span class="dsg-chip-hex">#FFFFFF</span></div>
+                                                    <div class="dsg-chip" style="background:#333333; color:#ffffff;"><span class="dsg-chip-name">Dark charcoal</span><span class="dsg-chip-hex">#333333</span></div>
+                                                </div>
+                                                <div class="dsg-chip-row">
+                                                    <div class="dsg-chip" style="background:#5c5c5c; color:#ffffff;"><span class="dsg-chip-name">Medium gray</span><span class="dsg-chip-hex">#5c5c5c</span></div>
+                                                    <div class="dsg-chip" style="background:#eeeeee; color:#111111;"><span class="dsg-chip-name">Light gray</span><span class="dsg-chip-hex">#eeeeee</span></div>
+                                                    
+                                                    <div class="dsg-chip" style="background:var(--dsg-org-50); color:#ffffff;"><span class="dsg-chip-name">Primary Orange</span><span class="dsg-chip-hex">#F28121</span></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dsg-card">
+                                        <div class="dsg-card-head">
+                                            <p class="dsg-card-num">03 · TYPOGRAPH</p>
+                                            <h2 class="dsg-card-title"><span style="font-weight:100;">Pr</span><span style="font-weight:300;">et</span><span style="font-weight:500;">en</span><span style="font-weight:700;">da</span><span style="font-weight:900;">rd</span></h2>
+                                            <p class="dsg-card-desc"><b>Pretendard</b>폰트는 다양한 굵기를 제공하는 텍스트 최적화 폰트로 가독성 측면에서 뛰어나기 때문에 깔끔하고 명확한 정보전달에 부합하다고 생각하여 선택하였습니다.</p>
+                                        </div>
+                                        <div class="dsg-type-table">
+                                            <div class="dsg-type-row"><div class="dsg-type-sample" style="font-size:40px;font-weight:800;letter-spacing:-.01em;">회사개요</div><div class="dsg-type-meta"><b>Hero 40</b>ExtraBold · 60lh · 서브비주얼 타이틀</div></div>
+                                            <div class="dsg-type-row"><div class="dsg-type-sample" style="font-size:20px;font-weight:700;color:var(--dsg-org-50);">금화씨앤이</div><div class="dsg-type-meta"><b>Eyebrow 20</b>Bold · 섹션 카테고리 라벨</div></div>
+                                            <div class="dsg-type-row"><div class="dsg-type-sample" style="font-size:17px;font-weight:800;color:#111111;">사업분야</div><div class="dsg-type-meta"><b>Head 17</b>ExtraBold · lh 100(내비 높이)</div></div>
+                                            <div class="dsg-type-row"><div class="dsg-type-sample" style="font-size:16px;font-weight:400;">금화C&amp;E(주) · 2001년 03월 15일</div><div class="dsg-type-meta"><b>Body 16</b>Regular · 표 값(td)</div></div>
+                                            <div class="dsg-type-row"><div class="dsg-type-sample" style="font-size:16px;font-weight:200;">설립일 · 대표이사</div><div class="dsg-type-meta"><b>Label 16</b>ExtraLight · 표 라벨(th)</div></div>
+                                            <div class="dsg-type-row"><div class="dsg-type-sample" style="font-size:14px;font-weight:700;">무재해 1,693 일</div><div class="dsg-type-meta"><b>Utility 14</b>Bold · 상단 유틸바</div></div>
+                                        </div>
+                                    </div>
+
+                                    <div class="dsg-card">
+                                        <div class="dsg-card-head">
+                                            <p class="dsg-card-num">04 · COMPONENT</p>
+                                            <h2 class="dsg-card-title">Button</h2>
+                                            <p class="dsg-card-desc"></p>
+                                        </div>
+                                        <div class="dsg-section">
+                                            <p class="dsg-section-label">Button</p>
+                                            <div class="dsg-table-scroll">
+                                            <table class="dsg-btn-matrix">
+                                                <tr><th>Style</th><th>Default</th><th>Hover</th><th>Pressed</th></tr>
+                                                <tr>
+                                                    <td>Primary</td>
+                                                    <td><button class="dsg-btn dsg-btn-sm dsg-btn-primary" style="border-radius:0;">더보기</button></td>
+                                                    <td><button class="dsg-btn dsg-btn-sm" style="border-radius:0;background:var(--dsg-org-hover);color:#fff;">더보기</button></td>
+                                                    <td><button class="dsg-btn dsg-btn-sm" style="border-radius:0;background:var(--dsg-org-pressed);color:#fff;">더보기</button></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Outline</td>
+                                                    <td><button class="dsg-btn dsg-btn-sm dsg-btn-outline" style="border-radius:0;">CI 다운로드</button></td>
+                                                    <td><button class="dsg-btn dsg-btn-sm" style="border-radius:0;background:var(--dsg-org-10);color:var(--dsg-org-70);border:1.5px solid var(--dsg-org-50);">CI 다운로드</button></td>
+                                                    <td><button class="dsg-btn dsg-btn-sm dsg-btn-disabled" style="border-radius:0;">CI 다운로드</button></td>
+                                                </tr>
+                                            </table>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            
+                                <div class="goal-img goal-2">
+                                    <div class="dsg-card-head">
+                                            <p class="dsg-card-num">02 · LAYOUT</p>
+                                            <h2 class="dsg-card-title">Grid system</h2>
+                                            <p class="dsg-card-desc">그리드 시스템을 이용한 데이터 테이블 모듈화를 통해 정보의 시각적 위계를 정리하고 실적 데이터의 가독성 향상을 높였습니다.</p>
+                                        </div>
+                                    <img src="resources/img/port/port-3-grid.png">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="goal-list" id="goal-4">
+                            <div class="goal4-shot">
+                                <img src="resources/img/port/goal-4.png" alt="로컬 네비게이션 바 안내">
+                                <svg class="goal4-callout" viewBox="0 0 1920 1283" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+                                    <polyline class="goal4-arrow-line" points="1210,755 950,755 950,600 700,600"></polyline>
+                                    <polyline class="goal4-arrow-head" points="742,563 700,600 742,637"></polyline>
+                                </svg>
+                                <div class="goal4-callout-text">
+                                    <div class="goal-number">3/5 디자인 목표</div>
+                                    <div class="goal4-title">로컬 네비게이션 바</div>
+                                    <div class="goal4-desc">
+                                        사용자가 사이트 내에서 '내가 지금 어디에 위치해 있는지'<br>
+                                        길을 잃지 않도록 위치 정보를 알려줍니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="goal-list" id="goal-3">
+                            <div class="goal-number">4/5 디자인 목표</div>
+                            <div class="goal-top">
+                                <div class="goal4-title">네비게이션 디자인</div>
+                                <div class="goal4-desc">
+                                    제품 이미지 노출을 통해 직관적인 제품 인지 및 빠른 페이지 전환을 유도했습니다.
+                                </div>
+                            </div>
+                            <div class="megamenu-embed" id="megamenuEmbed">
+                                <iframe src="resources/front/mega-menu-demo.html" width="1600" height="900" scrolling="no" title="금화C&E 제품소개 메가메뉴 데모"></iframe>
+                            </div>
+
+                        </div>
+
+<div class="goal-list" id="goal-5">
+                            <div class="goal5-row">
+                                <div class="goal5-track goal5-track-pad">
+                                    <div class="goal5-track-inner">
+                                        <img src="resources/img/port/C&amp;E-p-1.jpg" alt="인증현황 페이지 태블릿 화면" class="goal5-track-item">
+                                        <img src="resources/img/port/C&amp;E_pad.png" alt="인사제도 페이지 태블릿 화면" class="goal5-track-item">
+                                        <img src="resources/img/port/C&amp;E-p-3.jpg" alt="AVR시스템 페이지 태블릿 화면" class="goal5-track-item">
+                                        <img src="resources/img/port/C&amp;E-p-1.jpg" alt="" class="goal5-track-item" aria-hidden="true">
+                                        <img src="resources/img/port/C&amp;E_pad.png" alt="" class="goal5-track-item" aria-hidden="true">
+                                        <img src="resources/img/port/C&amp;E-p-3.jpg" alt="" class="goal5-track-item" aria-hidden="true">
+                                    </div>
+                                </div>
+                                <div class="goal5-track goal5-track-phone">
+                                    <div class="goal5-track-inner">
+                                        <img src="resources/img/port/C&amp;E-m-1.jpg" alt="경상정비 페이지 모바일 화면" class="goal5-track-item">
+                                        <img src="resources/img/port/C&amp;E-m-2.png" alt="인사제도 페이지 모바일 화면" class="goal5-track-item">
+                                        <img src="resources/img/port/C&amp;E-m-1.jpg" alt="" class="goal5-track-item" aria-hidden="true">
+                                        <img src="resources/img/port/C&amp;E-m-2.png" alt="" class="goal5-track-item" aria-hidden="true">
+                                    </div>
+                                </div>
+                                <div class="goal4-callout-text">
+                                    <div class="goal-number">5/5 디자인 목표</div>
+                                    <div class="goal4-title">반응형 디자인</div>
+                                    <div class="goal4-desc">
+                                        1020px / 700px 기준의 반응형 CSS를 적용하여 다양한 디바이스 환경의 접근성을 최적화하였습니다.
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="web-design">
+                <div class="port-top">
+                    <div class="port-tittle-gray">Web Design</div>
+                    <div class="port-title"></div>
+                </div>
+                <div class="web-design-group">
+                    <div class="web-design-box right">
+                        <div>
+                            <img src="resources/img/screenshots/business1_2.png">
+                        </div>
+                    </div>
+                    <div class="web-design-box left">
+                        <div>
+                            <img src="resources/img/screenshots/ir1.png">
+                        </div>
+                    </div>
+                    <div class="web-design-box right">
+                        <div>
+                            <img src="resources/img/screenshots/pr5.png">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="ending-curtain">
+            <div class="ending-post">
+                <div>
+                    <img src="resources/img/port/C&E_end.png">
+                </div>
+            </div>
+        </section>
+
+    </div>
+</div>
+
+<!-- #outro는 "커튼 공개(reveal footer)" 방식이라 .page-content 흐름 밖으로
+     빼서 화면 하단에 고정(position:fixed)한다. 위 .page-content가 전부
+     스크롤되어 지나가야 그 뒤에 항상 있던 이 자리가 드러난다.
+     .outro-spacer가 실제 #outro 높이만큼 문서 공간을 차지해줘야
+     스크롤이 끝까지 내려갔을 때 자연스럽게 드러난다(JS: goodbye-reveal.js). -->
+<div class="outro-spacer" aria-hidden="true"></div>
+
+<section class="section" id="outro">
+    <div class="goodbye-section">
+        <div class="goodbye-group">
+            <div class="goodbye-left">
+                <div class="goodbye-bold">
+                    <span>Ctrl + S.</span>
+                    <span>Portfolio saved.</span>
+                </div>
+                <div class="goodbye-thin">Produced by Song Eunsun</div>
+            </div>
+            <div class="goodbye-right">
+                <a class="goodbye-box" data-nav="prev" href="#">
+                    <div class="goodbye-box-label">
+                        <span>Prev Project</span>
+                        <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+                    </div>
+                    <div class="prev-img"><img src="" alt=""></div>
+                </a>
+                <a class="goodbye-box" data-nav="next" href="#">
+                    <div class="goodbye-box-label">
+                        <span>Next Project</span>
+                        <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
+                    </div>
+                    <div class="prev-img"><img src="" alt=""></div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="port-footer">
+        <div class="blob-words"
+             data-trigger=".outro-spacer"
+             data-words="UX/UI,반응형,디자인시스템,Portfolio"
+             data-bg="#ffffff" data-fill="#ffffff" data-border="#111111" data-text="#111111"
+             data-font="Inter" data-unit="5" data-seed="7"
+             data-scale="1" data-speed="1" data-blobbiness="1" data-wobble="1"></div>
+    </div>
+</section>
+
+</body>
+
+</html>    

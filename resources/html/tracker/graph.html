@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main bg-fade">
+      <header class="page-header">
+        <h1 class="page-title">2026.09.15 그래프</h1>
+        <!-- 이전 페이지로 이동. 직접 열었거나 가이드 안(iframe)에 있으면 위치 데이터로 -->
+        <button class="icon-button" type="button" aria-label="닫기" onclick="if (window === top && document.referrer) history.back(); else location.href='./location.html';">
+          <img src="./public/icon-close.svg" alt="" />
+        </button>
+      </header>
+
+      <section class="graph-section">
+        <div class="graph-head">
+          <h2 class="graph-title">오늘의 노출 시간</h2>
+          <p class="graph-sub">단계별 머문 시간 비율</p>
+        </div>
+        <div class="graph-card donut-card">
+          <svg class="donut" id="donut" viewBox="0 0 200 200" role="img" aria-label="단계별 노출 시간 도넛 그래프"></svg>
+          <dl class="donut-legend" id="donutLegend"></dl>
+        </div>
+      </section>
+
+      <section class="graph-section">
+        <div class="graph-head">
+          <h2 class="graph-title">시간대별 초미세먼지</h2>
+          <p class="graph-sub">일 평균 <b id="avgValue">31</b>㎍/㎥</p>
+        </div>
+        <div class="graph-card bar-card" id="barCard">
+          <svg class="bar-chart bar-axis" id="barAxis" aria-hidden="true"></svg>
+          <div class="bar-scroll">
+            <svg class="bar-chart" id="barChart" role="img" aria-label="시간대별 초미세먼지 막대 그래프"></svg>
+          </div>
+          <div class="graph-tip" id="barTip"></div>
+        </div>
+      </section>
+
+      <nav class="tab-bar">
+        <button class="tab-button" type="button" onclick="location.href='./main-good.html'">
+          <span class="tab-icon"><img src="./public/tab-home-off.svg" alt="" /></span>
+          <span class="tab-name">홈</span>
+        </button>
+        <button class="tab-button on" type="button" onclick="location.href='./location.html'">
+          <span class="tab-icon"><img src="./public/tab-location-on.svg" alt="" /></span>
+          <span class="tab-name">위치 데이터</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./heatmap.html'">
+          <span class="tab-icon"><img src="./public/tab-heatmap-off.svg" alt="" /></span>
+          <span class="tab-name">히트맵</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./mypage.html'">
+          <span class="tab-icon"><img src="./public/tab-setting-off.svg" alt="" /></span>
+          <span class="tab-name">환경설정</span>
+        </button>
+      </nav>
+    </div>
+    <script src="./js/graph.js"></script>
+  </body>
+</html>

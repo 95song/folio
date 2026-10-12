@@ -1,0 +1,167 @@
+/* =====================================================================
+   앱 뷰어 (app-viewer.js)
+   [data-app-viewer] 버튼을 누르면 화면 위에 폰 프레임을 띄우고, 그 안에서 실제 앱을 연다.
+   - 기본은 아이폰 16 크기(393 × 852). 버튼 속성으로 다른 크기(예: 1376 × 1032)를 줄 수 있다.
+   - 프레임은 7px #111111 테두리. 창이 작으면 프레임 전체를 --av-k 배율로 줄인다 (화면은 원래 크기 그대로).
+   - 가로가 더 긴 화면(.is-wide)은 버튼 줄이 프레임 위쪽에 놓인다.
+   - 767px 이하(모바일)에서는 프레임 없이 전체 화면. 단 .is-mobile-fit 이면 프레임을 유지하고 폭에 맞춰 줄인다.
+   포트폴리오의 헤더 · 햄버거 버튼(z-index 최대 99999999)보다 위에 뜬다.
+   ===================================================================== */
+.app-viewer{
+  --av-w: 393;                 /* 화면 폭 (app-viewer.js 가 버튼 속성 값으로 바꾼다) */
+  --av-h: 852;                 /* 화면 높이 */
+  --av-border: 7px;            /* 프레임 테두리 두께 */
+  --av-radius: 56px;           /* 프레임 바깥 모서리 */
+  --av-k: 1;                   /* 창 크기에 맞춘 배율 (app-viewer.js 가 넣는다) */
+  position: fixed;
+  inset: 0;
+  z-index: 2147483000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  visibility: hidden;
+  opacity: 0;
+  background: rgba(17, 17, 17, 0.55);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  transition: opacity 0.35s ease, visibility 0s linear 0.35s;
+}
+.app-viewer.is-open{
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.35s ease, visibility 0s;
+}
+
+/* 배율이 적용된 뒤의 크기만큼 자리를 차지하는 틀 */
+.app-viewer-stage{
+  position: relative;
+  flex: none;
+  width: calc((var(--av-w) * 1px + var(--av-border) * 2) * var(--av-k));
+  height: calc((var(--av-h) * 1px + var(--av-border) * 2) * var(--av-k));
+  transform: translateY(24px) scale(0.97);
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.app-viewer.is-open .app-viewer-stage{ transform: none; }
+
+/* 폰: 원래 크기로 그린 뒤 배율만큼 줄인다 */
+.app-viewer-phone{
+  position: absolute;
+  left: 0;
+  top: 0;
+  box-sizing: content-box;
+  width: calc(var(--av-w) * 1px);
+  height: calc(var(--av-h) * 1px);
+  border: var(--av-border) solid #111111;
+  border-radius: var(--av-radius);
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.55);
+  transform: scale(var(--av-k));
+  transform-origin: 0 0;
+}
+.app-viewer-phone iframe{
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background: #ffffff;
+}
+
+/* 폰 오른쪽 위의 버튼들 (닫기 · 처음으로) */
+.app-viewer-tools{
+  position: absolute;
+  left: calc(100% + 16px);
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.app-viewer-btn{
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #111111;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), background-color 0.2s ease;
+}
+.app-viewer-btn:hover{ transform: scale(1.08); }
+.app-viewer-btn:focus-visible{ outline: 2px solid #ffffff; outline-offset: 3px; }
+.app-viewer-btn svg{ width: 18px; height: 18px; display: block; }
+.app-viewer-title{ display: none; }
+
+/* 가로가 더 긴 화면: 버튼 줄을 프레임 오른쪽 위에 가로로 놓는다 */
+.app-viewer.is-wide .app-viewer-tools{
+  left: auto;
+  right: 0;
+  top: auto;
+  bottom: calc(100% + 16px);
+  flex-direction: row-reverse;   /* 닫기가 맨 오른쪽 */
+}
+
+/* 뷰어가 열려 있는 동안 뒤 페이지는 스크롤되지 않게 */
+html.app-viewer-lock,
+html.app-viewer-lock body{ overflow: hidden !important; }
+
+/* ---------- 모바일: 프레임 없이 전체 화면 (.is-mobile-fit 은 제외: 프레임을 유지하고 줄여서 보여 준다) ---------- */
+@media (max-width: 767px){
+  .app-viewer:not(.is-mobile-fit){
+    display: block;
+    background: #ffffff;
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+  .app-viewer:not(.is-mobile-fit) .app-viewer-stage{
+    position: absolute;
+    inset: 0;
+    width: auto;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    transform: translateY(16px);
+  }
+  /* 위쪽 얇은 줄: 앱 이름 + 처음으로 + 닫기 (앱 화면의 버튼과 겹치지 않게 따로 둔다) */
+  .app-viewer:not(.is-mobile-fit) .app-viewer-tools{
+    position: static;
+    order: -1;
+    flex: none;
+    height: 44px;
+    padding: 0 6px 0 16px;
+    flex-direction: row;
+    align-items: center;
+    gap: 2px;
+    border-bottom: 1px solid #e5e5e5;
+    background: #ffffff;
+  }
+  .app-viewer:not(.is-mobile-fit) .app-viewer-title{
+    display: block;
+    margin-right: auto;
+    font-size: 14px;
+    font-weight: 600;
+    color: #111111;
+  }
+  .app-viewer:not(.is-mobile-fit) .app-viewer-btn{ width: 40px; height: 40px; box-shadow: none; }
+  .app-viewer:not(.is-mobile-fit) .app-viewer-btn[data-av="close"]{ order: 2; }   /* 닫기는 맨 오른쪽 */
+  .app-viewer:not(.is-mobile-fit) .app-viewer-phone{
+    position: relative;
+    flex: 1 1 auto;
+    width: auto;
+    height: auto;
+    min-height: 0;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .app-viewer,
+  .app-viewer-stage{ transition: none; }
+}

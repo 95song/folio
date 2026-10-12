@@ -1,0 +1,23 @@
+{
+  "entries": {
+    "cmd-1791792753811": {
+      "key": "cmd-1791792753811",
+      "value": "{\"command\":\"cd \\\"/d/퍼블리싱_작업/portfolio-main/resources/jeju-did\\\" && sed -n 436,452p resources/css/main.css; grep -n \\\"main.*\\\\.css\\\\|jeju.css\\\" index.html\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-12T08:12:33.811Z",
+      "lastAccessed": "2026-10-12T08:12:33.811Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-11T08:12:33.811Z"
+    },
+    "cmd-1791792775733": {
+      "key": "cmd-1791792775733",
+      "value": "{\"command\":\"cd \\\"/d/퍼블리싱_작업/portfolio-main/resources/jeju-did\\\" && grep -n \\\"location_icon\\\" index.html resources/css/main.css resources/css/jeju.css resources/js/*.js; echo \\\"exit: $?\\\"\",\"exitCode\":0,\"success\":true}",
+      "namespace": "commands",
+      "storedAt": "2026-10-12T08:12:55.733Z",
+      "lastAccessed": "2026-10-12T08:12:55.733Z",
+      "accessCount": 0,
+      "expiresAt": "2026-11-11T08:12:55.733Z"
+    }
+  },
+  "version": "3.0.0"
+}

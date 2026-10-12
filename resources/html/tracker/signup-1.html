@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main bg-half">
+      <section class="top-section unline">
+        <div class="top-title">
+          <button class="icon-arrow" type="button" aria-label="뒤로" onclick="location.href='./login.html'"><img src="./public/icon-chevron-left.svg" alt="" /></button>
+          <h1 class="title-b">회원가입</h1>
+          <div class="spacer-24"></div>
+        </div>
+      </section>
+
+      <section class="center-section">
+        <div class="center-div">
+          <p class="logo-text blue signup-logo">Tracker</p>
+          <h2 class="form-tittle">아래 약관에 동의하시면<br />‘Tracker’ 서비스를 시작합니다.</h2>
+          <label class="check-box-parent" data-terms="./signup-2.html">
+            <input type="checkbox" class="option1" />
+            <span class="check-ui purple">
+              <span class="check-type">위치 기반 서비스 약관(필수)</span>
+              <span class="check-icon"><span class="check-svg"></span></span>
+            </span>
+          </label>
+          <label class="check-box-parent">
+            <input type="checkbox" class="option2" />
+            <span class="check-ui purple">
+              <span class="check-type">연구 참여 약관(필수)</span>
+              <span class="check-icon"><span class="check-svg"></span></span>
+            </span>
+          </label>
+          <p class="form-text blue">* 각 약관을 선택하여 확인 후 동의해야합니다</p>
+        </div>
+      </section>
+
+      <section class="bottom-section">
+        <div class="bottom-button">
+          <button class="button square stanby" type="button" onclick="location.href='./peronalinfo-1.html'">다음</button>
+        </div>
+      </section>
+    </div>
+
+    <script>
+      // 위치 기반 약관: 동의 전이면 전문(signup-2)으로 이동하고, 전문에서 동의하고 돌아오면 체크된 상태로 표시
+      const terms = document.querySelector('[data-terms]');
+      const termsInput = terms.querySelector('input');
+      if (new URLSearchParams(location.search).get('agree') === 'location') termsInput.checked = true;
+      terms.addEventListener('click', (e) => {
+        if (!termsInput.checked) {
+          e.preventDefault();
+          location.href = terms.dataset.terms;
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <title>Tracker</title>
+    <link rel="icon" href="./public/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="./public/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="./public/apple-touch-icon.png" />
+
+    <link rel="stylesheet" href="./css/global.css" />
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/form.css" />
+    <link rel="stylesheet" href="./css/contents.css" />
+  </head>
+  <body>
+    <div class="main bg-fade">
+      <header class="page-header">
+        <h1 class="page-title">마이페이지</h1>
+        <button class="header-link" type="button" onclick="location.href='./login.html'">
+          <img src="./public/icon-logout.svg" alt="" />
+          로그아웃
+        </button>
+      </header>
+
+      <section class="profile">
+        <img src="./public/avatar.svg" alt="" />
+        <p class="profile-name">홍길동</p>
+      </section>
+
+      <section class="panel-section">
+        <ul class="menu-list">
+          <li><button class="menu-item" type="button" onclick="location.href='./member.html'">회원정보 수정하기<img src="./public/icon-chevron-right.svg" alt="" /></button></li>
+          <li><button class="menu-item" type="button" onclick="location.href='./disease.html'">질병정보 수정하기<img src="./public/icon-chevron-right.svg" alt="" /></button></li>
+          <li><button class="menu-item" type="button" onclick="location.href='./timeline.html'">타임라인 데이터 보내기<img src="./public/icon-chevron-right.svg" alt="" /></button></li>
+        </ul>
+      </section>
+
+      <nav class="tab-bar">
+        <button class="tab-button" type="button" onclick="location.href='./main-good.html'">
+          <span class="tab-icon"><img src="./public/tab-home-off.svg" alt="" /></span>
+          <span class="tab-name">홈</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./location.html'">
+          <span class="tab-icon"><img src="./public/tab-location-off.svg" alt="" /></span>
+          <span class="tab-name">위치 데이터</span>
+        </button>
+        <button class="tab-button" type="button" onclick="location.href='./heatmap.html'">
+          <span class="tab-icon"><img src="./public/tab-heatmap-off.svg" alt="" /></span>
+          <span class="tab-name">히트맵</span>
+        </button>
+        <button class="tab-button on" type="button" onclick="location.href='./mypage.html'">
+          <span class="tab-icon"><img src="./public/tab-setting-on.svg" alt="" /></span>
+          <span class="tab-name">환경설정</span>
+        </button>
+      </nav>
+    </div>
+  </body>
+</html>
