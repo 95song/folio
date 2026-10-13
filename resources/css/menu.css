@@ -94,7 +94,7 @@ body.main .navi .depth1 { color: #111111; }
 .right_navi { position: absolute; top: 0; bottom: 0; margin: auto; width: auto; height: 7.8125rem; right: 6.25rem; z-index: 1000; }
 /**/
 
-.navi.over .top_open>div:first-child { background: #FF3D32 url(../img/common/open2.png) center no-repeat; }
+.navi.over .top_open>div:first-child { background: #FF3D32; }
 .navi.over .top_open h4 { color: #FF3D32; }
 
 

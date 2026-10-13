@@ -47,8 +47,8 @@
 /* ---------- 챕터 공통 ---------- */
 .eds-chapter { padding-block: clamp(64px, 8vw, 112px); }
 .eds-head { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 24px 64px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
-.eds-head h2 { font-weight: 800; font-size: clamp(44px, 7vw, 96px); line-height: 1; letter-spacing: -.04em; color: var(--ink); }
-.eds-head p { max-width: 36em; color: var(--ink-soft); font-size: 16.5px; }
+.eds-head h2 { font-weight: 800; font-size: clamp(44px, 7vw, 52px); line-height: 1; letter-spacing: -.04em; color: var(--ink); }
+.eds-head p { max-width: 36em; color: var(--ink-soft); font-size: 20px; }
 .eds-sub { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin: 56px 0 20px; padding-bottom: 12px; border-bottom: 1px solid var(--line); }
 .eds-sub:first-of-type { margin-top: 0; }
 .eds-sub h3 { font-size: 20px; font-weight: 700; letter-spacing: -.01em; color: var(--ink); }

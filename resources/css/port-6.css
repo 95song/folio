@@ -1,16 +1,17 @@
 /* =====================================================================
    리플렛 상세 섹션 (.leaflet 전용)
-   port-6(학교 미세먼지 리플렛) · port-4(Vision AI Edge 리플렛) 공용
+   port-6(학교 미세먼지 리플렛) · port-4(Vision AI Edge 리플렛) · port-5(연하장 시리즈) 공용
    - 모든 규칙과 커스텀 프로퍼티를 .leaflet 안으로 스코프해서
      사이트 공통 CSS(--bg, --ink, .stage, .panel 등)와 섞이지 않게 한다.
    - 구성: ① 공통 틀(토큰·타이포·등장·제작 사양) → ② port-6 전용 →
-     ③ port-4 전용 → ④ 반응형 / 모션 최소화
+     ③ port-4 전용 → ④ port-5 전용 → 반응형 / 모션 최소화
    - 작품별로 달라지는 건 포인트 컬러뿐이라 --lf-accent 계열 변수만 바꾼다.
-     (port-4 섹션은 .leaflet.vae)
+     (port-4 섹션은 .leaflet.vae, port-5 섹션은 .leaflet.ny)
    - 컬러: 기존 컬러만 사용 (#111111 / #6c6c6c / #969696 / #a9a9a9 /
      #e4e4e4 / #f2f2f2 / #ffffff / #ddeef8 + 작품별 포인트 컬러)
    - 폰트 사이즈: 기존 포트폴리오 CSS에 쓰인 값만 사용 (0.8125 / 0.95 / 1 /
-     1.125 / 1.25 / 1.5 / 1.875 / 2.25 / 9.5rem, clamp(2.5rem, 6vw, 7rem), 11px)
+     1.125 / 1.25 / 1.5 / 1.875 / 2.25 / 9.5rem, clamp(2.5rem, 6vw, 7rem), 11px,
+     port-5 제목부는 port-1 .tg-head 값 18 / 52 / 36 / 16px)
    ===================================================================== */
 
 /* =========================================================
@@ -46,7 +47,7 @@
   display: inline-flex; align-items: center;
   font-size: 1.25rem; color: var(--lf-muted);
 }
-.leaflet h2{ font-size: 1.875rem; line-height: 1.3; font-weight: 700; letter-spacing: -.03em; margin-top: 1rem; color: var(--lf-ink); }
+.leaflet h2{ font-size: 52px; line-height: 1.3; font-weight: 700; letter-spacing: -.03em; margin-top: 1rem; color: var(--lf-ink); }
 .leaflet .lead{ font-size: 1.25rem; color: var(--lf-ink-2); max-width: 620px; }
 .leaflet .lead.lf-gap{ margin-top: 1.25rem; }
 
@@ -106,7 +107,7 @@
 .leaflet .ov-track{ display: flex; gap: 24px; padding-left: var(--lf-gutter); will-change: transform; }
 .leaflet .ov-card{ flex: none; width: min(76vw, 880px); height: min(68vh, 560px); border-radius: 20px; padding: clamp(28px, 4vw, 56px); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: space-between; }
 .leaflet .ov-card.ov-intro{ width: min(60vw, 640px); padding-left: 0; }
-.leaflet .ov-intro h2{ font-size: 2.25rem; font-weight: 700; letter-spacing: -.045em; line-height: 1.15; margin-top: 18px; }
+.leaflet .ov-intro h2{ font-size: 52px; font-weight: 700; letter-spacing: -.045em; line-height: 1.15; margin-top: 18px; }
 .leaflet .ov-intro p{ font-size: 1.25rem; color: var(--lf-ink-2); max-width: 480px; }
 .leaflet .ov-card.c1{ background: var(--lf-accent-tint); }
 .leaflet .ov-card.c2{ background: #ffffff; box-shadow: inset 0 0 0 1px var(--lf-line); }
@@ -274,8 +275,6 @@
 /* ---------- Overview — 중앙 대형 카드 + 양옆 설명 (스크롤로 뒤집기) ---------- */
 .leaflet.flip{ height: 300vh; padding: 0; background: var(--lf-accent-tint); }
 .leaflet .flip-sticky{ position: sticky; top: 0; height: 100svh; display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: clamp(24px, 4vw, 72px); padding: 0 var(--lf-gutter) 3rem; }
-.leaflet .flip-head{ position: absolute; left: var(--lf-gutter); top: clamp(96px, 14vh, 140px); }
-.leaflet .flip-head h2{ margin-top: 10px; }
 .leaflet .flip-stage{ perspective: 2400px; padding-top: 32px; }
 .leaflet .flip-card{ position: relative; transform-style: preserve-3d; transform: rotateY(var(--lf-ry, 0deg)) rotateZ(var(--lf-rz, 0deg)); }
 .leaflet .flip-card .a4{ position: absolute; inset: 0; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
@@ -308,7 +307,6 @@
 .leaflet .ch-txt p{ font-size: 1rem; color: var(--lf-ink-2); }
 
 /* ---------- Process — 시안 소개 ---------- */
-.leaflet.process{ border-top: 1px solid var(--lf-line); border-bottom: 1px solid var(--lf-line); }
 .leaflet .drafts{ display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 2fr); gap: clamp(20px, 3vw, 40px); margin-top: 64px; }
 .leaflet .draft{ background: var(--lf-accent-tint); border-radius: 20px; padding: clamp(24px, 3vw, 40px); display: flex; flex-direction: column; gap: 28px; }
 .leaflet .draft .thumbs{ display: flex; gap: 16px; justify-content: center; }
@@ -383,7 +381,6 @@
    리플렛이 화면에 고정된 채로 스크롤 단계마다 주석이 바뀜 */
 .leaflet.fr{ height: 340vh; padding: 0; }
 .leaflet .fr-sticky{ position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding-bottom: 3rem; }
-.leaflet .fr-head{ position: absolute; right: var(--lf-gutter); top: clamp(96px, 14vh, 140px); text-align: right; }
 .leaflet .fr-head h2{ margin-top: 10px; }
 .leaflet .fr-stage{ position: relative; margin-top: 32px; }
 .leaflet .fr-stage .a4{ height: 100%; }
@@ -411,7 +408,7 @@
 .leaflet .brow{ display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: clamp(32px, 5vw, 80px); align-items: center; }
 .leaflet .brow.rev{ grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); }
 .leaflet .brow.rev .shot{ order: 2; }
-.leaflet .shot{ background: #ffffff; border-radius: 16px; padding: clamp(16px, 2.4vw, 32px); box-shadow: 0 1px 0 var(--lf-line), 0 30px 60px -36px rgba(0,0,0,.35); overflow: hidden; }
+.leaflet .shot{ background: #ffffff; border-radius: 16px; overflow: hidden; }
 .leaflet .shot .clip{ clip-path: inset(0 100% 0 0); transition: clip-path 1.4s var(--lf-ease); }
 .leaflet .is-in .shot .clip{ clip-path: inset(0 0 0 0); }
 .leaflet .shot img{ width: 100%; }
@@ -422,6 +419,149 @@
 .leaflet .line-legend li{ display: flex; align-items: center; gap: 12px; }
 .leaflet .line-legend i{ width: 40px; height: 0; border-top: 2px solid var(--lf-muted); }
 .leaflet .line-legend i.dash{ border-top-style: dashed; }
+
+/* =========================================================
+   ④ port-5 · 연하장 시리즈 2024–2026  (.leaflet.ny)
+   - 제목부는 port-1 디자인 시스템의 .tg-head 구성(번호 · 제목 / 설명)을 그대로 따른다.
+     (tracker-ds.css 의 .tg-* 는 .design-system 안에서만 동작하므로 여기서 다시 정의)
+   - 색: 기존 컬러 + 연도별 포인트 컬러(--ny-c24/25/26)와 그 바탕색(--ny-t24/25/26)만 사용.
+     팔레트 칩 · 캐릭터 색 견본의 색은 작품에서 추출한 내용 데이터라 HTML에 둔다.
+   - 동작: resources/js/port-6.js (initNy)
+   ========================================================= */
+.leaflet.ny{
+  --ny-c24: #2F6B52;  --ny-t24: #EDF4EF;   /* 갑진년 · 청룡 */
+  --ny-c25: #0A3763;  --ny-t25: #E9EFF5;   /* 을사년 · 푸른 뱀 */
+  --ny-c26: #8E4128;  --ny-t26: #F6ECE6;   /* 병오년 · 붉은 말 */
+  --lf-accent: var(--ny-c24);
+  --lf-accent-tint: var(--ny-t24);
+  word-break: keep-all;
+}
+.leaflet.ny button{ font-family: inherit; }
+
+/* 제목부 (port-1 .tg-head 와 같은 규칙) */
+.leaflet.ny .tg-head{ display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: end; margin-bottom: 80px; }
+.leaflet.ny .tg-eyebrow{ margin: 0 0 18px; font-size: 18px; font-weight: 700; color: var(--lf-accent); letter-spacing: -0.2px; }
+.leaflet.ny .tg-eyebrow b{ margin-right: 10px; font-weight: 300; color: var(--lf-ink-2); }
+.leaflet.ny .tg-h2{ margin: 0; font-size: 52px; font-weight: 700; line-height: 1.15; letter-spacing: -1.6px; color: var(--lf-ink); }
+.leaflet.ny .tg-lead{ margin: 0; font-size: 20px; font-weight: 300; line-height: 1.85; color: var(--lf-ink-2); }
+
+/* ---------- Concept : 띠와 색 ---------- */
+.leaflet .ny-cx{ display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 40px); }
+.leaflet .ny-cx article{ border-top: 2px solid var(--yc); padding-top: 24px; }
+.leaflet .ny-cx .yr{ font-size: 0.95rem; font-weight: 700; color: var(--yc); }
+.leaflet .ny-cx h3{ font-size: 1.5rem; font-weight: 700; letter-spacing: -.03em; margin: 4px 0 6px; color: var(--lf-ink); }
+.leaflet .ny-cx p{ font-size: 1rem; color: var(--lf-ink-2); }
+.leaflet .ny-chips{ display: flex; margin-top: 24px; border-radius: 12px; overflow: hidden; height: 72px; }
+.leaflet .ny-chips i{ flex: 1; position: relative; transition: flex .5s var(--lf-ease); }
+.leaflet .ny-chips i:hover{ flex: 2.2; }
+.leaflet .ny-chips i.lt{ box-shadow: inset 0 0 0 1px var(--lf-line); }
+.leaflet .ny-chips i span{ position: absolute; left: 8px; bottom: 6px; font-size: 11px; font-style: normal; font-weight: 600; color: #ffffff; opacity: 0; transition: opacity .3s; }
+.leaflet .ny-chips i.lt span{ color: var(--lf-ink); }
+.leaflet .ny-chips i:hover span{ opacity: 1; }
+
+/* ---------- Year by Year : 카드 스택 (배경이 맨 위 카드의 연도 색으로 전환) ---------- */
+.leaflet.ny-yby{ background: var(--tint, var(--ny-t24)); transition: background .8s var(--lf-ease); }
+.leaflet .ny-yby-grid{ display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); gap: clamp(40px, 6vw, 112px); align-items: center; }
+.leaflet .ny-deck{ position: relative; width: min(100%, calc(72svh * 210 / 297), 460px); aspect-ratio: 210 / 297; margin: 0 auto; touch-action: pan-y; outline: none; }
+.leaflet .ny-deck:focus-visible{ box-shadow: 0 0 0 3px var(--lf-accent); border-radius: 6px; }
+.leaflet .ny-card{ position: absolute; inset: 0; border-radius: 6px; overflow: hidden; background: #ffffff; box-shadow: 0 1px 2px rgba(0,0,0,.08), 0 34px 60px -30px rgba(0,0,0,.45); transition: transform .6s cubic-bezier(.2,.8,.2,1), opacity .4s, filter .4s; will-change: transform; user-select: none; }
+.leaflet .ny-card img{ width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
+.leaflet .ny-card[data-top="1"]{ cursor: grab; }
+.leaflet .ny-card[data-mode="drag"]{ cursor: grabbing; transition: none; }
+.leaflet .ny-card[data-mode="fly"]{ transition: transform .45s cubic-bezier(.3,.5,.3,1), opacity .45s; }
+.leaflet .ny-card[data-mode="snap"]{ transition: none; }
+.leaflet .ny-ytext{ position: relative; min-height: 360px; }
+.leaflet .ny-yt{ position: absolute; inset: 0; opacity: 0; transform: translateY(14px); transition: opacity .5s, transform .6s var(--lf-ease); pointer-events: none; }
+.leaflet .ny-yt.on{ opacity: 1; transform: none; pointer-events: auto; }
+.leaflet .ny-yt .y{ display: block; font-size: clamp(2.5rem, 6vw, 7rem); font-weight: 800; letter-spacing: -.05em; line-height: 1; color: var(--lf-accent); transition: color .6s; }
+.leaflet .ny-yt h3{ font-size: 1.5rem; font-weight: 700; letter-spacing: -.03em; margin: 16px 0 12px; color: var(--lf-ink); }
+.leaflet .ny-yt p{ font-size: 1rem; color: var(--lf-ink-2); max-width: 460px; }
+.leaflet .ny-yt ul{ list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.leaflet .ny-yt li{ font-size: 0.8125rem; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: #ffffff; color: var(--lf-accent); }
+.leaflet .ny-ctrl{ display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+.leaflet .ny-btn{ appearance: none; border: 1px solid var(--lf-ink); background: transparent; color: var(--lf-ink); width: 44px; height: 44px; border-radius: 50%; display: grid; place-items: center; cursor: pointer; transition: background .2s, color .2s; }
+.leaflet .ny-btn:hover{ background: var(--lf-ink); color: #ffffff; }
+.leaflet .ny-btn:focus-visible{ outline: 2px solid var(--lf-accent); outline-offset: 2px; }
+.leaflet .ny-count{ font-size: 0.95rem; font-weight: 600; color: var(--lf-muted); }
+.leaflet .ny-count b{ color: var(--lf-ink); }
+.leaflet .ny-hint{ font-size: 0.8125rem; color: var(--lf-muted); margin-left: auto; }
+.leaflet .ny-sr{ position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+/* ---------- Characters : 캐릭터 프로필 시트 ---------- */
+.leaflet .ny-tilt{ position: relative; border-radius: 20px; overflow: hidden; aspect-ratio: 1; transform-style: preserve-3d; transition: transform .2s ease-out; will-change: transform; }
+.leaflet .ny-tilt > img{ width: 100%; height: 100%; object-fit: contain; padding: 9%; filter: drop-shadow(0 18px 24px rgba(0,0,0,.15)); }
+.leaflet .ny-tilt.flat > img{ filter: none; }
+.leaflet .ny-pin{ position: absolute; z-index: 4; width: 30px; height: 30px; margin: -15px 0 0 -15px; padding: 0; border-radius: 50%; background: #ffffff; color: var(--yc); font-size: 0.8125rem; font-weight: 800; line-height: 1; display: grid; place-items: center; box-shadow: 0 4px 14px rgba(0,0,0,.2); border: 2px solid var(--yc); cursor: pointer; transition: transform .3s var(--lf-ease), background .3s, color .3s; }
+.leaflet .ny-pin.on,
+.leaflet .ny-pin:hover{ background: var(--yc); color: #ffffff; border-color: #ffffff; box-shadow: 0 0 0 2px var(--yc), 0 4px 14px rgba(0,0,0,.25); transform: scale(1.15); }
+.leaflet .ny-pin:focus-visible{ outline: 2px solid var(--lf-ink); outline-offset: 2px; }
+.leaflet .ny-tabs{ display: flex; gap: 8px; flex-wrap: wrap; }
+.leaflet .ny-tab{ all: unset; cursor: pointer; display: flex; align-items: center; gap: 10px; padding: 8px 18px 8px 8px; border-radius: 999px; background: #ffffff; box-shadow: inset 0 0 0 1px var(--lf-line); font-size: 0.95rem; font-weight: 600; line-height: 1.35; color: var(--lf-ink-2); transition: background .3s, color .3s, box-shadow .3s; }
+.leaflet .ny-tab .av{ width: 40px; height: 40px; border-radius: 50%; background: var(--tint); display: grid; place-items: center; overflow: hidden; }
+.leaflet .ny-tab .av img{ width: 86%; height: 86%; object-fit: contain; }
+.leaflet .ny-tab small{ font-size: 0.8125rem; color: var(--lf-muted); font-weight: 600; }
+.leaflet .ny-tab.on{ background: var(--yc); color: #ffffff; box-shadow: none; }
+.leaflet .ny-tab.on small{ color: #ffffff; opacity: .75; }
+.leaflet .ny-tab:focus-visible{ outline: 2px solid var(--lf-ink); outline-offset: 3px; }
+.leaflet .ny-sheet{ display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); gap: clamp(32px, 5vw, 96px); align-items: center; margin-top: 28px; padding: clamp(24px, 3vw, 48px); border-radius: 24px; background: var(--tint); transition: background .6s; }
+.leaflet .ny-stage{ position: relative; max-width: 460px; width: 100%; justify-self: center; }
+.leaflet .ny-prof .yr{ font-size: 0.95rem; font-weight: 700; color: var(--yc); }
+.leaflet .ny-prof h3{ font-size: 2.25rem; font-weight: 800; letter-spacing: -.04em; line-height: 1.2; margin: 4px 0 14px; color: var(--lf-ink); }
+.leaflet .ny-kw{ display: flex; gap: 8px; flex-wrap: wrap; }
+.leaflet .ny-kw span{ font-size: 0.8125rem; font-weight: 600; padding: 5px 12px; border-radius: 999px; background: #ffffff; color: var(--yc); }
+.leaflet .ny-desc{ font-size: 1rem; color: var(--lf-ink-2); margin-top: 18px; max-width: 500px; }
+.leaflet .ny-pts{ margin-top: 24px; display: flex; flex-direction: column; gap: 8px; }
+.leaflet .ny-pt{ all: unset; cursor: pointer; display: grid; grid-template-columns: 30px 1fr; gap: 14px; align-items: start; padding: 14px 16px; border-radius: 14px; background: rgba(255,255,255,.5); transition: background .3s; }
+.leaflet .ny-pt b{ width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; font-size: 0.8125rem; border: 2px solid var(--yc); color: var(--yc); transition: background .3s, color .3s; box-sizing: border-box; }
+.leaflet .ny-pt h4{ font-size: 1rem; font-weight: 700; color: var(--lf-ink); }
+.leaflet .ny-pt p{ font-size: 0.95rem; color: var(--lf-ink-2); line-height: 1.6; }
+.leaflet .ny-pt.on{ background: #ffffff; }
+.leaflet .ny-pt.on b{ background: var(--yc); color: #ffffff; }
+.leaflet .ny-pt:focus-visible{ outline: 2px solid var(--lf-ink); outline-offset: 2px; }
+.leaflet .ny-prof dl{ display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; margin: 24px 0 0; padding-top: 20px; border-top: 1px solid var(--lf-line); font-size: 0.95rem; }
+.leaflet .ny-prof dt{ color: var(--lf-muted); font-weight: 600; font-size: 0.8125rem; line-height: 1.75rem; }
+.leaflet .ny-prof dd{ margin: 0; color: var(--lf-ink); }
+.leaflet .ny-swatch{ display: flex; gap: 6px; }
+.leaflet .ny-swatch i{ width: 24px; height: 24px; border-radius: 50%; box-shadow: inset 0 0 0 1px rgba(0,0,0,.1); }
+.leaflet .ny-fade{ transition: opacity .3s; }
+.leaflet .ny-fade.out{ opacity: 0; }
+
+/* ---------- Recurring : 반복 요소 무한 마퀴 ---------- */
+.leaflet .ny-marquee{ overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.leaflet .ny-mtrack{ display: flex; gap: 20px; width: max-content; animation: nyMq 46s linear infinite; }
+.leaflet .ny-marquee:hover .ny-mtrack{ animation-play-state: paused; }
+@keyframes nyMq{ to{ transform: translateX(calc(-50% - 10px)); } }
+.leaflet .ny-el{ flex: none; width: clamp(220px, 20vw, 300px); }
+.leaflet .ny-el .img{ height: 200px; border-radius: 16px; overflow: hidden; background: #f2f2f2; display: grid; place-items: center; }
+.leaflet .ny-el .img img{ width: 100%; height: 100%; object-fit: cover; }
+.leaflet .ny-el .img.contain img{ object-fit: contain; padding: 20px; }
+.leaflet .ny-el p{ display: flex; justify-content: space-between; gap: 8px; margin-top: 12px; font-size: 0.95rem; font-weight: 600; color: var(--lf-ink); }
+.leaflet .ny-el p span{ font-weight: 500; color: var(--lf-muted); font-size: 0.8125rem; }
+
+/* ---------- Mockup : #ending-curtain 의 이미지를 목업 3장으로 ----------
+   한 장이 화면 전체를 채우고, 다음 장이 위로 덮으며 올라온다.
+   이미지 크기는 port-1.css 의 .ending-post img(100vh · cover)를 그대로 쓴다. */
+#ending-curtain .ny-stack > div{ position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background: #111111; }
+#ending-curtain .ny-stack img{ height: 100%; transform: scale(1.06); transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
+#ending-curtain .ny-stack > div.is-in img{ transform: none; }
+
+@media (max-width: 860px){
+  .leaflet .ny-cx,
+  .leaflet .ny-yby-grid,
+  .leaflet .ny-sheet{ grid-template-columns: 1fr; }
+  .leaflet .ny-deck{ width: min(78vw, 340px); }
+  .leaflet .ny-ytext{ min-height: 340px; }
+  .leaflet .ny-hint{ display: none; }
+  .leaflet .ny-stage{ max-width: 320px; }
+}
+@media (max-width: 760px){
+  .leaflet.ny .tg-head{ grid-template-columns: 1fr; gap: 20px; margin-bottom: 50px; }
+  .leaflet.ny .tg-h2{ font-size: 36px; letter-spacing: -1px; }
+}
+@media (prefers-reduced-motion: reduce){
+  .leaflet .ny-mtrack{ animation: none; flex-wrap: wrap; width: auto; }
+  #ending-curtain .ny-stack img{ transform: none; transition: none; }
+}
 
 /* =========================================================
    RESPONSIVE
@@ -464,7 +604,6 @@
   .leaflet .merge-note{ grid-template-columns: 1fr; }
   .leaflet .fullh{ --lf-h: 56svh; }
   .leaflet .flip-sticky{ grid-template-columns: 1fr; grid-template-rows: auto auto auto; align-content: center; gap: 12px; }
-  .leaflet .flip-head{ position: static; }
   .leaflet .flip-stage{ order: 1; justify-self: center; padding-top: 0; }
   .leaflet .ov-side.l,
   .leaflet .ov-side.r{ justify-self: start; text-align: left; grid-row: 3; grid-column: 1; order: 2; }

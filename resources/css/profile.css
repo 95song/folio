@@ -60,11 +60,14 @@ img { display: block; max-width: 100%; }
 .loader {
   position: fixed; inset: 0; z-index: 9995; background: var(--white); color: var(--ink);
   display: flex; flex-direction: column; justify-content: space-between; padding: 2rem var(--gut);
+  /* 안전장치: 스크립트가 아예 실행되지 못해도(GSAP 로드 실패 등) 15초 뒤에는 로딩이 사라져 본문이 보인다 */
+  animation: loaderFailsafe 0s linear 15s forwards;
 }
+@keyframes loaderFailsafe { to { visibility: hidden; } }
 .loader_top, .loader_bottom { display: flex; justify-content: space-between; align-items: flex-end; font-weight: 300; font-size: .85rem; color: var(--gray); }
-.loader_name { font-weight: 700; font-size: clamp(3rem, 13vw, 14rem); line-height: .85; letter-spacing: -.05em; color: var(--ink); }
-.loader_name .dot { color: var(--red); }
-.loader_count { font-weight: 300; font-size: clamp(2rem, 5vw, 5rem); color: var(--ink); font-variant-numeric: tabular-nums; }
+.loader_center { position: absolute; inset: 0; display: grid; place-items: center; pointer-events: none; }
+.loader_word { display: inline-block; white-space: nowrap; font-weight: 700; font-size: clamp(2.6rem, 9vw, 9.5rem); line-height: 1.1; letter-spacing: -.045em; color: var(--ink); will-change: transform, opacity, filter; }
+.loader_count { font-weight: 300; font-size: clamp(1.4rem, 2.4vw, 2.4rem); line-height: 1; color: var(--ink); font-variant-numeric: tabular-nums; }
 .loader_bar { position: absolute; left: 0; bottom: 0; height: 2px; width: 100%; background: var(--red); transform-origin: left; transform: scaleX(0); }
 
 /* ================= 1. HERO : 스크롤 타이포 (헤맴 → 탐색 → 발견) =================
@@ -83,9 +86,8 @@ img { display: block; max-width: 100%; }
 }
 
 .hero_meta { position: absolute; top: 1.9rem; left: var(--gut); right: calc(var(--gut) + 4.5rem); display: flex; justify-content: space-between; align-items: center; font-size: .85rem; z-index: 3; }
-.hero_logo { font-weight: 700; font-size: 1.1rem; letter-spacing: -.02em; }
-.hero_logo i { font-style: normal; color: var(--red); }
-.hero_status { display: inline-flex; align-items: center; gap: .55rem; font-weight: 300; font-size: .85rem; color: var(--ink); }
+/* 왼쪽: 시계 / 가운데: 상태 문구 (항목이 2개라 양끝 정렬 대신 가운데에 고정) */
+.hero_status { position: absolute; left: 50%; transform: translateX(-50%); white-space: nowrap; display: inline-flex; align-items: center; gap: .55rem; font-weight: 300; font-size: .85rem; color: var(--ink); }
 .hero_status i { position: relative; width: .5rem; height: .5rem; border-radius: 50%; background: var(--red); }
 .hero_status i::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--red); animation: ping 1.8s var(--ease) infinite; }
 @keyframes ping { from { transform: scale(1); opacity: .6; } to { transform: scale(3.2); opacity: 0; } }

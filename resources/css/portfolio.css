@@ -138,6 +138,13 @@ body {
    박스와 세로 중심을 맞춘다. (transform은 GSAP이 쓰므로 top으로 이동) */
 .wr-h1-start, .wr-h1-end{ position:relative; top:.0934em; }
 .wr-letter{ display:block; position:relative; }
+/* 로딩 글자는 처음엔 숨겨 둔다. 글자를 아래로 내려 숨기는 일은 portfolio.js 가 하는데,
+   스크립트가 실행되기 전에는 글자가 제자리에 그대로 그려져서 "깜빡" 보였다가 다시 올라왔다.
+   playIntro()가 시작 상태를 잡은 뒤 #wrHeader 에 is-intro-ready 를 붙이면 그때부터 보인다.
+   (스크립트가 아예 실패해도 6초 뒤에는 보이도록 안전장치를 둔다) */
+.wr-h1{ visibility:hidden; animation:wrH1Failsafe 0s linear 6s forwards; }
+.is-intro-ready .wr-h1{ visibility:visible; animation:none; }
+@keyframes wrH1Failsafe{ to{ visibility:visible; } }
 
 .wr-loader-box{
     /* "PORT"(4글자)와 "FOLIO"(5글자)의 실제 렌더링 너비가 서로 달라서(둘 다
