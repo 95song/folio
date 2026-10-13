@@ -42,6 +42,7 @@
 <script src="resources/js/tracker/graph.js" defer></script>
 <script src="resources/js/tracker-ds.js" defer></script>
 <script src="resources/js/app-viewer.js" defer></script>
+<script src="resources/js/title-scatter.js" defer></script>
 </head>
 <body class="main" style="background-color: #fff;">
 
@@ -59,14 +60,14 @@
 
 <!-- 하단 고정 퀵 내비게이션 (Figma: Frame 1 / Prev · 메뉴 · Next) -->
 <div class="quick-nav" id="quickNav">
-    <a href="#" class="quick-nav-side quick-nav-prev" data-nav="prev">
+    <a href="port-6.html" class="quick-nav-side quick-nav-prev" data-nav="prev">
         <span class="quick-nav-arrow quick-nav-arrow-left"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
         <span class="quick-nav-label">Prev</span>
     </a>
     <a href="portfolio.html" class="quick-nav-center">
         <img src="resources/img/common/port-menu-icon.png" alt="메뉴">
     </a>
-    <a href="#" class="quick-nav-side quick-nav-next" data-nav="next">
+    <a href="port-2.html" class="quick-nav-side quick-nav-next" data-nav="next">
         <span class="quick-nav-label">Next</span>
         <span class="quick-nav-arrow quick-nav-arrow-right"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
     </a>
@@ -142,8 +143,8 @@
 
 		<section class="section" id="port">
 			<div class="portfolio_wrap">
-                <div class="port-main port-1">
-                    <div class="main-title">Tracker</div>
+                <div class="port-main port-1" data-intro="air">
+                    <div class="main-title" data-scatter>Tracker</div>
                     <div class="port-gif"></div>
                 </div>
                 
@@ -199,7 +200,7 @@
                 <div class="hotspot-demo">
                     <main class="stage" id="stage">
                         <div class="product" id="product">
-                            <img id="productArt" src="resources/img/port/tracker-task.png" alt="비스듬히 놓인 스마트폰" width="2000" height="1333">
+                            <img id="productArt" src="resources/img/port/tracker-task.webp" alt="비스듬히 놓인 스마트폰" width="2000" height="1333">
                             <!-- 핫스팟은 JS가 여기에 주입 -->
                         </div>
 
@@ -232,8 +233,8 @@
               <div class="tg-wrap">
                 <div class="tg-head">
                   <div>
-                    <p class="tg-eyebrow rv"><b>01</b>Color</p>
-                    <h2 class="tg-h2 rv" style="--d: 1">맑은 하늘에서<br />시작한 팔레트</h2>
+                    <p class="tg-eyebrow rv"><b>01 · Color</b></p>
+                    <h2 class="tg-h2 rv" style="--d: 1">Blue Sky</h2>
                   </div>
                   <p class="tg-lead rv" style="--d: 2">
                     브랜드 컬러는 가장 좋은 공기 단계와 같은 하늘색입니다. 앱을 열었을 때의 첫인상이 곧 ‘좋음’이 되도록 했고,
@@ -284,8 +285,8 @@
               <div class="tg-wrap">
                 <div class="tg-head">
                   <div>
-                    <p class="tg-eyebrow rv"><b>02</b>Typography</p>
-                    <h2 class="tg-h2 rv" style="--d: 1">숫자가 먼저<br />읽히는 글꼴</h2>
+                    <p class="tg-eyebrow rv"><b>02 · Typography</b></p>
+                    <h2 class="tg-h2 rv" style="--d: 1">Gmarket Sans</h2>
                   </div>
                   <p class="tg-lead rv" style="--d: 2">
                     농도 수치가 화면의 주인공이기 때문에, 숫자의 형태가 단단한 <b>Gmarket Sans</b> 한 가지로 통일했습니다.
@@ -309,8 +310,8 @@
               <div class="tg-wrap">
                 <div class="tg-head">
                   <div>
-                    <p class="tg-eyebrow rv"><b>03</b>Layout</p>
-                    <h2 class="tg-h2 rv" style="--d: 1">375 안에<br />모든 것을</h2>
+                    <p class="tg-eyebrow rv"><b>03 · Layout</b></p>
+                    <h2 class="tg-h2 rv" style="--d: 1">Design Guide</h2>
                   </div>
                   <p class="tg-lead rv" style="--d: 2">
                     기준 화면은 375 × 812. 위로는 상태 표시줄 44, 아래로는 탭바 76 을 비워 두고, 좌우 여백은 24 로 맞췄습니다.
@@ -344,8 +345,8 @@
               <div class="tg-wrap">
                 <div class="tg-head">
                   <div>
-                    <p class="tg-eyebrow rv"><b>04</b>Components</p>
-                    <h2 class="tg-h2 rv" style="--d: 1">실제 코드로<br />그린 부품들</h2>
+                    <p class="tg-eyebrow rv"><b>04 · Components</b></p>
+                    <h2 class="tg-h2 rv" style="--d: 1">Element</h2>
                   </div>
                   <p class="tg-lead rv" style="--d: 2">
                     아래 부품은 그림이 아니라 앱과 같은 CSS 로 그린 실제 요소입니다. 셀렉트와 캘린더는 눌러서 써 볼 수 있습니다.
@@ -544,8 +545,8 @@
               <div class="tg-wrap">
                 <div class="tg-head">
                   <div>
-                    <p class="tg-eyebrow rv"><b>05</b>Flow Chart</p>
-                    <h2 class="tg-h2 rv" style="--d: 1">처음 열고,<br />매일 쓰기까지</h2>
+                    <p class="tg-eyebrow rv"><b>05 · Flow Chart</b></p>
+                    <h2 class="tg-h2 rv" style="--d: 1">Flow Design</h2>
                   </div>
                   <p class="tg-lead rv" style="--d: 2">
                     가입 8단계와 매일 쓰는 네 개의 탭을 한 장에 그렸습니다. 이번 리뉴얼에서 바뀐 곳은 점으로 표시했고,
@@ -614,7 +615,7 @@
         <section class="section">
             <div class="padding-up">
                 <div>
-                    <img style="width: 100%; border-radius: 5rem;" src="resources/img/port/port-1-bg-2.png">
+                    <img style="width: 100%; border-radius: 5rem;" src="resources/img/port/port-1-bg-2.webp">
                 </div>
             </div>
         </section>
@@ -660,13 +661,13 @@
                         <div class="dd-desc">지도와 시간별 측정 데이터를 하나의 화면으로 연결하고, 날짜 선택과 상세 데이터를 함께 탐색할 수 있게 구성하여 데이터의 시간적·공간적 맥락을 직관적으로 파악할 수 있도록 개선했습니다.</div>
                     </div>
                     <div class="ld-phones">
-                        <img src="resources/img/port/port-1-task2.png" alt="위치 데이터/히트맵 화면">
+                        <img src="resources/img/port/port-1-task2.webp" alt="위치 데이터/히트맵 화면">
                     </div>
                 </div>
                 <!-- 위치 데이터 화면의 기능 소개: 사진 + 실제 컴포넌트(날짜 검색칸 · 그래프 버튼) + 그래프 화면 -->
                 <div class="location-feature">
                     <div class="lf-top">
-                        <div class="lf-photo"><img src="resources/img/port/port-1-task1.png" alt="위치 데이터 화면을 띄운 스마트폰"></div>
+                        <div class="lf-photo"><img src="resources/img/port/port-1-task1.webp" alt="위치 데이터 화면을 띄운 스마트폰"></div>
                         <div class="lf-side">
                             <!-- 흰 박스 안의 날짜 검색칸과 그래프 버튼은 그림이 아니라 Tracker 실제 컴포넌트 (.design-system 범위의 스타일 사용) -->
                             <div class="lf-card lf-card-cal">
@@ -693,7 +694,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="lf-wide"><img src="resources/img/port/port-1-task1-1.png" alt="그래프 화면을 띄운 스마트폰"></div>
+                    <div class="lf-wide"><img src="resources/img/port/port-1-task1-1.webp" alt="그래프 화면을 띄운 스마트폰"></div>
                 </div>
                 <div class="location-de location-de-mockup">
                     <div class="ms" data-delay="2500">
@@ -713,8 +714,8 @@
                     </div>
                     <!-- 타임라인 데이터 보내기 화면 사진 두 장 (.lf-top 과 같은 배치, 오른쪽 박스 대신 사진) -->
                     <div class="lf-top lf-pair">
-                        <div class="lf-photo"><img src="resources/img/port/port-1-task1-2.png" alt="데이터 보내기 확인 팝업이 뜬 스마트폰 화면"></div>
-                        <div class="lf-photo"><img src="resources/img/port/port-1-task1-3.png" alt="타임라인 데이터 보내기 화면을 띄운 스마트폰"></div>
+                        <div class="lf-photo"><img src="resources/img/port/port-1-task1-2.webp" alt="데이터 보내기 확인 팝업이 뜬 스마트폰 화면"></div>
+                        <div class="lf-photo"><img src="resources/img/port/port-1-task1-3.webp" alt="타임라인 데이터 보내기 화면을 띄운 스마트폰"></div>
                     </div>
                 </div>
             </div>
@@ -723,7 +724,7 @@
         <section class="section" id="ending-curtain">
             <div class="ending-post">
                 <div>
-                    <img src="resources/img/port/tracker_end.png">
+                    <img src="resources/img/port/tracker_end.webp">
                 </div>
             </div>
         </section>
@@ -744,33 +745,24 @@
                 <div class="goodbye-thin">Produced by Song Eunsun</div>
             </div>
             <div class="goodbye-right">
-                <a class="goodbye-box" data-nav="prev" href="#">
+                <a class="goodbye-box" data-nav="prev" href="port-6.html">
                     <div class="goodbye-box-label">
-                        <span>Prev Project</span>
+                        <span>학교 미세먼지 관리 안내서</span>
                         <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
                     </div>
-                    <div class="prev-img"><img src="" alt=""></div>
+                    <div class="prev-img"><img src="resources/img/common/portfolio-6.png" alt="학교 미세먼지 관리 안내서"></div>
                 </a>
-                <a class="goodbye-box" data-nav="next" href="#">
+                <a class="goodbye-box" data-nav="next" href="port-2.html">
                     <div class="goodbye-box-label">
-                        <span>Next Project</span>
+                        <span>환경성 질환 예방센터 DID</span>
                         <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
                     </div>
-                    <div class="prev-img"><img src="" alt=""></div>
+                    <div class="prev-img"><img src="resources/img/common/portfolio-2.png" alt="환경성 질환 예방센터 DID"></div>
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="port-footer">
-        <div class="blob-words"
-             data-trigger=".outro-spacer"
-             data-words="UX/UI,반응형,디자인시스템,Portfolio"
-             data-bg="#ffffff" data-fill="#ffffff" data-border="#111111" data-text="#111111"
-             data-font="Inter" data-unit="5" data-seed="7"
-             data-scale="1" data-speed="1" data-blobbiness="1" data-wobble="1">
-        </div>
-    </div>
 </section>
 
 </body>

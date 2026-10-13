@@ -41,6 +41,19 @@
 <!-- header 시작 -->
 <div class="cursor-follower"></div>
 
+<!-- 로딩: 화면 맨 아래의 출근길이 로딩바 역할. 햄스터가 걸어간 만큼 길이 채워지고, 회사 문이 100%. 동작은 main.js -->
+<div class="main_loader" id="mainLoader" aria-hidden="true">
+  <div class="main_loader_top"><span>(Home)</span><span>On the way to work</span></div>
+  <div class="main_loader_center">
+    <span class="main_loader_ampm">AM</span>
+    <strong class="main_loader_clock"><span>08</span><i>:</i><span id="mainLoaderMin">50</span></strong>
+    <p id="mainLoaderMsg">오늘도 출근 중…</p>
+  </div>
+  <div class="main_loader_scene" id="mainLoaderScene">
+    <canvas id="mainLoaderCanvas" width="320" height="58"></canvas>
+    <div class="main_loader_bubble" id="mainLoaderBubble"><span id="mainLoaderBubbleText">출근 중</span> <b id="mainLoaderPct">0%</b></div>
+  </div>
+</div>
 
 <header>
     <!--  -->

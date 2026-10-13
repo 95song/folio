@@ -41,7 +41,6 @@
 <!-- Tracker 디자인 가이드 (.design-system): 앱 스크립트 사본 + 가이드 동작 -->
 <script src="resources/js/tracker/select.js" defer></script>
 <script src="resources/js/tracker/calendar.js" defer></script>
-<script src="resources/js/tracker/graph.js" defer></script>
 <script src="resources/js/tracker-ds.js" defer></script>
 <!-- 리플렛 상세 섹션 스크롤 연출 -->
 <script src="resources/js/port-6.js" defer></script>
@@ -62,14 +61,14 @@
 
 <!-- 하단 고정 퀵 내비게이션 (Figma: Frame 1 / Prev · 메뉴 · Next) -->
 <div class="quick-nav" id="quickNav">
-    <a href="#" class="quick-nav-side quick-nav-prev" data-nav="prev">
+    <a href="port-4.html" class="quick-nav-side quick-nav-prev" data-nav="prev">
         <span class="quick-nav-arrow quick-nav-arrow-left"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
         <span class="quick-nav-label">Prev</span>
     </a>
     <a href="portfolio.html" class="quick-nav-center">
         <img src="resources/img/common/port-menu-icon.png" alt="메뉴">
     </a>
-    <a href="#" class="quick-nav-side quick-nav-next" data-nav="next">
+    <a href="port-6.html" class="quick-nav-side quick-nav-next" data-nav="next">
         <span class="quick-nav-label">Next</span>
         <span class="quick-nav-arrow quick-nav-arrow-right"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
     </a>
@@ -145,8 +144,8 @@
 
 		<section class="section" id="port">
 			<div class="portfolio_wrap">
-        <div class="port-main">
-            <img class="port-3-bg" src="resources/img/port/port-5-bg.png">
+        <div class="port-main" data-intro="scroll">
+            <img class="port-3-bg" src="resources/img/port/port-5-bg.webp">
         </div>
                 
 		  </div>
@@ -156,7 +155,7 @@
             <div class="overview">
                 <div class="overview-top">
                     <div class="port-tittle-gray">Overview</div>
-                    <div class="port-title port-6">해마다 새로 쓰는 연하장 디자인</div>
+                    <div class="port-title port-5">해마다 새로 쓰는 연하장 디자인</div>
                     <div class="port-coment">연하장은 한 해의 첫 연락입니다. 받는 사람이 그해의 분위기를 느끼도록, 매년 띠와 색에서 출발했습니다. 2024년은 친근한 캐릭터, 2025년은 서정적인 풍경, 2026년은 격식 있는 전통 문양으로 풀었고, 소나무와 복주머니 같은 요소는 이어 써서 세 장이 한 시리즈로 읽히게 했습니다.
                     </div>
                 </div>
@@ -165,7 +164,7 @@
                         <div class="port-graph">
                             <div class="port-t">기간</div>
                             <div class="port-day">
-                                <div>2022. 07 ~ 2022. 08</div>
+                                <div>2023. 12 ~ 2025. 12</div>
                             </div>
                         </div>
                         <div class="port-graph">
@@ -187,11 +186,139 @@
             </div>
         </section>
 
-        <section class="section" id="ending-curtain">
-            <div class="ending-post">
-                <div>
-                    <img src="resources/img/port/school_end.png">
+        <!-- ================= 연하장 상세 (new-year-cards 프로토타입 통합) =================
+             스타일: resources/css/port-6.css (④ port-5 · .leaflet.ny 스코프)
+             동작: resources/js/port-6.js (initNy) · 이미지: resources/img/port/port-5-* -->
+
+        <!-- 01 CONCEPT : 띠와 색 -->
+        <section class="section leaflet ny">
+            <div class="wrap">
+                <div class="tg-head">
+                    <div>
+                        <p class="tg-eyebrow reveal"><b>01 · Concept</b></p>
+                        <h2 class="tg-h2 reveal d1">띠의 색이 그해의 색</h2>
+                    </div>
+                    <p class="tg-lead reveal d2">띠 이름 앞 글자(갑·을·병)는 색을 함께 품고 있습니다. 갑과 을은 푸른색, 병은 붉은색에 해당해 2024·2025년은 푸른 계열, 2026년은 붉은 계열을 메인으로 삼았습니다.</p>
                 </div>
+                <div class="ny-cx">
+                    <article class="reveal" style="--yc:var(--ny-c24)">
+                        <span class="yr">2024 · 갑진년</span><h3>청룡</h3>
+                        <p>푸른 용의 해. 하늘색 청룡과 연둣빛 아기 청룡, 짙은 녹색 산을 중심으로 구성했습니다.</p>
+                        <div class="ny-chips"><i style="background:#00BAEF"><span>#00BAEF</span></i><i class="lt" style="background:#A3DC52"><span>#A3DC52</span></i><i style="background:#5B9179"><span>#5B9179</span></i><i style="background:#FF6C53"><span>#FF6C53</span></i><i style="background:#C2956C"><span>#C2956C</span></i><i class="lt" style="background:#FAF1E1"><span>#FAF1E1</span></i></div>
+                    </article>
+                    <article class="reveal d1" style="--yc:var(--ny-c25)">
+                        <span class="yr">2025 · 을사년</span><h3>푸른 뱀</h3>
+                        <p>푸른 뱀의 해. 남색 뱀과 겹겹이 이어지는 푸른 산으로 차분한 톤을 잡았습니다.</p>
+                        <div class="ny-chips"><i style="background:#0A3763"><span>#0A3763</span></i><i style="background:#85A9C7"><span>#85A9C7</span></i><i class="lt" style="background:#D6E0E9"><span>#D6E0E9</span></i><i style="background:#EB6A53"><span>#EB6A53</span></i><i style="background:#A07D5C"><span>#A07D5C</span></i><i class="lt" style="background:#F6F2EF"><span>#F6F2EF</span></i></div>
+                    </article>
+                    <article class="reveal d2" style="--yc:var(--ny-c26)">
+                        <span class="yr">2026 · 병오년</span><h3>붉은 말</h3>
+                        <p>붉은 말의 해. 테라코타 바탕에 베이지 선과 짙은 녹색으로 단청의 인상을 냈습니다.</p>
+                        <div class="ny-chips"><i style="background:#A85336"><span>#A85336</span></i><i class="lt" style="background:#CCB29F"><span>#CCB29F</span></i><i style="background:#685240"><span>#685240</span></i><i style="background:#3C4E47"><span>#3C4E47</span></i><i class="lt" style="background:#D6CEB9"><span>#D6CEB9</span></i><i class="lt" style="background:#FFFFFF"><span>#FFFFFF</span></i></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- 02 YEAR BY YEAR : 카드 스택 (배경이 맨 위 카드의 연도 색으로 전환) -->
+        <section class="section leaflet ny ny-yby" id="nyYby">
+            <div class="wrap">
+                <div class="tg-head">
+                    <div>
+                        <p class="tg-eyebrow reveal"><b>02 · Year by Year</b></p>
+                        <h2 class="tg-h2 reveal d1">세 해, 세 가지 표정</h2>
+                    </div>
+                    <p class="tg-lead reveal d2">같은 새해 인사를 해마다 캐릭터형, 풍경형, 전통 문양형으로 다르게 풀었습니다. 카드를 끌어 넘기면 그해의 구성과 색이 함께 바뀝니다.</p>
+                </div>
+                <div class="ny-yby-grid">
+                    <div class="ny-deck" id="nyDeck" tabindex="0" role="region" aria-roledescription="carousel" aria-label="연도별 연하장">
+                        <div class="ny-card"><img src="resources/img/port/port-5-card-2024.jpg" alt="2024 새해 복 많이 받으세요 연하장"></div>
+                        <div class="ny-card"><img src="resources/img/port/port-5-card-2025.jpg" alt="2025 Happy New Year 연하장"></div>
+                        <div class="ny-card"><img src="resources/img/port/port-5-card-2026.jpg" alt="2026 근하신년 연하장"></div>
+                    </div>
+                    <div>
+                        <div class="ny-ytext" id="nyYtext">
+                            <div class="ny-yt on">
+                                <span class="y">2024</span>
+                                <h3>복주머니 곁의 두 용</h3>
+                                <p>직접 그린 청룡과 아기 청룡을 복주머니 양옆에 세워 친근한 장면으로 만들었습니다. 둥근 몸과 발그레한 볼로 거래처에 가볍고 밝은 첫인사를 건넸습니다.</p>
+                                <ul><li>캐릭터형</li><li>손글씨 레터링</li><li>해 · 구름 · 소나무</li></ul>
+                            </div>
+                            <div class="ny-yt">
+                                <span class="y">2025</span>
+                                <h3>둥근 창 너머의 설날</h3>
+                                <p>둥근 창 너머 산 풍경과 설 차례상을 한 장면에 담았습니다. 직접 그린 푸른 뱀이 복주머니를 감싸 안으며 한 해의 복을 지키는 이야기를 만들었습니다.</p>
+                                <ul><li>풍경형</li><li>차례상 소품</li><li>물결 문양 배경</li></ul>
+                            </div>
+                            <div class="ny-yt">
+                                <span class="y">2026</span>
+                                <h3>족자에 걸린 근하신년</h3>
+                                <p>족자 형식에 단청 문양과 궁궐 실루엣을 더해 격식을 갖췄습니다. 2026의 0 자리에 직접 그린 붉은 말을 넣어 숫자만 봐도 그해를 알 수 있게 했습니다.</p>
+                                <ul><li>전통 문양형</li><li>세로쓰기 타이포</li><li>낙관 도장</li></ul>
+                            </div>
+                        </div>
+                        <div class="ny-ctrl">
+                            <button class="ny-btn" id="nyPrev" aria-label="이전 연하장"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+                            <span class="ny-count"><b id="nyCur">2024</b> / 2026</span>
+                            <button class="ny-btn" id="nyNext" aria-label="다음 연하장"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="m6 3 5 5-5 5" stroke="currentColor" stroke-width="1.5"/></svg></button>
+                            <span class="ny-hint">카드를 끌어서 넘겨보세요</span>
+                        </div>
+                        <div class="ny-sr" aria-live="polite" id="nyLive"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 03 CHARACTERS : 캐릭터 프로필 시트 (탭 · 핀 내용은 port-6.js 의 CH 데이터) -->
+        <section class="section leaflet ny" id="nyChars" style="--yc:var(--ny-c24);--tint:var(--ny-t24)">
+            <div class="wrap">
+                <div class="tg-head">
+                    <div>
+                        <p class="tg-eyebrow reveal"><b>03 · Characters</b></p>
+                        <h2 class="tg-h2 reveal d1">직접 그린 그해의 주인공</h2>
+                    </div>
+                    <p class="tg-lead reveal d2">띠 동물은 매년 새로 그렸습니다. 같은 띠라도 그해 연하장의 분위기에 맞는 성격을 먼저 정하고, 그 성격이 드러나도록 형태와 표정을 다듬었습니다.</p>
+                </div>
+                <div class="ny-tabs reveal" role="tablist" id="nyTabs" aria-label="캐릭터 선택"></div>
+                <div class="ny-sheet reveal">
+                    <div class="ny-stage ny-fade" id="nyStage"></div>
+                    <div class="ny-prof ny-fade" id="nyProf" role="tabpanel"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 04 RECURRING : 반복 요소 마퀴 -->
+        <section class="section leaflet ny lf-flush">
+            <div class="wrap">
+                <div class="tg-head">
+                    <div>
+                        <p class="tg-eyebrow reveal"><b>04 · Recurring</b></p>
+                        <h2 class="tg-h2 reveal d1">세 해를 잇는 요소들</h2>
+                    </div>
+                    <p class="tg-lead reveal d2">소나무, 구름, 복주머니, 손글씨, 낙관은 해마다 형태와 색만 바꿔 다시 등장합니다. 매년 디자인이 달라져도 같은 회사가 보낸 연하장으로 이어지게 하는 장치입니다.</p>
+                </div>
+            </div>
+            <div class="ny-marquee reveal" aria-label="반복 요소 모음">
+                <div class="ny-mtrack" id="nyMtrack">
+                    <div class="ny-el"><div class="img"><img src="resources/img/port/port-5-el-pine-2024.jpg" alt=""></div><p>반원 소나무 <span>2024</span></p></div>
+                    <div class="ny-el"><div class="img contain" style="background:#FAF1E1"><img src="resources/img/port/port-5-el-lettering-2024.jpg" alt=""></div><p>새해 福 레터링 <span>2024</span></p></div>
+                    <div class="ny-el"><div class="img contain" style="background:#FAF1E1"><img src="resources/img/port/port-5-el-pouch-2024.jpg" alt=""></div><p>복주머니 <span>2024</span></p></div>
+                    <div class="ny-el"><div class="img"><img src="resources/img/port/port-5-el-mountain-2025.jpg" alt=""></div><p>겹산 풍경 <span>2025</span></p></div>
+                    <div class="ny-el"><div class="img contain" style="background:#D6E0E9"><img src="resources/img/port/port-5-el-lettering-2025.jpg" alt=""></div><p>새해 福 레터링 <span>2025</span></p></div>
+                    <div class="ny-el"><div class="img"><img src="resources/img/port/port-5-el-pine-2026.jpg" alt=""></div><p>반원 소나무 <span>2026</span></p></div>
+                    <div class="ny-el"><div class="img"><img src="resources/img/port/port-5-el-cloud-2026.jpg" alt=""></div><p>구름 문양 <span>2026</span></p></div>
+                    <div class="ny-el"><div class="img"><img src="resources/img/port/port-5-el-arch-2026.jpg" alt=""></div><p>아치형 산 <span>2026</span></p></div>
+                    <div class="ny-el"><div class="img contain" style="background:#ffffff"><img src="resources/img/port/port-5-el-seal-2026.jpg" alt=""></div><p>낙관 도장 <span>2026</span></p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- MOCKUP : 목업 3장이 한 장씩 화면을 채우며 겹쳐 올라온다 (.ny-stack) -->
+        <section class="section" id="ending-curtain">
+            <div class="ending-post ny-stack">
+                <div><img src="resources/img/port/port-5-mockup-2024.jpg" alt="2024 갑진년 연하장 목업" loading="lazy"></div>
+                <div><img src="resources/img/port/port-5-mockup-2025.jpg" alt="2025 을사년 연하장 목업" loading="lazy"></div>
+                <div><img src="resources/img/port/port-5-mockup-2026.jpg" alt="2026 병오년 연하장 목업" loading="lazy"></div>
             </div>
         </section>
 
@@ -211,33 +338,24 @@
                 <div class="goodbye-thin">Produced by Song Eunsun</div>
             </div>
             <div class="goodbye-right">
-                <a class="goodbye-box" data-nav="prev" href="#">
+                <a class="goodbye-box" data-nav="prev" href="port-4.html">
                     <div class="goodbye-box-label">
-                        <span>Prev Project</span>
+                        <span>Vision AI Edge 리플렛</span>
                         <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
                     </div>
-                    <div class="prev-img"><img src="" alt=""></div>
+                    <div class="prev-img"><img src="resources/img/common/portfolio-4.png" alt="Vision AI Edge 리플렛"></div>
                 </a>
-                <a class="goodbye-box" data-nav="next" href="#">
+                <a class="goodbye-box" data-nav="next" href="port-6.html">
                     <div class="goodbye-box-label">
-                        <span>Next Project</span>
+                        <span>학교 미세먼지 관리 안내서</span>
                         <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
                     </div>
-                    <div class="prev-img"><img src="" alt=""></div>
+                    <div class="prev-img"><img src="resources/img/common/portfolio-6.png" alt="학교 미세먼지 관리 안내서"></div>
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="port-footer">
-        <div class="blob-words"
-             data-trigger=".outro-spacer"
-             data-words="UX/UI,반응형,디자인시스템,Portfolio"
-             data-bg="#ffffff" data-fill="#ffffff" data-border="#111111" data-text="#111111"
-             data-font="Inter" data-unit="5" data-seed="7"
-             data-scale="1" data-speed="1" data-blobbiness="1" data-wobble="1">
-        </div>
-    </div>
 </section>
 
 </body>

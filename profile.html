@@ -28,9 +28,11 @@
 
 <!-- 0. 로더 -->
 <div class="loader" aria-hidden="true">
-  <div class="loader_top"><span>(Profile)</span><span>Designer &amp; Publisher</span></div>
+  <div class="loader_top"><span>(Profile)</span><span>Scanning trends</span></div>
+  <!-- 트렌드 키워드가 스크램블로 바뀌다가, 끝나면 히어로의 키워드들이 이 자리에서 흩어져 나간다 -->
+  <div class="loader_center"><span class="loader_word decode" id="loaderWord"></span></div>
   <div class="loader_bottom">
-    <div class="loader_name"><span data-split>EUNSUN</span><span class="dot">.</span></div>
+    <span>Now finding the direction</span>
     <div class="loader_count"><span id="loaderCount">000</span></div>
   </div>
   <i class="loader_bar"></i>
@@ -62,9 +64,8 @@
       <div class="hero-sticky" id="heroSticky">
 
         <div class="hero_meta">
-          <a href="index.html" class="hero_logo">EUNSUN<i>.</i></a>
-          <span class="hero_status"><i></i>Now finding the direction</span>
           <span class="hero_clock">Seoul<b id="heroClock">00:00:00</b></span>
+          <span class="hero_status"><i></i>Now finding the direction</span>
         </div>
 
         <div class="hero-words" id="heroWords" aria-hidden="true"></div>

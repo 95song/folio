@@ -41,7 +41,6 @@
 <!-- Tracker 디자인 가이드 (.design-system): 앱 스크립트 사본 + 가이드 동작 -->
 <script src="resources/js/tracker/select.js" defer></script>
 <script src="resources/js/tracker/calendar.js" defer></script>
-<script src="resources/js/tracker/graph.js" defer></script>
 <script src="resources/js/tracker-ds.js" defer></script>
 <!-- 리플렛 상세 섹션 스크롤 연출 -->
 <script src="resources/js/port-6.js" defer></script>
@@ -62,14 +61,14 @@
 
 <!-- 하단 고정 퀵 내비게이션 (Figma: Frame 1 / Prev · 메뉴 · Next) -->
 <div class="quick-nav" id="quickNav">
-    <a href="#" class="quick-nav-side quick-nav-prev" data-nav="prev">
+    <a href="port-5.html" class="quick-nav-side quick-nav-prev" data-nav="prev">
         <span class="quick-nav-arrow quick-nav-arrow-left"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
         <span class="quick-nav-label">Prev</span>
     </a>
     <a href="portfolio.html" class="quick-nav-center">
         <img src="resources/img/common/port-menu-icon.png" alt="메뉴">
     </a>
-    <a href="#" class="quick-nav-side quick-nav-next" data-nav="next">
+    <a href="port-1.html" class="quick-nav-side quick-nav-next" data-nav="next">
         <span class="quick-nav-label">Next</span>
         <span class="quick-nav-arrow quick-nav-arrow-right"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
     </a>
@@ -145,8 +144,8 @@
 
 		<section class="section" id="port">
 			<div class="portfolio_wrap">
-        <div class="port-main">
-            <img class="port-3-bg" src="resources/img/port/port-6-bg.png">
+        <div class="port-main" data-intro="haze">
+            <img class="port-3-bg" src="resources/img/port/port-6-bg.webp">
             <!-- 글자가 하나씩 떠오른 뒤 둥실둥실 떠다니는 타이틀 -->
             <div class="port-6-title" role="img" aria-label="맑은 공기 한스푼">
                 <span class="port-6-char" style="--i:0"><i>맑</i></span>
@@ -185,8 +184,8 @@
                         <div class="port-graph">
                             <div class="port-t">기획</div>
                             <div class="graph-div">
-                                <div class="port-percent per-100"></div>
-                                <div>100%</div>
+                                <div class="port-percent per-70"></div>
+                                <div>70%</div>
                             </div>
                         </div>
                         <div class="port-graph">
@@ -213,7 +212,7 @@
             <div class="ov-sticky">
                 <div class="ov-track" id="lfOvTrack">
                     <div class="ov-card ov-intro">
-                        <span class="label">Goal&Task</span>
+                        <span class="label">Goal & Task</span>
                         <div><h2>조사 도구이자<br>관리 안내서</h2></div>
                         <p>응답자가 문항에 체크하며 교실 상태를 스스로 점검하고, 해결 방안까지 함께 확인하도록 설계한 리플렛입니다. 이를 위해 풀어야 했던 세 가지 과제가 있었습니다.</p>
                     </div>
@@ -232,8 +231,8 @@
                     <div class="cover"><img src="resources/img/port/port-6-outside-cover.jpg" alt="리플렛 표지"><div class="cover-title">학교 미세먼지<br>관리 안내서<small>(초등학생용)</small></div></div>
                 </div>
                 <div>
-                    <span class="label reveal">Cover</span>
-                    <h2 class="reveal">경고 대신,<br>맑은 하늘 아래 학교</h2>
+                    <span class="label reveal">Design Concept</span>
+                    <h2 class="reveal">Blue Sky</h2>
                     <p class="lead lf-gap reveal d1">미세먼지라는 부정적인 주제를 경고 이미지 대신 '미세먼지 없는 깨끗한 학교'라는 지향점으로 풀어, 학생과 교직원 모두 거부감 없이 펼쳐볼 수 있도록 표지를 직접 디자인했습니다.</p>
                     <ul class="keypoints reveal d2">
                         <li><b>장면</b>하늘·구름·해, 초록 운동장 위의 학교와 아이들</li>
@@ -265,7 +264,7 @@
         <section class="section leaflet fold" id="lfFold">
             <div class="fold-sticky">
                 <div class="wrap fold-head">
-                    <span class="label">Structure</span><h2>펼치는 순서가 곧 읽는 순서</h2>
+                    <span class="label">Structure</span><h2>3D 목업</h2>
                 </div>
                 <div class="stage" id="lfStage">
                     <div class="sheet" id="lfSheet">
@@ -303,8 +302,8 @@
         <!-- 03 MODULE (문항 모듈 해부) -->
         <section class="section leaflet">
             <div class="wrap">
-                <span class="label reveal">Module</span>
-                <h2 class="reveal">모든 문항은 같은 문법으로</h2>
+                <span class="label reveal">Contents</span>
+                <h2 class="reveal">리플렛 구성도</h2>
                 <p class="lead lf-gap reveal d1">질문 → 응답 → 해결 방안의 3단 모듈을 반복해, 처음 보는 사람도 읽는 순서를 바로 파악할 수 있도록 했습니다.</p>
                 <div class="anatomy" id="lfAnatomy">
                     <div class="q reveal" id="lfAnaQ">
@@ -324,8 +323,6 @@
         <!-- 04 CONTENTS (패널 스트립) -->
         <section class="section leaflet lf-flush">
             <div class="wrap">
-                <span class="label reveal">Contents</span>
-                <h2 class="reveal">4개 영역으로 나눈 점검 흐름</h2>
                 <div class="strip">
                     <div class="item reveal"><div class="img"><img src="resources/img/port/port-6-inside-1-air.jpg" alt="[1] 지금 공기 상태 패널"></div><div class="cap"><div><h3>지금 공기 상태</h3><p>인지도, 실내외 기준표, 체감 5단계 척도</p></div></div></div>
                     <div class="item reveal d1"><div class="img"><img src="resources/img/port/port-6-inside-2-classroom.jpg" alt="[2] 교실 상태 패널"></div><div class="cap"><div><h3>교실 상태</h3><p>적정 온습도, 학급 인원, 체감 척도</p></div></div></div>
@@ -338,8 +335,6 @@
         <!-- 05 VISUALIZATION (벤토 그리드) -->
         <section class="section leaflet lf-flush">
             <div class="wrap">
-                <span class="label reveal">Visualization</span>
-                <h2 class="reveal">수치와 질병 정보를 한눈에</h2>
                 <div class="bento">
                     <div class="tile t-info reveal"><h3>미세먼지에 의한 질병</h3><p>신체 부위별 질병을 아이콘과 컬러 라인으로 연결한 인포그래픽</p><img src="resources/img/port/port-6-detail-infographic.jpg" alt="미세먼지에 의한 질병 인포그래픽"></div>
                     <div class="tile t-table reveal d1"><div><h3>농도 기준표</h3><p>PM10·PM2.5 실외 기준을 좋음부터 매우 나쁨까지 표로 정리</p></div><img src="resources/img/port/port-6-detail-table.jpg" alt="실외 미세먼지 농도 기준표"></div>
@@ -370,7 +365,7 @@
                 </div>
                 <div class="legend reveal"><span><em></em>대상별로 바뀐 문구</span><span>그 외 레이아웃 · 서식 · 구조는 동일</span></div>
                 <div class="visual-img reveal">
-                    <img src="resources/img/port/port-6-task.png" alt="대상별 리플렛 3종">
+                    <img src="resources/img/port/port-6-task.webp" alt="대상별 리플렛 3종">
                 </div>
             </div>
         </section>
@@ -379,7 +374,7 @@
         <section class="section" id="ending-curtain">
             <div class="ending-post">
                 <div>
-                    <img src="resources/img/port/school_end.png">
+                    <img src="resources/img/port/school_end.webp">
                 </div>
             </div>
         </section>
@@ -400,33 +395,24 @@
                 <div class="goodbye-thin">Produced by Song Eunsun</div>
             </div>
             <div class="goodbye-right">
-                <a class="goodbye-box" data-nav="prev" href="#">
+                <a class="goodbye-box" data-nav="prev" href="port-5.html">
                     <div class="goodbye-box-label">
-                        <span>Prev Project</span>
+                        <span>근하신년 연하장</span>
                         <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
                     </div>
-                    <div class="prev-img"><img src="" alt=""></div>
+                    <div class="prev-img"><img src="resources/img/common/portfolio-5.png" alt="근하신년 연하장"></div>
                 </a>
-                <a class="goodbye-box" data-nav="next" href="#">
+                <a class="goodbye-box" data-nav="next" href="port-1.html">
                     <div class="goodbye-box-label">
-                        <span>Next Project</span>
+                        <span>Tracker 앱 리뉴얼</span>
                         <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
                     </div>
-                    <div class="prev-img"><img src="" alt=""></div>
+                    <div class="prev-img"><img src="resources/img/common/portfolio-1.png" alt="Tracker 앱 리뉴얼"></div>
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="port-footer">
-        <div class="blob-words"
-             data-trigger=".outro-spacer"
-             data-words="UX/UI,반응형,디자인시스템,Portfolio"
-             data-bg="#ffffff" data-fill="#ffffff" data-border="#111111" data-text="#111111"
-             data-font="Inter" data-unit="5" data-seed="7"
-             data-scale="1" data-speed="1" data-blobbiness="1" data-wobble="1">
-        </div>
-    </div>
 </section>
 
 </body>

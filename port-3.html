@@ -25,8 +25,6 @@
 
 <!-- 웹폰트 -->
 <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
-<!-- .port-footer의 blob-words 애니메이션 전용 폰트 -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@600&display=swap" rel="stylesheet">
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="resources/js/common.js" defer></script>
@@ -41,7 +39,7 @@
 <!-- .quick-nav 유리 굴절(liquid glass) 효과용 SVG 필터. 화면에는 그리지 않고 backdrop-filter에서 참조만 한다 -->
 <svg width="0" height="0" style="position:absolute; overflow:hidden;">
     <filter id="quickNavGlass" x="-20%" y="-20%" width="140%" height="140%">
-        <feTurbulence type="fractalNoise" baseFrequency="0.009 0.012" numOctaves="2" seed="7" result="noise" />아 이제 bold-word.js port.js
+        <feTurbulence type="fractalNoise" baseFrequency="0.009 0.012" numOctaves="2" seed="7" result="noise" />
         <feGaussianBlur in="noise" stdDeviation="3" result="blurredNoise" />
         <feDisplacementMap in="SourceGraphic" in2="blurredNoise" scale="26" xChannelSelector="R" yChannelSelector="G" />
     </filter>
@@ -49,14 +47,14 @@
 
 <!-- 하단 고정 퀵 내비게이션 (Figma: Frame 1 / Prev · 메뉴 · Next) -->
 <div class="quick-nav" id="quickNav">
-    <a href="#" class="quick-nav-side quick-nav-prev" data-nav="prev">
+    <a href="port-2.html" class="quick-nav-side quick-nav-prev" data-nav="prev">
         <span class="quick-nav-arrow quick-nav-arrow-left"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
         <span class="quick-nav-label">Prev</span>
     </a>
     <a href="portfolio.html" class="quick-nav-center">
         <img src="resources/img/common/port-menu-icon.png" alt="메뉴">
     </a>
-    <a href="#" class="quick-nav-side quick-nav-next" data-nav="next">
+    <a href="port-4.html" class="quick-nav-side quick-nav-next" data-nav="next">
         <span class="quick-nav-label">Next</span>
         <span class="quick-nav-arrow quick-nav-arrow-right"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
     </a>
@@ -133,8 +131,8 @@
 
 		<section class="section" id="port">
 			<div class="portfolio_wrap">
-                <div class="port-main">
-                    <img class="port-3-bg" src="resources/img/port/port-3-bg.png">
+                <div class="port-main" data-intro="grid">
+                    <img class="port-3-bg" src="resources/img/port/port-3-bg.webp">
                 </div>
                 
 		    </div>
@@ -401,7 +399,7 @@
 
                         <div class="goal-list" id="goal-4">
                             <div class="goal4-shot">
-                                <img src="resources/img/port/goal-4.png" alt="로컬 네비게이션 바 안내">
+                                <img src="resources/img/port/goal-4.webp" alt="로컬 네비게이션 바 안내">
                                 <svg class="goal4-callout" viewBox="0 0 1920 1283" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
                                     <polyline class="goal4-arrow-line" points="1210,755 950,755 950,600 700,600"></polyline>
                                     <polyline class="goal4-arrow-head" points="742,563 700,600 742,637"></polyline>
@@ -436,19 +434,19 @@
                                 <div class="goal5-track goal5-track-pad">
                                     <div class="goal5-track-inner">
                                         <img src="resources/img/port/C&amp;E-p-1.jpg" alt="인증현황 페이지 태블릿 화면" class="goal5-track-item">
-                                        <img src="resources/img/port/C&amp;E_pad.png" alt="인사제도 페이지 태블릿 화면" class="goal5-track-item">
+                                        <img src="resources/img/port/C&amp;E_pad.webp" alt="인사제도 페이지 태블릿 화면" class="goal5-track-item">
                                         <img src="resources/img/port/C&amp;E-p-3.jpg" alt="AVR시스템 페이지 태블릿 화면" class="goal5-track-item">
                                         <img src="resources/img/port/C&amp;E-p-1.jpg" alt="" class="goal5-track-item" aria-hidden="true">
-                                        <img src="resources/img/port/C&amp;E_pad.png" alt="" class="goal5-track-item" aria-hidden="true">
+                                        <img src="resources/img/port/C&amp;E_pad.webp" alt="" class="goal5-track-item" aria-hidden="true">
                                         <img src="resources/img/port/C&amp;E-p-3.jpg" alt="" class="goal5-track-item" aria-hidden="true">
                                     </div>
                                 </div>
                                 <div class="goal5-track goal5-track-phone">
                                     <div class="goal5-track-inner">
                                         <img src="resources/img/port/C&amp;E-m-1.jpg" alt="경상정비 페이지 모바일 화면" class="goal5-track-item">
-                                        <img src="resources/img/port/C&amp;E-m-2.png" alt="인사제도 페이지 모바일 화면" class="goal5-track-item">
+                                        <img src="resources/img/port/C&amp;E-m-2.webp" alt="인사제도 페이지 모바일 화면" class="goal5-track-item">
                                         <img src="resources/img/port/C&amp;E-m-1.jpg" alt="" class="goal5-track-item" aria-hidden="true">
-                                        <img src="resources/img/port/C&amp;E-m-2.png" alt="" class="goal5-track-item" aria-hidden="true">
+                                        <img src="resources/img/port/C&amp;E-m-2.webp" alt="" class="goal5-track-item" aria-hidden="true">
                                     </div>
                                 </div>
                                 <div class="goal4-callout-text">
@@ -476,17 +474,17 @@
                 <div class="web-design-group">
                     <div class="web-design-box right">
                         <div>
-                            <img src="resources/img/screenshots/business1_2.png">
+                            <img src="resources/img/screenshots/business1_2.webp">
                         </div>
                     </div>
                     <div class="web-design-box left">
                         <div>
-                            <img src="resources/img/screenshots/ir1.png">
+                            <img src="resources/img/screenshots/ir1.webp">
                         </div>
                     </div>
                     <div class="web-design-box right">
                         <div>
-                            <img src="resources/img/screenshots/pr5.png">
+                            <img src="resources/img/screenshots/pr5.webp">
                         </div>
                     </div>
                 </div>
@@ -496,7 +494,7 @@
         <section class="section" id="ending-curtain">
             <div class="ending-post">
                 <div>
-                    <img src="resources/img/port/C&E_end.png">
+                    <img src="resources/img/port/C&E_end.webp">
                 </div>
             </div>
         </section>
@@ -522,32 +520,24 @@
                 <div class="goodbye-thin">Produced by Song Eunsun</div>
             </div>
             <div class="goodbye-right">
-                <a class="goodbye-box" data-nav="prev" href="#">
+                <a class="goodbye-box" data-nav="prev" href="port-2.html">
                     <div class="goodbye-box-label">
-                        <span>Prev Project</span>
+                        <span>환경성 질환 예방센터 DID</span>
                         <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
                     </div>
-                    <div class="prev-img"><img src="" alt=""></div>
+                    <div class="prev-img"><img src="resources/img/common/portfolio-2.png" alt="환경성 질환 예방센터 DID"></div>
                 </a>
-                <a class="goodbye-box" data-nav="next" href="#">
+                <a class="goodbye-box" data-nav="next" href="port-4.html">
                     <div class="goodbye-box-label">
-                        <span>Next Project</span>
+                        <span>Vision AI Edge 리플렛</span>
                         <span class="goodbye-box-arrow"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
                     </div>
-                    <div class="prev-img"><img src="" alt=""></div>
+                    <div class="prev-img"><img src="resources/img/common/portfolio-4.png" alt="Vision AI Edge 리플렛"></div>
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="port-footer">
-        <div class="blob-words"
-             data-trigger=".outro-spacer"
-             data-words="UX/UI,반응형,디자인시스템,Portfolio"
-             data-bg="#ffffff" data-fill="#ffffff" data-border="#111111" data-text="#111111"
-             data-font="Inter" data-unit="5" data-seed="7"
-             data-scale="1" data-speed="1" data-blobbiness="1" data-wobble="1"></div>
-    </div>
 </section>
 
 </body>
