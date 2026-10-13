@@ -350,6 +350,7 @@
     if (reduced) {
       if (box.length) gsap.set(box, { width: '110vw' });
       if (growingImage.length) gsap.set(growingImage, { width: '100vw', height: '100dvh' });
+      header.classList.add('is-intro-ready');
       reveal();
       return;
     }
@@ -390,7 +391,10 @@
     });
 
     if (loadingLetter.length) {
-      tl.from(loadingLetter, { yPercent: 100, stagger: 0.025, duration: 1.25 });
+      // .from()은 시작 상태(아래로 내린 글자)를 다음 프레임에 적용한다. 그 전에 글자를 보이게 하면
+      // 제자리 글자가 한 번 보일 수 있으므로, 먼저 set으로 즉시 내려놓고 도착점(0)을 명시한다.
+      gsap.set(loadingLetter, { yPercent: 100 });
+      tl.fromTo(loadingLetter, { yPercent: 100 }, { yPercent: 0, stagger: 0.025, duration: 1.25 });
     }
     if (box.length) {
       tl.fromTo(box, { width: '0em' }, { width: '1em', duration: 1.25, onUpdate: pushLettersByBoxWidth }, '<1.25');
@@ -411,6 +415,9 @@
     if (box.length) {
       tl.to(box, { width: '110vw', duration: 2, onUpdate: pushLettersByBoxWidth }, '<');
     }
+    // 여기까지 오면 글자는 이미 아래로 내려가 숨겨진 시작 상태다(위에서 set 으로 즉시 적용).
+    // 이제 CSS 로 숨겨 뒀던 글자를 보이게 해도 깜빡이지 않는다.
+    header.classList.add('is-intro-ready');
   }
 
   document.addEventListener('DOMContentLoaded', playIntro);

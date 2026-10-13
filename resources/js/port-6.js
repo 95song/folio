@@ -1,8 +1,8 @@
 /* =====================================================================
    port-6.js — 리플렛 상세 섹션(.leaflet) 스크롤 연출
-   port-6(학교 미세먼지 리플렛)과 port-4(Vision AI Edge 리플렛)가 함께 쓴다.
+   port-6(학교 미세먼지 리플렛), port-4(Vision AI Edge 리플렛), port-5(연하장 시리즈)가 함께 쓴다.
    순수 JS. 스크롤 연출은 requestAnimationFrame 한 번으로 묶어서 처리한다.
-   port.js 가 #stage / #panel 을 쓰므로 여기 ID는 전부 lf / vae 접두사를 붙였다.
+   port.js 가 #stage / #panel 을 쓰므로 여기 ID는 전부 lf / vae / ny 접두사를 붙였다.
    ===================================================================== */
 (function () {
   function boot() {
@@ -32,6 +32,9 @@
 
     // port-4 (Vision AI Edge) 전용 연출
     if (document.getElementById('vaeFlip')) initVae(reduce, clamp, ease);
+
+    // port-5 (연하장 시리즈) 전용 연출
+    if (document.getElementById('nyDeck')) initNy(reduce, clamp);
 
     // 여기부터는 port-6 (학교 미세먼지) 전용 연출
     if (!ov || !fold) return;
@@ -214,6 +217,175 @@
     setMode('front');
     addEventListener('resize', () => movePill(seg.querySelector('button.on')));
     document.fonts && document.fonts.ready.then(() => movePill(seg.querySelector('button.on')));
+  }
+
+  /* =====================================================================
+     port-5 (연하장 시리즈) 전용 연출 — .leaflet.ny
+     카드 스택: 21st.dev 'Stacked Card Image Carousel'(kedhareswer) 동작을 순수 JS로 옮김
+     캐릭터 시트: 탭 + 이미지 위 핀 / 목록 연동, 'Tilt Card'(tom_ui) 기울기
+     ===================================================================== */
+  function initNy(reduce, clamp) {
+    const IMG = 'resources/img/port/';
+
+    /* ---------- Year by Year : 카드 스택 ---------- */
+    const YEARS = [
+      { y: '2024', c: 'var(--ny-c24)', t: 'var(--ny-t24)' },
+      { y: '2025', c: 'var(--ny-c25)', t: 'var(--ny-t25)' },
+      { y: '2026', c: 'var(--ny-c26)', t: 'var(--ny-t26)' }
+    ];
+    const deck = document.getElementById('nyDeck'), cards = [...deck.querySelectorAll('.ny-card')], n = cards.length;
+    const yby = document.getElementById('nyYby'), texts = [...document.querySelectorAll('#nyYtext .ny-yt')];
+    const cur = document.getElementById('nyCur'), live = document.getElementById('nyLive');
+    const wrapI = i => ((i % n) + n) % n;
+    const tiltFor = i => { const u = (((i + 1) * 2654435761) >>> 0) / 4294967296; return (u * 2 - 1) * 7; };
+    let top = 0, busy = false, over = null, lastTouch = 0;
+
+    function pose(depth, i) {
+      const d = Math.min(depth, 3);
+      return { y: d ? -d * 18 : 0, s: 1 - d * .06, r: depth === 0 || reduce ? 0 : tiltFor(i), o: depth > 3 ? 0 : 1, sh: 1 - d * .08 };
+    }
+    function layout() {
+      cards.forEach((c, i) => {
+        const depth = wrapI(i - top), p = pose(depth, i), o = over && over.i === i ? over : null;
+        c.style.transform = o ? `translate(${o.x}px,${o.y}px) rotate(${o.r}deg)` : `translateY(${p.y}px) scale(${p.s}) rotate(${p.r.toFixed(2)}deg)`;
+        c.style.zIndex = o ? n + 1 : n - depth;
+        c.style.opacity = o ? 1 : p.o;
+        c.style.filter = o || depth === 0 ? 'none' : `brightness(${p.sh})`;
+        c.dataset.top = depth === 0 ? '1' : '0';
+        c.dataset.mode = o ? o.mode : '';
+        c.setAttribute('aria-hidden', depth === 0 ? 'false' : 'true');
+      });
+    }
+    function setYear() {
+      const Y = YEARS[top];
+      yby.style.setProperty('--tint', Y.t);
+      yby.style.setProperty('--lf-accent', Y.c);
+      texts.forEach((t, i) => t.classList.toggle('on', i === top));
+      cur.textContent = Y.y;
+      live.textContent = `${Y.y}년 연하장, ${n}장 중 ${top + 1}번째`;
+    }
+    function throwTop(dirX = 1, fx = 0, fy = 0, dirY = 0) {
+      if (busy) return; busy = true;
+      const w = deck.offsetWidth, sx = dirX >= 0 ? 1 : -1;
+      over = { i: top, x: fx + sx * w * 1.25, y: fy + dirY * .4 - 40, r: sx * 16, mode: 'fly' }; layout();
+      setTimeout(() => { over = null; top = wrapI(top + 1); layout(); setYear(); busy = false; }, reduce ? 200 : 430);
+    }
+    function pullBack() {
+      if (busy) return; busy = true;
+      const w = deck.offsetWidth, i = wrapI(top - 1);
+      over = { i, x: -w * 1.25, y: -40, r: -16, mode: 'snap' }; layout();
+      requestAnimationFrame(() => requestAnimationFrame(() => {
+        over = { i, x: 0, y: 0, r: 0, mode: 'fly' }; layout();
+        setTimeout(() => { over = null; top = i; layout(); setYear(); busy = false; }, reduce ? 200 : 450);
+      }));
+    }
+    let drag = null;
+    deck.addEventListener('pointerdown', e => {
+      lastTouch = performance.now();
+      const c = e.target.closest('.ny-card');
+      if (busy || !c || c.dataset.top !== '1' || (e.pointerType === 'mouse' && e.button !== 0)) return;
+      c.setPointerCapture(e.pointerId);
+      drag = { x: e.clientX, y: e.clientY, lx: e.clientX, lt: e.timeStamp, vx: 0 };
+    });
+    deck.addEventListener('pointermove', e => {
+      if (!drag) return;
+      const dt = Math.max(1, e.timeStamp - drag.lt);
+      drag.vx = .8 * ((e.clientX - drag.lx) / dt) + .2 * drag.vx; drag.lx = e.clientX; drag.lt = e.timeStamp;
+      const dx = e.clientX - drag.x, dy = e.clientY - drag.y;
+      over = { i: top, x: dx, y: dy, r: reduce ? 0 : dx * .05, mode: 'drag' }; layout();
+    });
+    const end = e => {
+      if (!drag) return;
+      const d = drag; drag = null; lastTouch = performance.now();
+      const dx = e.clientX - d.x, dy = e.clientY - d.y, w = deck.offsetWidth;
+      if (Math.abs(dx) > w * .28 || (Math.abs(d.vx) > .55 && Math.abs(dx) > 24)) throwTop(dx, dx, dy, dy);
+      else { over = null; layout(); }
+    };
+    deck.addEventListener('pointerup', end); deck.addEventListener('pointercancel', end);
+    deck.addEventListener('keydown', e => {
+      lastTouch = performance.now();
+      if (e.key === 'ArrowRight') throwTop(1); else if (e.key === 'ArrowLeft') pullBack(); else return;
+      e.preventDefault();
+    });
+    document.getElementById('nyNext').addEventListener('click', () => { lastTouch = performance.now(); throwTop(1); });
+    document.getElementById('nyPrev').addEventListener('click', () => { lastTouch = performance.now(); pullBack(); });
+    // 자동 넘김: 화면에 보이고 최근 조작이 없을 때만
+    let seen = false;
+    new IntersectionObserver(([e]) => { seen = e.isIntersecting; }, { threshold: .4 }).observe(deck);
+    if (!reduce) setInterval(() => { if (seen && !document.hidden && performance.now() - lastTouch > 5000) throwTop(1); }, 5000);
+    layout(); setYear();
+
+    /* ---------- Characters : 캐릭터 프로필 시트 ---------- */
+    function bindTilt(scope) {
+      if (reduce || !matchMedia('(hover:hover)').matches) return;
+      scope.querySelectorAll('.ny-tilt:not(.flat)').forEach(el => {
+        el.addEventListener('pointermove', e => {
+          const r = el.getBoundingClientRect(), px = (e.clientX - r.left) / r.width, py = (e.clientY - r.top) / r.height;
+          el.style.transform = `perspective(1200px) rotateX(${(py - .5) * -14}deg) rotateY(${(px - .5) * 14}deg) scale3d(1.02,1.02,1.02)`;
+        });
+        el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+      });
+    }
+    // pts: [x%, y%, 제목, 설명] — 좌표는 각 캐릭터 PNG 기준 %. 이미지를 교체하면 함께 조정
+    // flat: 그림자 · 기울기 효과 없음
+    const CH = [
+      { name: '청룡', yr: '2024 · 갑진년', img: IMG + 'port-5-char-blue.png', flat: true, c: 'var(--ny-c24)', t: 'var(--ny-t24)',
+        kw: ['장난스러운', '씩씩한', '주인공'], sw: ['#00BAEF', '#FFD270', '#FFB6A9', '#FFFFFF'],
+        desc: '갑진년의 상징인 청룡을 주인공으로 삼았습니다. 위엄 있는 용 대신 거래처에 가볍게 웃음을 건넬 수 있도록 둥근 몸과 짧은 팔다리로 그렸습니다.',
+        info: [['연하장 속 위치', '복주머니 오른편'], ['함께 등장', '아기 청룡, 복주머니']],
+        pts: [[40, 34, '장난스러운 눈썹', '살짝 찡그린 눈썹으로 개구쟁이 같은 표정을 만들었습니다.'], [14, 59, '길게 뻗은 수염', '양옆으로 크게 휘어지는 수염이 용다운 인상을 지켜줍니다.'], [50, 83, '두 손에 쥔 여의주', '복을 나눠주는 역할을 소품 하나로 설명했습니다.']] },
+      { name: '아기 청룡', yr: '2024 · 갑진년', img: IMG + 'port-5-char-green.png', flat: true, c: 'var(--ny-c24)', t: 'var(--ny-t24)',
+        kw: ['어린', '수줍은', '성장 중'], sw: ['#A3DC52', '#FFE58C', '#FAC5A8', '#7ED348'],
+        desc: '청룡이 다 자라기 전의 모습을 아기 청룡으로 그려, 복주머니를 사이에 두고 청룡과 나란히 세웠습니다. 같은 용이지만 뿔·수염·지느러미의 차이로 성장 단계를 보여주고, 몸 색도 아직 푸르게 물들기 전의 연둣빛으로 두었습니다.',
+        info: [['연하장 속 위치', '복주머니 왼편'], ['함께 등장', '청룡, 복주머니']],
+        pts: [[35, 12, '아직 짧은 뿔', '청룡의 갈라진 뿔과 달리 끝이 둥근 새싹 같은 뿔로 그렸습니다.'], [21, 45, '수염 대신 발그레한 볼', '청룡의 길게 뻗은 수염은 아직 나지 않은 것으로 두고, 그 자리에 큼직한 볼터치만 남겨 아기다운 얼굴을 만들었습니다.'], [80, 55, '아직 없는 등지느러미', '청룡의 등을 따라 난 물결 지느러미 대신 매끈한 등과 작은 꼬리만 남겼습니다.']] },
+      { name: '푸른 뱀', yr: '2025 · 을사년', img: IMG + 'port-5-char-snake.png', c: 'var(--ny-c25)', t: 'var(--ny-t25)',
+        kw: ['차분한', '지혜로운', '수호자'], sw: ['#0A3763', '#203D61', '#FFFFFF', '#EB6A53'],
+        desc: '풍경 중심의 서정적인 장면에 맞춰, 귀여움보다 차분하고 지혜로운 인상을 택했습니다. 복주머니를 감싸 안은 형태로 \'복을 지킨다\'는 의미를 담았습니다.',
+        info: [['연하장 속 위치', '차례상 가운데 복주머니 위'], ['함께 등장', '차례상 소품, 둥근 창 풍경']],
+        pts: [[24, 8, '또렷한 눈과 머리 무늬', '흰 선 무늬와 맑은 눈으로 지혜로운 인상을 주었습니다.'], [48, 14, '별빛 같은 점무늬', '남색 몸에 흩뿌린 점이 밤하늘처럼 보이도록 했습니다.'], [28, 60, '한 바퀴 감아 올린 몸', '복주머니를 품듯 몸을 한 바퀴 감아 올려 복을 지키는 역할을 표현했습니다.']] }
+    ];
+    const chSec = document.getElementById('nyChars'), tabs = document.getElementById('nyTabs'), stage = document.getElementById('nyStage'), prof = document.getElementById('nyProf');
+    tabs.innerHTML = CH.map((c, i) => `<button class="ny-tab${i ? '' : ' on'}" role="tab" aria-selected="${!i}" style="--yc:${c.c};--tint:${c.t}"><span class="av"><img src="${c.img}" alt=""></span><span>${c.name}<br><small>${c.yr}</small></span></button>`).join('');
+    const tabEls = [...tabs.children];
+    function renderChar(i, anim = true) {
+      const c = CH[i];
+      const apply = () => {
+        chSec.style.setProperty('--yc', c.c); chSec.style.setProperty('--tint', c.t);
+        stage.innerHTML = `<div class="ny-tilt${c.flat ? ' flat' : ''}"><img src="${c.img}" alt="${c.name} 캐릭터">${c.pts.map((p, j) => `<button class="ny-pin${j ? '' : ' on'}" aria-label="${p[2]}">${j + 1}</button>`).join('')}</div>`;
+        prof.innerHTML = `<span class="yr">${c.yr}</span><h3>${c.name}</h3><div class="ny-kw">${c.kw.map(k => `<span>${k}</span>`).join('')}</div><p class="ny-desc">${c.desc}</p>
+          <div class="ny-pts">${c.pts.map((p, j) => `<button class="ny-pt${j ? '' : ' on'}"><b>${j + 1}</b><div><h4>${p[2]}</h4><p>${p[3]}</p></div></button>`).join('')}</div>
+          <dl>${c.info.map(d => `<dt>${d[0]}</dt><dd>${d[1]}</dd>`).join('')}<dt>캐릭터 색</dt><dd><div class="ny-swatch">${c.sw.map(x => `<i style="background:${x}"></i>`).join('')}</div></dd></dl>`;
+        const pins = [...stage.querySelectorAll('.ny-pin')], pts = [...prof.querySelectorAll('.ny-pt')];
+        const sel = j => { pins.forEach((x, k) => x.classList.toggle('on', k === j)); pts.forEach((x, k) => x.classList.toggle('on', k === j)); };
+        [pins, pts].forEach(list => list.forEach((x, j) => { x.addEventListener('click', () => sel(j)); x.addEventListener('mouseenter', () => sel(j)); x.addEventListener('focus', () => sel(j)); }));
+        // 핀 좌표(PNG 기준 %)를 이미지 여백(9%)과 contain 비율을 반영해 실제 그림 위치로 바꾼다
+        const im = stage.querySelector('img');
+        const place = () => {
+          const r = im.naturalWidth / im.naturalHeight || 1, inner = 82;
+          const cw = r >= 1 ? inner : inner * r, chh = r >= 1 ? inner / r : inner;
+          pins.forEach((x, j) => { x.style.left = (100 - cw) / 2 + c.pts[j][0] * cw / 100 + '%'; x.style.top = (100 - chh) / 2 + c.pts[j][1] * chh / 100 + '%'; });
+        };
+        im.complete ? place() : im.addEventListener('load', place);
+        bindTilt(stage);
+        stage.classList.remove('out'); prof.classList.remove('out');
+      };
+      tabEls.forEach((t, k) => { t.classList.toggle('on', k === i); t.setAttribute('aria-selected', k === i); });
+      if (!anim || reduce) return apply();
+      stage.classList.add('out'); prof.classList.add('out'); setTimeout(apply, 250);
+    }
+    tabEls.forEach((t, i) => t.addEventListener('click', () => renderChar(i)));
+    renderChar(0, false);
+
+    /* ---------- Recurring : 끊김 없이 돌도록 항목 복제 ---------- */
+    const mt = document.getElementById('nyMtrack');
+    if (mt && !reduce) [...mt.children].forEach(c => { const k = c.cloneNode(true); k.setAttribute('aria-hidden', 'true'); mt.appendChild(k); });
+
+    /* ---------- Mockup (#ending-curtain) : 화면에 들어오면 살짝 줌 아웃 ---------- */
+    const mio = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('is-in'); mio.unobserve(e.target); }
+    }), { threshold: .15 });
+    document.querySelectorAll('#ending-curtain .ny-stack > div').forEach(el => mio.observe(el));
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);

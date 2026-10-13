@@ -97,30 +97,64 @@ const HERO_CONFIG = {
     el.addEventListener('mouseleave', () => follower.classList.remove('hover-concept-1'));
   });
 
-  /* ---------- 0. 로더 → 히어로 등장 ---------- */
-  gsap.set('.loader_name .ch', { yPercent: 110 });
+  /* ---------- 1. HERO : 스크롤 타이포 (순수 JS, 라이브러리 미사용) ---------- */
+  initHero();   // 로더가 히어로의 키워드 요소를 그대로 쓰므로 먼저 만든다
 
-  const intro = gsap.timeline({ defaults: { ease: 'expo.out' } });
-  const counter = { v: 0 };
-  intro
-    .to('.loader_name .ch', { yPercent: 0, duration: 1.1, stagger: .05 })
-    .to(counter, { v: 100, duration: reduce ? .2 : 1.6, ease: 'power2.inOut',
-      onUpdate: () => document.getElementById('loaderCount').textContent = String(Math.round(counter.v)).padStart(3, '0') }, 0)
-    .to('.loader_bar', { scaleX: 1, duration: reduce ? .2 : 1.6, ease: 'power2.inOut' }, 0)
-    .to('.loader', { clipPath: 'inset(0 0 100% 0)', duration: 1.1, ease: 'expo.inOut' }, '+=.15')
-    .set('.loader', { display: 'none' })
-    .from('#heroWords, .hero-lead', { autoAlpha: 0, scale: 1.06, duration: 1.6, stagger: .15, clearProps: 'all' }, '-=.6')
-    .from('.hero_meta, .hero-hud', { autoAlpha: 0, y: 16, duration: 1, stagger: .08, clearProps: 'all' }, '-=1.2')
-    .add(() => lenis && lenis.start());
+  /* ---------- 0. 로더 → 히어로 : 스크램블 키워드가 히어로 키워드로 흩어짐 ----------
+     LOADER_TIME   : 키워드가 돌아가는 시간(초)
+     burst 이후    : 가운데 단어는 흐려지며 사라지고, 히어로 키워드 12개가 가운데에서 각자 자리로 */
+  const LOADER_TIME = 1.8;
+  const LOADER_KEYWORDS = 10;   // 로딩에서 돌릴 키워드 수 (HERO_CONFIG.keywords 앞에서부터, 히어로는 전체 사용)
+  const loaderEl = document.querySelector('.loader');
+  if (reduce) {
+    loaderEl.style.display = 'none';   // 모션 감소: 로딩 연출 없이 바로 본문
+  } else {
+    const KW = HERO_CONFIG.keywords.slice(0, LOADER_KEYWORDS);
+    const wordEl = document.getElementById('loaderWord');
+    const countEl = document.getElementById('loaderCount');
+    const counter = { v: 0 };
+    let kwIdx = -1, kwChars = [];
+    // 진행도에 따라 키워드를 차례로 바꾸고, 각 키워드는 앞에서부터 해독 (공용 decodeChars)
+    const showKeyword = () => {
+      const pos = counter.v / 100 * KW.length;
+      const idx = Math.min(KW.length - 1, Math.floor(pos));
+      if (idx !== kwIdx) { kwIdx = idx; wordEl.textContent = KW[idx]; kwChars = buildDecode(wordEl); }
+      decodeChars(kwChars, counter.v >= 100 ? 1 : (pos - idx) * 1.8, true);
+      countEl.textContent = String(Math.round(counter.v)).padStart(3, '0');
+    };
+    showKeyword();
+
+    const heroWords = gsap.utils.toArray('.hero-word');
+    const stage = document.getElementById('heroSticky');
+    // 각 키워드의 제자리 → 화면 가운데까지의 거리 (가운데에서 출발시키기 위함)
+    const toCenter = (el, axis) => {
+      const s = stage.getBoundingClientRect(), r = el.getBoundingClientRect();
+      return axis === 'x' ? (s.left + s.width / 2) - (r.left + r.width / 2) : (s.top + s.height / 2) - (r.top + r.height / 2);
+    };
+
+    gsap.timeline({ defaults: { ease: 'expo.out' } })
+      .to(counter, { v: 100, duration: LOADER_TIME, ease: 'power1.inOut', onUpdate: showKeyword })
+      .to('.loader_bar', { scaleX: 1, duration: LOADER_TIME, ease: 'power1.inOut' }, 0)
+      .addLabel('burst', '+=.15')
+      .to(wordEl, { scale: 1.3, filter: 'blur(16px)', opacity: 0, duration: .7, ease: 'power2.out' }, 'burst')
+      .to(loaderEl, { autoAlpha: 0, duration: .45, ease: 'power1.out' }, 'burst')
+      // 히어로 키워드: 가운데에서 또렷하게 출발 → 제자리에서 흐릿한 원래 상태로 (끝나면 CSS 값으로 복귀)
+      .from(heroWords, {
+        x: (i, el) => toCenter(el, 'x'), y: (i, el) => toCenter(el, 'y'),
+        scale: .45, opacity: 1, filter: 'blur(0px)',
+        duration: 1.5, stagger: { each: .025, from: 'random' }, clearProps: 'transform,opacity,filter'
+      }, 'burst')
+      .set(loaderEl, { display: 'none' }, 'burst+=.5')
+      .from('.hero-lead', { autoAlpha: 0, duration: 1.2, ease: 'power2.out', clearProps: 'all' }, 'burst+=.55')
+      .from('.hero_meta, .hero-hud', { autoAlpha: 0, y: 16, duration: 1, stagger: .08, clearProps: 'all' }, 'burst+=.45')
+      .add(() => lenis && lenis.start(), 'burst+=.8');
+  }
 
   /* 히어로: 실시간 서울 시계 */
   const clock = document.getElementById('heroClock');
   const fmt = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Seoul', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
   const tick = () => clock.textContent = fmt.format(new Date());
   tick(); setInterval(tick, 1000);
-
-  /* ---------- 1. HERO : 스크롤 타이포 (순수 JS, 라이브러리 미사용) ---------- */
-  initHero();
 
   /* ---------- 공통: 글자 상승 리빌 ---------- */
   gsap.utils.toArray('[data-split]').forEach(el => {

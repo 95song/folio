@@ -256,345 +256,6 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // =================================================================
-// .blob-words: 칩끼리 뭉쳐 보이는 단어 애니메이션. 의존성 없는 순수 JS.
-// 가운데는 고정 배열을 유지하고,
-// 바깥 여백은 고정 시드(data-seed) 기반 랜덤 라벨로 채워서 가로 100% 폭에도
-// 라벨이 늘어나며 자연스럽게 채워지게 한다. 화면에 처음 보일 때 한 번만
-// 등장하고(중앙 먼저 조립 → 바깥은 거리순으로 퍼지듯 등장), 이후 사라지지
-// 않는다(등장 후 약한 흔들림은 계속됨).
-// =================================================================
-(function () {
-  // 가운데 배열(0~100 퍼센트 좌표, 중심 기준). 항상 가운데에 고정된다.
-  const CENTER = [
-    { type: 'text', w: 0, cx: 35, cy: 10, rot: 40 },
-    { type: 'text', w: 1, cx: 70, cy: 12, rot: -10 },
-    { type: 'circle',     cx: 58, cy: 16, r: 5 },
-    { type: 'text', w: 3, cx: 76, cy: 26, rot: 25 },
-
-    { type: 'text', w: 2, cx: 45, cy: 30, rot: -15 },
-    { type: 'text', w: 1, cx: 20, cy: 35, rot: 15 },
-    { type: 'text', w: 2, cx: 18, cy: 46, rot: -5 },
-    { type: 'text', w: 2, cx: 62, cy: 42, rot: 35 },
-    { type: 'text', w: 1, cx: 72, cy: 36, rot: 15 },
-    { type: 'text', w: 1, cx: 85, cy: 46, rot: 5 },
-
-    { type: 'circle',     cx: 12, cy: 55, r: 6 },
-    { type: 'text', w: 0, cx: 18, cy: 60, rot: 45 },
-    { type: 'circle',     cx: 33, cy: 68, r: 5 },
-    { type: 'text', w: 0, cx: 20, cy: 70, rot: -30 },
-    { type: 'circle',     cx: 18, cy: 80, r: 6 },
-
-    { type: 'text', w: 3, cx: 48, cy: 52, rot: 5 },
-    { type: 'text', w: 3, cx: 78, cy: 64, rot: 20 },
-    { type: 'text', w: 3, cx: 50, cy: 75, rot: -5 },
-    { type: 'text', w: 2, cx: 52, cy: 84, rot: -2 },
-  ];
-  // 단어 슬롯별 라벨 크기(unit 배수).
-  const SIZES = [
-    { wd: 26, h: 12, fs: 4.2 }, // word 1
-    { wd: 16, h: 10, fs: 4.2 }, // word 2
-    { wd: 34, h: 10, fs: 3.8 }, // word 3
-    { wd: 24, h: 10, fs: 4.2 }, // word 4
-  ];
-
-  const FPS = 30;
-  // 랜덤 아이템은 고정된 필드(unit 좌표) 위에 한 번만 생성해두고, 리사이즈되면
-  // 그중 보이는 범위만 더 드러날 뿐 이미 배치된 것들이 다시 섞이지 않는다.
-  const FIELD_X = 700, FIELD_Y = 160;
-  const DENSITY = 19 / (100 * 100) * 0.8;    // 유닛² 당 아이템 수, 가운데 밀집도보다 살짝 여유있게
-  const CENTER_ZONE = { x: 52, y: 50 };        // 랜덤 아이템이 가운데 클러스터 영역을 침범하지 않게
-
-  // Remotion 스타일 스프링(mass 1, 0→1, 정지 상태 시작)을 해석적으로 계산.
-  function spring(frame, damping = 18, stiffness = 90, mass = 1) {
-    if (frame <= 0) return 0;
-    const t = frame / FPS;
-    const w0 = Math.sqrt(stiffness / mass);
-    const zeta = damping / (2 * Math.sqrt(stiffness * mass));
-    if (zeta < 1) {
-      const w1 = w0 * Math.sqrt(1 - zeta * zeta);
-      return 1 - Math.exp(-zeta * w0 * t) * (Math.cos(w1 * t) + (zeta * w0 / w1) * Math.sin(w1 * t));
-    }
-    return 1 - Math.exp(-w0 * t) * (1 + w0 * t);
-  }
-
-  function interpolate(v, [a, b], [c, d], clampLeft = true, clampRight = true) {
-    let p = (v - a) / (b - a);
-    if (clampLeft && p < 0) p = 0;
-    if (clampRight && p > 1) p = 1;
-    return c + (d - c) * p;
-  }
-
-  function mulberry32(seed) {
-    return function () {
-      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
-      let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
-      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
-      return ((t ^ t >>> 14) >>> 0) / 4294967296;
-    };
-  }
-
-  // ---- 기하: 겹침 체크를 위해 모든 아이템을 캡슐(알약) 형태로 취급 ----
-  function capsule(it) {
-    if (it.type === 'circle') return { ax: it.x, ay: it.y, bx: it.x, by: it.y, r: it.r };
-    const a = (it.wd - it.h) / 2, rad = it.rot * Math.PI / 180;
-    const ux = Math.cos(rad) * a, uy = Math.sin(rad) * a;
-    return { ax: it.x - ux, ay: it.y - uy, bx: it.x + ux, by: it.y + uy, r: it.h / 2 };
-  }
-  function segDist(p, q) { // 선분 p.a–p.b 와 q.a–q.b 사이 거리
-    const d1x = p.bx - p.ax, d1y = p.by - p.ay, d2x = q.bx - q.ax, d2y = q.by - q.ay;
-    const rx = p.ax - q.ax, ry = p.ay - q.ay;
-    const a = d1x * d1x + d1y * d1y, e = d2x * d2x + d2y * d2y, f = d2x * rx + d2y * ry;
-    let s, t;
-    if (a < 1e-9 && e < 1e-9) { s = t = 0; }
-    else if (a < 1e-9) { s = 0; t = Math.min(1, Math.max(0, f / e)); }
-    else {
-      const c = d1x * rx + d1y * ry;
-      if (e < 1e-9) { t = 0; s = Math.min(1, Math.max(0, -c / a)); }
-      else {
-        const b = d1x * d2x + d1y * d2y, den = a * e - b * b;
-        s = den !== 0 ? Math.min(1, Math.max(0, (b * f - c * e) / den)) : 0;
-        t = (b * s + f) / e;
-        if (t < 0) { t = 0; s = Math.min(1, Math.max(0, -c / a)); }
-        else if (t > 1) { t = 1; s = Math.min(1, Math.max(0, (b - c) / a)); }
-      }
-    }
-    const dx = p.ax + d1x * s - (q.ax + d2x * t), dy = p.ay + d1y * s - (q.ay + d2y * t);
-    return Math.hypot(dx, dy);
-  }
-
-  const layoutCache = new Map();
-  function generateLayout(seed) {
-    if (layoutCache.has(seed)) return layoutCache.get(seed);
-    const rng = mulberry32(seed);
-    const items = [];
-    const CELL = 40, grid = new Map();
-    const key = (i, j) => i + ',' + j;
-    function add(it) {
-      it.cap = capsule(it);
-      items.push(it);
-      const i = Math.floor(it.x / CELL), j = Math.floor(it.y / CELL);
-      const k = key(i, j);
-      if (!grid.has(k)) grid.set(k, []);
-      grid.get(k).push(it);
-    }
-    function fits(it, clearance) {
-      const cap = capsule(it);
-      const i0 = Math.floor(it.x / CELL), j0 = Math.floor(it.y / CELL);
-      for (let i = i0 - 1; i <= i0 + 1; i++) for (let j = j0 - 1; j <= j0 + 1; j++) {
-        const list = grid.get(key(i, j));
-        if (!list) continue;
-        for (const o of list) if (segDist(cap, o.cap) < cap.r + o.cap.r + clearance) return false;
-      }
-      return true;
-    }
-
-    // 1. 가운데 클러스터, 정해 둔 스태거 순서대로.
-    CENTER.forEach((c, i) => {
-      const it = { type: c.type, x: (c.cx - 50) * 1.2, y: (c.cy - 50) * 1.2, rot: c.rot || 0, order: i, center: true };
-      if (c.type === 'circle') it.r = c.r; else Object.assign(it, { w: c.w }, SIZES[c.w]);
-      add(it);
-    });
-
-    // 2. 필드 전체에 랜덤 배치. 일부는 살짝 겹치게 허용해서 가운데의 "이어붙은
-    //    라벨"처럼 구이 효과로 뭉쳐 보이게 한다.
-    const target = Math.round(FIELD_X * 2 * FIELD_Y * 2 * DENSITY);
-    let placed = 0;
-    for (let tries = 0; tries < target * 40 && placed < target; tries++) {
-      const x = (rng() * 2 - 1) * FIELD_X, y = (rng() * 2 - 1) * FIELD_Y;
-      const isCircle = rng() < 0.18;
-      const it = { type: isCircle ? 'circle' : 'text', x, y, rot: 0, jitter: rng() };
-      if (isCircle) it.r = 5 + rng() * 1.5;
-      else { it.w = Math.floor(rng() * 4); Object.assign(it, SIZES[it.w]); it.rot = Math.round(rng() * 90 - 42); }
-      const clearance = rng() < 0.28 ? -0.5 : 3;
-      if (Math.abs(x) < CENTER_ZONE.x && Math.abs(y) < CENTER_ZONE.y) continue;
-      if (!fits(it, clearance)) continue;
-      add(it);
-      placed++;
-    }
-    layoutCache.set(seed, items);
-    return items;
-  }
-
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let uid = 0;
-
-  function mount(root) {
-    const d = root.dataset;
-    const words = (d.words || 'UX/UI,DESIGN,PORTFOLIO,SYSTEM').split(',').map(s => s.trim());
-    const cfg = {
-      bg: d.bg || '#000000',
-      fill: d.fill || '#000000',
-      border: d.border || '#ffffff',
-      text: d.text || '#ffffff',
-      font: d.font || 'Inter',
-      // 1 unit의 px 크기. 4.2 = 기존 420px 세로형 버전 기준(예: 6글자 라벨 ≈ 109x50px).
-      unit: parseFloat(d.unit || 4.2),
-      seed: parseInt(d.seed || 7, 10),
-      scale: parseFloat(d.scale || 1),
-      speed: parseFloat(d.speed || 1),
-      blobbiness: parseFloat(d.blobbiness || 1),
-      wobble: parseFloat(d.wobble || 1),
-    };
-    const unit = cfg.unit;
-    const all = generateLayout(cfg.seed);
-    const filterId = 'bw-blob-' + (++uid);
-
-    root.style.background = cfg.bg;
-    root.setAttribute('role', 'img');
-    root.setAttribute('aria-label', words.join(' '));
-    root.innerHTML = `
-      <div class="bw-stage" style="transform: scale(${cfg.scale})">
-        <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-          <defs>
-            <filter id="${filterId}" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="${unit * 1.2 * cfg.blobbiness}" result="blur"/>
-              <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -9" result="goo"/>
-              <feMorphology in="goo" operator="dilate" radius="${unit * 0.5}" result="dilated"/>
-              <feFlood flood-color="${cfg.border}" result="borderFlood"/>
-              <feComposite in="borderFlood" in2="dilated" operator="in" result="coloredBorder"/>
-              <feFlood flood-color="${cfg.fill}" result="fillFlood"/>
-              <feComposite in="fillFlood" in2="goo" operator="in" result="coloredInner"/>
-              <feMerge><feMergeNode in="coloredBorder"/><feMergeNode in="coloredInner"/></feMerge>
-            </filter>
-          </defs>
-        </svg>
-        <div class="bw-layer bw-shapes" style="filter:url(#${filterId})"></div>
-        <div class="bw-layer bw-texts" aria-hidden="true"></div>
-      </div>`;
-
-    const shapesLayer = root.querySelector('.bw-shapes');
-    const textsLayer = root.querySelector('.bw-texts');
-
-    let nodes = [];
-    let W = 0, H = 0, visibleKey = '';
-
-    function makeNode(item, index) {
-      const isCircle = item.type === 'circle';
-      const w = (isCircle ? item.r * 2 : item.wd) * unit;
-      const h = (isCircle ? item.r * 2 : item.h) * unit;
-      const shape = document.createElement('div');
-      shape.className = 'bw-shape';
-      shape.style.cssText = `background:#fff;opacity:0;width:${w}px;height:${h}px;border-radius:${isCircle ? '50%' : unit * 2 + 'px'}`;
-      shapesLayer.appendChild(shape);
-      let text = null, span = null;
-      if (!isCircle) {
-        text = document.createElement('div');
-        text.className = 'bw-text';
-        text.style.width = w + 'px';
-        text.style.height = h + 'px';
-        span = document.createElement('span');
-        span.textContent = words[item.w] ?? '';
-        span.style.cssText = `color:${cfg.text};font-family:${cfg.font}, system-ui, sans-serif;font-size:${item.fs * unit}px;opacity:0`;
-        text.appendChild(span);
-        textsLayer.appendChild(text);
-      }
-      return { item, shape, text, span, seed: index };
-    }
-
-    function layout() {
-      W = root.clientWidth; H = root.clientHeight;
-      const hx = W / 2 / unit + 25, hy = H / 2 / unit + 25;
-      const visible = all.filter(it => Math.abs(it.x) < hx && Math.abs(it.y) < hy);
-      const k = visible.length + ':' + (visible[visible.length - 1] ? all.indexOf(visible[visible.length - 1]) : 0);
-      if (k === visibleKey) return;
-      visibleKey = k;
-
-      // 타이밍: 가운데가 정해 둔 순서대로 먼저 조립되고, 나머지는 바깥으로 퍼지듯 등장.
-      const maxDist = Math.hypot(W / 2 / unit, H / 2 / unit) || 1;
-      shapesLayer.textContent = '';
-      textsLayer.textContent = '';
-      nodes = visible.map(it => {
-        const n = makeNode(it, all.indexOf(it));
-        n.delay = it.center
-          ? it.order * 2
-          : 8 + Math.min(1, Math.hypot(it.x, it.y) / maxDist) * 42 + it.jitter * 8;
-        return n;
-      });
-    }
-
-    function render(frame) {
-      const f = frame * cfg.speed;
-      const cx = W / 2, cy = H / 2;
-      const travel = 150 * unit; // minDim의 1.5배
-      nodes.forEach(({ item, shape, span, text, seed, delay }) => {
-        const p = spring(Math.max(0, f - delay));
-
-        const tx = cx + item.x * unit;
-        const ty = cy + item.y * unit;
-        // 중심에서 바깥으로 날아 들어온다.
-        const dist = Math.hypot(item.x, item.y) || 1;
-        const sx = tx + (item.x / dist) * travel;
-        const sy = ty + (item.y / dist) * travel;
-
-        const x = interpolate(p, [0, 1], [sx, tx]);
-        const y = interpolate(p, [0, 1], [sy, ty]);
-
-        const ws = reduceMotion ? 0 : interpolate(p, [0, 1], [0, cfg.wobble], false, true);
-        const wx = Math.sin(f * 0.03 + seed * 2) * unit * 1.5 * ws;
-        const wy = Math.cos(f * 0.025 + seed * 3) * unit * 1.5 * ws;
-        const wr = Math.sin(f * 0.02 + seed) * 6 * ws;
-
-        const tf = `translate(${x + wx}px, ${y + wy}px) translate(-50%, -50%) rotate(${item.rot + wr}deg)`;
-        shape.style.transform = tf;
-        shape.style.opacity = interpolate(p, [0, 0.5], [0, 1], false, true);
-        if (text) {
-          text.style.transform = tf;
-          span.style.opacity = interpolate(p, [0.3, 0.8], [0, 1]);
-        }
-      });
-    }
-
-    layout();
-    render(0);
-
-    let start = null, running = false, pausedAt = 0, started = false;
-
-    function tick(now) {
-      if (!running) return;
-      if (start === null) start = now - pausedAt;
-      render(((now - start) / 1000) * FPS);
-      requestAnimationFrame(tick);
-    }
-    function play() {
-      if (running) return;
-      running = true; start = null;
-      requestAnimationFrame(tick);
-    }
-    function pause() {
-      if (!running) return;
-      running = false;
-      pausedAt = start === null ? pausedAt : performance.now() - start;
-    }
-
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (e.isIntersecting && !started) {
-          started = true;
-          if (reduceMotion) { render(1000); return; } // 즉시 정착 상태로
-        }
-        if (!started || reduceMotion) return;
-        // 한 번 시작되면 다시 사라지거나 재시작하지 않고, 화면 밖일 때만 멈춘다.
-        e.isIntersecting ? play() : pause();
-      });
-    }, { threshold: 0.05 });
-    // 고정 위치(position:fixed) 푸터는 다른 콘텐츠에 가려져 있어도
-    // IntersectionObserver 입장에선 늘 "화면 안"이라 판단해서, 그대로 두면
-    // 가려진 채로 애니메이션이 먼저 재생돼버린다. data-trigger로 실제
-    // 흐름(in-flow) 상의 대리 요소(예: 빈 자리 spacer)를 지정하면 그
-    // 요소가 화면에 드러나는 시점 기준으로 재생을 시작한다.
-    io.observe((d.trigger && document.querySelector(d.trigger)) || root);
-
-    new ResizeObserver(() => {
-      layout();
-      if (!running) render(started ? (reduceMotion ? 1000 : (pausedAt / 1000) * FPS) : 0);
-    }).observe(root);
-  }
-
-  const init = () => document.querySelectorAll('.blob-words').forEach(mount);
-  document.readyState === 'loading' ? document.addEventListener('DOMContentLoaded', init) : init();
-})();
-
-// =================================================================
 // 사이트 전체가 공유하는 프로젝트 목록(순서 = 포트폴리오 노출 순서).
 // 새 프로젝트 페이지가 생기면 여기에 한 줄만 추가하면 모든 페이지의
 // prev/next(.goodbye-section, .quick-nav)가 자동으로 갱신된다.
@@ -606,8 +267,7 @@ window.PROJECTS = [
   { id: 'port-2', href: 'port-2.html', title: '환경성 질환 예방센터 DID', thumb: 'resources/img/common/portfolio-2.png' },
   { id: 'port-3', href: 'port-3.html', title: '금화 C&E 홈페이지 리뉴얼', thumb: 'resources/img/common/portfolio-3.png' },
   { id: 'port-4', href: 'port-4.html', title: 'Vision AI Edge 리플렛', thumb: 'resources/img/common/portfolio-4.png' },
-  // port-5.html 파일이 생기면 아래 줄의 주석만 풀면 된다.
-  // { id: 'port-5', href: 'port-5.html', title: '근하신년 연하장', thumb: 'resources/img/common/portfolio-5.png' },
+  { id: 'port-5', href: 'port-5.html', title: '근하신년 연하장', thumb: 'resources/img/common/portfolio-5.png' },
   { id: 'port-6', href: 'port-6.html', title: '학교 미세먼지 관리 안내서', thumb: 'resources/img/common/portfolio-6.png' },
 ];
 
@@ -662,18 +322,15 @@ window.PROJECTS = [
 })();
 
 // =================================================================
-// #outro(Ctrl+S 클로징 화면 + blob-words 라벨 애니메이션)의 "커튼 공개
-// (reveal footer)" 처리. #outro는 CSS에서 이미 position:fixed로 화면
-// 하단에 고정돼 있고, 앞의 .page-content가 그 위를 덮고 있다가 스크롤이
-// .outro-spacer까지 내려가야 뒤에 있던 #outro가 자연스럽게 드러난다
+// #outro(Ctrl+S 클로징 화면)의 "커튼 공개(reveal footer)" 처리.
+// #outro는 CSS에서 이미 position:fixed로 화면 하단에 고정돼 있고,
+// 앞의 .page-content가 그 위를 덮고 있다가 스크롤이 .outro-spacer까지
+// 내려가야 뒤에 있던 #outro가 자연스럽게 드러난다
 // (GSAP pin/scrub 불필요 - 브라우저 기본 스택 규칙만으로 동작).
 // 이 스크립트가 하는 일은 두 가지뿐이다:
 //   1. .outro-spacer 높이를 #outro 실제 높이에 맞춰 자동 동기화
 //   2. .outro-spacer가 화면에 보이기 시작하면(=커튼이 걷히기 시작하면)
 //      Ctrl+S 텍스트/Prev-Next 카드가 순차적으로(스태거) 나타나게 함
-// blob-words(.port-footer 라벨 애니메이션)의 등장 타이밍은 위쪽
-// .blob-words의 data-trigger=".outro-spacer" 옵션이 알아서 처리한다
-// (별도 연결 코드 불필요).
 // =================================================================
 document.addEventListener('DOMContentLoaded', function () {
   var outro = document.getElementById('outro');
@@ -693,13 +350,17 @@ document.addEventListener('DOMContentLoaded', function () {
     : [];
   if (!targets.length) return;
 
+  // 처음부터 숨겨둔다. 커튼이 걷히는 도중에 이미 보이던 요소를 숨겼다가
+  // 다시 나타내면(gsap.from) 한 번 깜빡이는 것처럼 보이기 때문이다.
+  gsap.set(targets, { opacity: 0, y: 40 });
+
   var played = false;
   function reveal() {
     if (played) return;
     played = true;
-    gsap.from(targets, {
-      opacity: 0,
-      y: 40,
+    gsap.to(targets, {
+      opacity: 1,
+      y: 0,
       duration: 0.9,
       ease: 'expo.out',
       stagger: 0.12,
@@ -743,7 +404,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var HS_SCENES = [
       {
         name: "메인",
-        image: "resources/img/port/tracker-task.png", width: 4500, height: 3000, bg: "#ddedf8",
+        image: "resources/img/port/tracker-task.webp", width: 4500, height: 3000, bg: "#ddedf8",
         alt: "비스듬히 놓인 스마트폰",
         hotspots: [
           {
@@ -772,7 +433,7 @@ document.addEventListener('DOMContentLoaded', function () {
       {
         // TODO: 임시 문구 - 직접 수정
         name: "위치 데이터",
-        image: "resources/img/port/tracker-task-2.png", width: 4500, height: 3000, bg: "#ddedf8",
+        image: "resources/img/port/tracker-task-2.webp", width: 4500, height: 3000, bg: "#ddedf8",
         alt: "위치 데이터 목록 화면이 띄워진 스마트폰",
         hotspots: [
           {
@@ -801,7 +462,7 @@ document.addEventListener('DOMContentLoaded', function () {
       {
         // TODO: 임시 문구 - 직접 수정
         name: "환경설정",
-        image: "resources/img/port/tracker-task-3.png", width: 4500, height: 3000, bg: "#ddedf8",
+        image: "resources/img/port/tracker-task-3.webp", width: 4500, height: 3000, bg: "#ddedf8",
         alt: "환경설정 화면이 띄워진 스마트폰",
         hotspots: [
           {
@@ -1359,6 +1020,138 @@ document.addEventListener('DOMContentLoaded', function () {
     window.addEventListener('resize', reset);
     window.addEventListener('load', reset);   // 이미지가 다 불러와진 뒤 크기를 다시 잰다
     reset();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+// =================================================================
+// 스크롤 등장 모션 (.rv) — port 페이지 공통
+// RULES 에 고른 요소에 .rv 를 붙이고, 화면에 들어오면 .is-in 으로 등장시킨다.
+// 값은 port-1 디자인 시스템의 .rv 와 같다(스타일: port-1.css 의 '스크롤 등장 모션').
+// 이미 자체 등장 모션이 있는 영역(.design-system / .leaflet / .dd-stage 등)은 건드리지 않는다.
+//   d: 'i'  → 같은 부모 안 순서대로 90ms씩 늦게
+//   d: 숫자 → 그만큼 늦게
+//   cls     → 추가 클래스 (rv-zoom: 안쪽 이미지 줌, rv-still: 페이드 없이 줌만)
+// =================================================================
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce || !('IntersectionObserver' in window)) return;
+
+  var SKIP = '.design-system, .leaflet, .dd-stage, .port-main, #outro, .goodbye-section, .rv, .reveal';
+  var RULES = [
+    // 제목부: 작은 라벨 → 제목 → 설명 (port-1 .tg-head 와 같은 순서)
+    { sel: '.overview-top > *, .port-top > *, .eds-head > *, .goal-top > *, .goal4-callout-text > *, .dd-text > *, .lf-text > *', d: 'i' },
+    // Overview 기간·기획·디자인 행 (막대는 CSS 에서 이어서 차오름) / 바로가기 버튼
+    { sel: '.overview-left > .port-graph', d: 'i' },
+    { sel: '.overview-right > *', d: 3 },
+    // 카드·목록: 차례로
+    { sel: '.concept-list > .concept-item, .eds-base > .eds-sw, .dsg-guide > .dsg-card, .ld-phones > *, .lf-side > *, .lf-pair > *', d: 'i' },
+    // 단독 블록
+    { sel: '.goal-list > .goal-number, .eds-sub, .eds-band, .eds-specimen, .eds-scale-wrap, .eds-gauge-box, .eds-assets, .eds-pills, .testimonial-box, .hotspot-demo, .lf-wide, .location-de-mockup > .ms', d: 0 },
+    // 큰 이미지: 떠오르며 안쪽 이미지 줌
+    { sel: '.concept-visual, .visual-img, .web-design-box, .goal-img, .goal4-shot, .lf-photo, .padding-up > div', d: 0, cls: 'rv-zoom' },
+    // 마지막 전체 화면 이미지: 줌만 (port-5 는 .ny-stack 이 따로 처리)
+    { sel: '.ending-post:not(.ny-stack) > div', d: 0, cls: 'rv-zoom rv-still' }
+  ];
+
+  function tag() {
+    var list = [];
+    RULES.forEach(function (r) {
+      document.querySelectorAll(r.sel).forEach(function (el) {
+        if (el.classList.contains('rv') || el.classList.contains('reveal')) return;
+        if (el.parentElement && el.parentElement.closest(SKIP)) return;
+        var d = r.d;
+        if (d === 'i') d = Math.min(5, Array.prototype.indexOf.call(el.parentElement.children, el));
+        el.classList.add('rv');
+        if (r.cls) r.cls.split(' ').forEach(function (c) { el.classList.add(c); });
+        if (d) el.style.setProperty('--d', d);
+        list.push(el);
+      });
+    });
+    return list;
+  }
+
+  function boot() {
+    var els = tag();
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        io.unobserve(el);
+        el.classList.add('is-in');
+        // 등장이 끝나면 .rv 를 떼서 요소 원래의 transition(hover 등)이 그대로 동작하게 한다
+        var d = parseFloat(el.style.getPropertyValue('--d')) || 0;
+        setTimeout(function () {
+          el.classList.remove('rv', 'is-in', 'rv-zoom', 'rv-still');
+          el.style.removeProperty('--d');
+        }, 1900 + d * 90);
+      });
+    }, { threshold: 0, rootMargin: '0px 0px -10% 0px' });
+    els.forEach(function (el) { io.observe(el); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  else boot();
+})();
+
+// =================================================================
+// 첫 화면(.port-main) 등장 — 프로젝트 콘셉트별 (data-intro)
+// <html class="intro-on"> 은 화면이 그려지기 전에 바로 붙여 시작 상태(가려진 상태)를 잡고,
+// 배경 이미지가 준비되면 .is-play 로 재생한다. 연출 요소(.intro-fx)는 끝나면 지운다.
+// 스타일과 콘셉트 설명: port-1.css 의 '첫 화면(.port-main) 등장'
+// =================================================================
+(function () {
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduce) return;
+  document.documentElement.classList.add('intro-on');
+
+  var FX = {
+    air: '',
+    did: '',   // 픽셀은 화면 비율에 맞춰 boot() 에서 만든다
+    grid: (function () { var s = ''; for (var i = 0; i < 12; i++) s += '<i style="--i:' + i + '"></i>'; return s; })(),
+    cam: '<span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span><span class="scan"></span><span class="rec">REC</span>',
+    scroll: '<span class="light"></span><span class="rod"></span>',
+    haze: ''
+  };
+
+  function boot() {
+    var main = document.querySelector('.port-main[data-intro]');
+    if (!main) { document.documentElement.classList.remove('intro-on'); return; }
+    var type = main.getAttribute('data-intro');
+    var fx = document.createElement('div');
+    fx.className = 'intro-fx ' + type;
+    fx.setAttribute('aria-hidden', 'true');
+    fx.innerHTML = FX[type] || '';
+    if (type === 'did') {
+      // 가로 24칸 기준 정사각 픽셀. 위에서 아래로 진행하되 칸마다 무작위로 흩어져 꺼진다
+      var cols = 24, rows = Math.max(1, Math.round(cols * main.clientHeight / Math.max(1, main.clientWidth)));
+      var html = '';
+      for (var r = 0; r < rows; r++) {
+        for (var c = 0; c < cols; c++) {
+          var t = .15 + (r / rows) * .7 + Math.random() * .55;
+          html += '<i style="--t:' + t.toFixed(2) + 's"></i>';
+        }
+      }
+      fx.style.setProperty('--cols', cols);
+      fx.innerHTML = html;
+    }
+    main.appendChild(fx);
+
+    var played = false;
+    function play() {
+      if (played) return; played = true;
+      requestAnimationFrame(function () { main.classList.add('is-play'); });
+      setTimeout(function () { fx.remove(); }, 4000);
+    }
+    // 배경 이미지가 다 받아진 뒤 재생 (용량이 큰 이미지도 있어 최대 3초까지만 기다린다)
+    var img = main.querySelector('img');
+    if (img && !img.complete) {
+      img.addEventListener('load', play);
+      img.addEventListener('error', play);
+      setTimeout(play, 3000);
+    } else {
+      play();
+    }
   }
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
   else boot();
