@@ -47,7 +47,6 @@
 </head>
 <body class="main" style="background-color: #fff;">
 
-<!-- header 시작 -->
 <div class="cursor-follower"></div>
 
 <!-- .quick-nav 유리 굴절(liquid glass) 효과용 SVG 필터. 화면에는 그리지 않고 backdrop-filter에서 참조만 한다 -->
@@ -65,78 +64,26 @@
         <span class="quick-nav-arrow quick-nav-arrow-left"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
         <span class="quick-nav-label">Prev</span>
     </a>
-    <a href="portfolio.html" class="quick-nav-center">
-        <img src="resources/img/common/port-menu-icon.png" alt="메뉴">
-    </a>
+    <button type="button" class="quick-nav-center" aria-expanded="false" aria-controls="qnMenu" aria-label="메뉴 열기">
+        <img src="resources/img/common/port-menu-icon.png" alt=""><span class="qn-x"></span>
+    </button>
     <a href="port-5.html" class="quick-nav-side quick-nav-next" data-nav="next">
         <span class="quick-nav-label">Next</span>
         <span class="quick-nav-arrow quick-nav-arrow-right"><img src="resources/img/common/chevron-left-thin.svg" alt=""></span>
     </a>
 </div>
+<!-- 퀵내비 가운데 버튼을 누르면 열리는 사이트 메뉴. .quick-nav 의 유리 효과(backdrop-filter)와 겹치지 않도록 바깥에 둔다 (port.js) -->
+<nav class="qn-menu" id="qnMenu" aria-label="사이트 메뉴">
+    <ul>
+        <li><a href="index.html" tabindex="-1"><i></i>Home</a></li>
+        <li><a href="profile.html" tabindex="-1"><i></i>About</a></li>
+        <li><a href="portfolio.html" tabindex="-1" class="on"><i></i>Portfolio</a></li>
+    </ul>
+</nav>
 
-<header>
-    <!--  -->
-            <div class="navi">
-
-                 <h1 id="logo">
-                    <a >
-                    </a>
-                </h1>
-                 <div class="gnb"> 
-                    <ul>
-                        <li>
-                            
-                        </li>                                     
-                    </ul>
-    
-                </div>
-                
-                
-            </div>
-    
-        </header>
-                
-    
-    <!-- 네비게이션 바 -->
-                    
-        <div class="ham sitemap-open-btn btn">						
-             <span class="bar1"></span>
-             <span class="bar2"></span>
-             <span class="bar3"></span>
-        </div>
-    
-    <!-- 네비게이션 -->
-            
-        <div class="site_wrap">
-            <div class="site_map">
-                <div>
-                    <ul>
-                        <li class="sitemap_dep1">
-                            <a href="index.html">
-                                <span>HOME</span><span>HOME</span>
-                            </a>
-                        </li>
-                        <li class="sitemap_dep1">
-                            <a href="profile.html">
-                                <span>ABOUT</span><span>ABOUT</span>
-                            </a>
-                        </li>
-                        <li class="sitemap_dep1">
-                            <a href="portfolio.html">
-                                <span>Portfolio</span><span>Portfolio</span>
-                            </a>
-                        </li>
-
-                    </ul>
-                    <h6> © 2026 EUNSUN .ALL RIGHTS RESERVED</h6>
-                </div>
-            </div>
-        </div>
-        <div class="site_bg"></div>
 
     
-    <!-- header 끝 -->
-
+    
 <div class="all_wrap page-content">
 	
 
