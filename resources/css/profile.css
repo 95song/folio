@@ -34,9 +34,6 @@ body, body * { font-family: "Gmarket Sans", "Pretendard", sans-serif; }
 a { color: inherit; text-decoration: none; }
 img { display: block; max-width: 100%; }
 
-/* 햄버거: 어두운/밝은 섹션 모두에서 보이도록 */
-.ham { mix-blend-mode: difference; }
-.ham span, .ham.active span { background: var(--white) !important; }
 
 /* 필름 그레인 */
 .grain {
@@ -190,7 +187,7 @@ img { display: block; max-width: 100%; }
 .about_title { font-weight: 700; font-size: clamp(2.6rem, 7vw, 8.4rem); line-height: .98; letter-spacing: -.03em; }
 /* 같은 Gmarket Sans 안에서 Bold(700) ↔ Light(300) 굵기 대비로 포인트 */
 .about_title em { font-style: normal; font-weight: 300; letter-spacing: -.03em; color: var(--red); }
-.about_lead { max-width: 22rem; padding-bottom: .8rem; font-weight: 400; font-size: 1.0625rem; line-height: 1.75; color: var(--about-desc); }
+.about_lead { max-width: 22rem; padding-bottom: .8rem; font-weight: 400; font-size: 1.25rem; line-height: 1.75; color: var(--about-desc); }
 
 /* 본문: 왼쪽 sticky(45%) + 오른쪽 스크롤(55%) */
 .about_body { display: grid; grid-template-columns: 45fr 55fr; padding: 0 var(--gut); }
@@ -217,7 +214,7 @@ img { display: block; max-width: 100%; }
   font-variation-settings: "wght" calc(var(--about-w-min) + (var(--about-w-max) - var(--about-w-min)) * var(--focus));
   color: color-mix(in srgb, var(--about-ink) calc(var(--focus) * 100%), var(--about-dim));
 }
-.about_desc { margin-top: 1.8rem; max-width: 30rem;font-weight: 400; font-size: clamp(16px, 1.05vw, 17px); line-height: 1.75; color: var(--about-desc); }
+.about_desc { margin-top: 1.8rem; max-width: 30rem;font-weight: 400; font-size: clamp(16px, 1.55vw, 20px); line-height: 1.75; color: var(--about-desc); }
 
 /* ================= 4. LIFE (가로 스크롤) ================= */
 .life { position: relative; background: var(--white); color: var(--ink); border-top: 1px solid rgba(17,17,17,.12); overflow: hidden; }
@@ -230,7 +227,7 @@ img { display: block; max-width: 100%; }
 .life_intro { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; }
 .life_intro h2 { font-weight: 700; font-size: clamp(2.2rem, 4.8vw, 5.8rem); line-height: 1.02; letter-spacing: -.055em; }
 .life_intro h2 em { font-style: normal; color: var(--red); }
-.life_intro p { font-weight: 300; color: var(--gray); font-size: 1rem; padding-bottom: .4rem; }
+.life_intro p { font-weight: 300; color: var(--gray); font-size: 1.25rem; padding-bottom: .4rem; }
 .life_intro p::after { content: " →"; color: var(--red); }
 
 /* 가로 타임라인: 5개 지점이 한 화면에, 지점은 각 칸의 왼쪽 끝(점) 위에 놓임 */
@@ -256,7 +253,7 @@ img { display: block; max-width: 100%; }
 .skills_head .tag { color: var(--gray); display: block; margin-bottom: 1.4rem; }
 .skills_head h2 { font-weight: 700; font-size: clamp(2.6rem, 7.6vw, 9rem); line-height: .92; letter-spacing: -.055em; }
 .skills_head h2 em { font-style: normal; color: var(--red); }
-.skills_head p { font-weight: 300; font-size: 1rem; line-height: 1.8; color: #555; max-width: 20rem; padding-bottom: .6rem; }
+.skills_head p { font-weight: 300; font-size: 1.25rem; line-height: 1.8; color: #555; max-width: 20rem; padding-bottom: .6rem; }
 
 .skill_list { list-style: none; border-top: 1px solid var(--ink); }
 .skill_row { position: relative; border-bottom: 1px solid rgba(17,17,17,.16); overflow: hidden; }
@@ -292,7 +289,7 @@ img { display: block; max-width: 100%; }
 .closing_title { font-weight: 700; font-size: clamp(3rem, 6.5vw, 13.5rem); line-height: 1.1; letter-spacing: -.06em; margin-top: 2rem; }
 .closing_title em { font-style: normal; color: var(--red); }
 .closing_row { display: flex; justify-content: space-between; align-items: flex-end; gap: 2rem; margin-top: 4rem; }
-.closing_row p { font-weight: 300; color: var(--gray); line-height: 1.8; max-width: 22rem; }
+.closing_row p { font-size: 1.25rem; font-weight: 300; color: var(--gray); line-height: 1.8; max-width: 22rem; }
 
 .cta {
   position: relative; flex: none; width: clamp(9rem, 15vw, 15rem); aspect-ratio: 1; border-radius: 50%;

@@ -94,11 +94,7 @@
   --fs-50: 50px;
 
   /* Radius */
-  --br-4: 4px;
   --br-5: 5px; /* 모든 입력칸 (지도 날짜 검색칸 제외) */
-  --br-8: 8px;
-  --br-10: 10px;
-  --br-12: 12px;
   --br-15: 15px;
   --br-30: 30px;
   --br-full: 100px;
@@ -409,12 +405,12 @@
 /* 둥근 사각 버튼 (설정 화면) */
 .design-system .button.square {
   height: 44px;
-  border-radius: var(--br-8);
+  border-radius: var(--br-5);
 }
 .design-system .button.line {
   height: 40px;
   padding: 0 20px;
-  border-radius: var(--br-8);
+  border-radius: var(--br-5);
   background-color: var(--bg-default);
   font-size: var(--fs-14);
   font-weight: 500;
@@ -671,7 +667,7 @@
   height: 44px;
   flex-shrink: 0;
   padding: 0;
-  border-radius: var(--br-8);
+  border-radius: var(--br-5);
   font-size: var(--fs-16);
   font-weight: 500;
 }
@@ -1093,7 +1089,7 @@
   margin: 30px 32px 0 30px;
   padding: 14px 22px;
   border: 2px solid var(--color-primary);
-  border-radius: var(--br-12);
+  border-radius: var(--br-15);
   background-color: var(--bg-default);
 }
 .design-system .info-list {
@@ -1287,13 +1283,13 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 5px;
-  border-radius: var(--br-4);
+  border-radius: var(--br-5);
   background-color: var(--bg-segment);
 }
 .design-system .segment button {
   height: 40px;
   border: 2px solid transparent;
-  border-radius: var(--br-4);
+  border-radius: var(--br-5);
   background: none;
   font-size: var(--fs-16);
   color: var(--text-disabled);
@@ -1372,7 +1368,7 @@
   width: 100%;
   padding: 12px 10px;
   display: none;
-  border-radius: var(--br-12);
+  border-radius: var(--br-15);
   background-color: var(--bg-default);
   box-shadow: var(--shadow-float);
   cursor: default;
@@ -1559,7 +1555,7 @@
   position: relative;
   margin-top: 12px;
   border: 2px solid var(--color-primary);
-  border-radius: var(--br-12);
+  border-radius: var(--br-15);
   background-color: var(--bg-default);
 }
 
@@ -1651,7 +1647,7 @@
   position: absolute;
   z-index: 2;
   padding: 8px 10px;
-  border-radius: var(--br-8);
+  border-radius: var(--br-15);
   background-color: var(--text);
   font-size: var(--fs-12);
   color: var(--bg-default);
@@ -1728,7 +1724,7 @@
 .design-system .popup-parent {
   width: 100%;
   overflow: hidden;
-  border-radius: var(--br-10);
+  border-radius: var(--br-15);
   background-color: var(--bg-default);
   box-shadow: var(--shadow-pop);
 }

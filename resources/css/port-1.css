@@ -1,3 +1,7 @@
+/* 상세 페이지 공통: 어떤 요소가 화면 밖으로 넘쳐도 페이지가 가로로 밀리지 않게 한다.
+   clip 은 hidden 과 달리 스크롤 영역을 만들지 않아 position: sticky 를 깨뜨리지 않는다. */
+html, body{ overflow-x: clip; }
+
 .quick-nav{
     position: fixed;
     left: 50%;
@@ -62,20 +66,138 @@
 .quick-nav-arrow-right img{
     transform: rotate(180deg);
 }
+/* 가운데 버튼(.quick-nav-center)을 누르면 독은 그대로 두고, 버튼 바로 위로
+   Home · About · Portfolio 태그가 아래 칸부터 차례로 올라온다 (동작은 port.js).
+   태그 모양은 itddaa.com #gnb(5px 라운드 태그)를, 배경·유리 효과·글자색은 .quick-nav 를 따른다. */
 .quick-nav-center{
+    position: relative;
     width: 2.5rem;
     height: 2.5rem;
+    padding: 0;
+    border: 0;
     border-radius: 50%;
     background-color: #111111;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-shrink: 0;
+    cursor: pointer;
+    transition: transform .35s cubic-bezier(.22,1,.36,1);
 }
+.quick-nav-center:hover{ transform: scale(1.06); }
 .quick-nav-center img{
     width: 1.2rem;
     height: auto;
     display: block;
+    transition: opacity .25s, transform .45s cubic-bezier(.22,1,.36,1);
+}
+/* 닫기(X): 점 아이콘이 돌며 사라지고 두 줄이 겹쳐 X 가 된다 */
+.quick-nav-center .qn-x{ position: absolute; inset: 0; pointer-events: none; }
+.quick-nav-center .qn-x::before,
+.quick-nav-center .qn-x::after{
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 14px;
+    height: 1.5px;
+    margin: -0.75px 0 0 -7px;
+    border-radius: 2px;
+    background: #ffffff;
+    opacity: 0;
+    transform: rotate(0) scaleX(.2);
+    transition: opacity .2s, transform .45s cubic-bezier(.22,1,.36,1);
+}
+.quick-nav.qn-open .quick-nav-center img{ opacity: 0; transform: rotate(90deg) scale(.6); }
+.quick-nav.qn-open .quick-nav-center .qn-x::before{ opacity: 1; transform: rotate(45deg) scaleX(1); }
+.quick-nav.qn-open .quick-nav-center .qn-x::after{ opacity: 1; transform: rotate(-45deg) scaleX(1); }
+
+/* .quick-nav 바깥(형제)에 있는 고정 메뉴. 가로 위치(--qn-x)는 열 때 port.js 가 가운데 버튼 중심에 맞춘다.
+   (.quick-nav 안에 두면 부모의 backdrop-filter 때문에 태그의 유리 효과가 뒤 화면을 흐리게 하지 못한다) */
+.qn-menu{
+    position: fixed;
+    left: var(--qn-x, 50%);
+    bottom: calc(50px + 3.325rem + 1.1rem);
+    transform: translateX(-50%);
+    z-index: 998;
+    pointer-events: none;
+}
+.qn-menu ul{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+.qn-menu li{ display: block; }
+/* 태그: .quick-nav 와 같은 유리 — 반투명 흰 바탕 + 흐림/밝기/채도 + 안쪽 빛 + 가장자리 하이라이트.
+   (등장 모션의 opacity 는 태그 자신에 준다. 부모에 opacity 를 주면 그동안 유리 효과가 꺼졌다 켜진다) */
+.qn-menu a{
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 50px;
+    background-color: rgba(255, 255, 255, 0.15);
+    -webkit-backdrop-filter: blur(3px) brightness(0.9) saturate(1.2);
+    backdrop-filter: blur(3px) brightness(0.9) saturate(1.2);
+    box-shadow: inset 0 0 16px rgba(255, 255, 255, 0.3);
+    color: #111111 !important;
+    text-decoration: none;
+    font-family: 'Pretendard', sans-serif;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: .01em;
+    white-space: nowrap;
+    opacity: 0;
+    transform: translateY(18px) scale(.94);
+    /* 닫힐 때: 위 칸부터 빠르게 */
+    transition: transform .25s cubic-bezier(.22,1,.36,1), opacity .2s, background-color .25s;
+}
+.qn-menu a::before,
+.qn-menu a::after{
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+}
+.qn-menu a::before{
+    padding: 2px;
+    background: radial-gradient(30px 30px at 15px 6px, rgba(255,255,255,.85), rgba(255,255,255,0));
+}
+.qn-menu a::after{
+    padding: 2px;
+    background: radial-gradient(25px 25px at calc(100% - 8px) calc(100% - 13px), rgba(255,255,255,.3), rgba(255,255,255,0));
+}
+.qn-menu li:nth-child(2) a{ transition-delay: .03s; }
+.qn-menu li:nth-child(3) a{ transition-delay: .06s; }
+/* 지금 보고 있는 메뉴 표시 (상세 페이지 = Portfolio) */
+.qn-menu a i{ display: none; width: 6px; height: 6px; border-radius: 50%; background: #FF3D32; flex: none; }
+.qn-menu a.on i{ display: block; }
+/* 호버: 유리가 조금 더 밝아진다 */
+.qn-menu a:hover,
+.qn-menu a:focus-visible{ background-color: rgba(255, 255, 255, 0.55); outline: none; }
+/* 열릴 때: 버튼에 가까운 아래 칸부터 0.05초 간격으로 */
+.qn-menu.is-open{ pointer-events: auto; }
+.qn-menu.is-open a{
+    opacity: 1;
+    transform: none;
+    transition: transform .45s cubic-bezier(.22,1,.36,1), opacity .3s, background-color .25s;
+}
+.qn-menu.is-open li:nth-child(3) a{ transition-delay: 0s, 0s, 0s; }
+.qn-menu.is-open li:nth-child(2) a{ transition-delay: .05s, .05s, 0s; }
+.qn-menu.is-open li:nth-child(1) a{ transition-delay: .1s, .1s, 0s; }
+@media (prefers-reduced-motion: reduce){
+    .qn-menu a, .quick-nav-center img, .quick-nav-center .qn-x::before, .quick-nav-center .qn-x::after{ transition-duration: .01s !important; transition-delay: 0s !important; }
 }
 
 .section#port{
@@ -1911,6 +2033,10 @@
 .rv.is-in{ opacity: 1; transform: none; }
 
 /* 큰 이미지: 떠오르면서 안쪽 이미지가 1.06배에서 제자리로 (port-5 목업과 같은 줌) */
+/* 화면 폭 전체를 쓰는 마지막 이미지(.ending-post)는 1.06배 줌 동안 넘친 만큼(약 42px) 페이지가 가로로 길어져,
+   트랙패드의 작은 좌우 움직임에도 레이아웃 전체가 왼쪽으로 밀리던 원인이었다. 감싼 영역에서 잘라낸다.
+   (.rv-zoom 전체에 걸면 port-3 .goal4-shot 처럼 이미지 영역 밖에 놓인 글자까지 잘리므로 여기만 건다) */
+.ending-post{ overflow: clip; }
 .rv-zoom > img,
 .rv-zoom > div > img{ transform: scale(1.06); transition: transform 1.6s cubic-bezier(.2,.7,.2,1); }
 .rv-zoom.is-in > img,

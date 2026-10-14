@@ -419,20 +419,14 @@ body {
 .wr-slider-nav-icon{ justify-content:center; align-items:center; width:100%; height:100%; display:flex; }
 .wr-slider-nav-icon svg{ width:100%; height:100%; }
 
-/* ---------- 로딩 중엔 숨겨져 있다가 슬라이더 UI와 함께 나타나는 햄버거 버튼
-   (portfolio.html에서만 로드되는 이 CSS 파일 안에서만 적용된다) ---------- */
-.ham span{
+/* ---------- 로딩 중엔 숨겨져 있다가 슬라이더 UI와 함께 내려오는 사원증 메뉴
+   (portfolio.html에서만 로드되는 이 CSS 파일 안에서만 적용된다. 나타나는 동작은 portfolio.js)
+   안전장치: 스크립트가 멈춰도 8초 뒤에는 보이게 한다 ---------- */
+.id-badge{
     opacity:0;
-    transition:opacity .4s;
+    animation:idBadgeFailsafe 0s linear 8s forwards;
 }
-/* menu.css의 .ham span{background:#111111}과 상세도(클래스+태그)가 같아서,
-   로드 순서상 나중에 오는 menu.css가 이겨버린다. 클래스를 중복 지정해
-   상세도를 올려서(0,2,1) 로드 순서와 무관하게 이기게 한다. menu.css의
-   .ham.active span{background-color:#111111 !important}는 그대로 둬서
-   사이트맵 메뉴가 열렸을 때는 기존대로 어두운 색을 유지한다. */
-.ham.ham span{
-    background-color:#ffffff;
-}
+@keyframes idBadgeFailsafe{ to{ opacity:1; } }
 
 @media screen and (max-width:767px){
     .wr-slider-overlay{ padding:1em; }
