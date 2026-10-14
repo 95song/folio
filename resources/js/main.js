@@ -2,7 +2,7 @@
    main.js — index.html(메인) 전용 스크립트
    히어로 문구 효과: 위·아래 큰 제목 스크램블(TextScramble), 가운데 문구 타이핑
    ===================================================================== */
-
+ 
 class TextScramble {
   constructor(el) {
     this.el = el;
@@ -11,11 +11,11 @@ class TextScramble {
     this.queue = [];
     this.update = this.update.bind(this);
   }
-
+ 
   setText(newText) {
     const oldText = this.el.textContent;
     const length = Math.max(oldText.length, newText.length);
-
+ 
     this.queue = [];
     for (let i = 0; i < length; i++) {
       const from = oldText[i] || "";
@@ -24,19 +24,19 @@ class TextScramble {
       const end = start + Math.floor(Math.random() * 20) + 10;
       this.queue.push({ from, to, start, end, char: "" });
     }
-
+ 
     cancelAnimationFrame(this.frameRequest);
     this.frame = 0;
     this.update();
   }
-
+ 
   update() {
     let output = "";
     let complete = 0;
-
+ 
     for (let i = 0; i < this.queue.length; i++) {
       const item = this.queue[i];
-
+ 
       if (this.frame >= item.end) {
         complete++;
         output += item.to;
@@ -49,36 +49,36 @@ class TextScramble {
         output += item.from;
       }
     }
-
+ 
     this.el.innerHTML = output;
-
+ 
     if (complete < this.queue.length) {
       this.frame++;
       this.frameRequest = requestAnimationFrame(this.update);
     }
   }
-
+ 
   randomChar() {
     return this.chars[Math.floor(Math.random() * this.chars.length)];
   }
 }
-
+ 
 function typeWriter(el, speed = 90, lineDelay = 400, startDelay = 0) {
   const lines = el.innerHTML.split(/<br\s*\/?>/i).map((s) => s.trim());
   let lineIndex = 0;
   let charIndex = 0;
-
+ 
   function step() {
     if (lineIndex >= lines.length) {
       el.innerHTML = lines.join("<br>") + '<span class="typing_cursor"></span>';
       return;
     }
-
+ 
     const currentLine = lines[lineIndex];
     const doneLines = lines.slice(0, lineIndex).join("<br>");
     const partial = currentLine.slice(0, charIndex);
     el.innerHTML = (doneLines ? doneLines + "<br>" : "") + partial + '<span class="typing_cursor"></span>';
-
+ 
     if (charIndex < currentLine.length) {
       charIndex++;
       setTimeout(step, speed);
@@ -88,53 +88,53 @@ function typeWriter(el, speed = 90, lineDelay = 400, startDelay = 0) {
       setTimeout(step, lineDelay);
     }
   }
-
+ 
   el.innerHTML = "";
   setTimeout(step, startDelay);
 }
-
+ 
 // 히어로 문구 효과 시작 (로딩이 열리기 시작할 때 호출)
 const NOTE_DELAY = 1300;   // "밥은 먹고 살아야지"가 나타나기까지의 시간(ms) — 가운데 문구는 600ms 에 시작
-
+ 
 function startHeroCopy() {
   const midTarget = document.querySelector(".hero_copy_mid");
   if (midTarget) {
     typeWriter(midTarget, 90, 400, 600);
   }
-
+ 
   // "밥은 먹고 살아야지" + 지시선: 가운데 문구 타이핑(0.6초 뒤 시작)보다 조금 늦게 등장
   const noteStage = document.querySelector(".hero_stage");
   if (noteStage) setTimeout(() => noteStage.classList.add("is-in"), NOTE_DELAY);
-
+ 
   const topTarget = document.querySelector(".hero_copy_top");
   if (topTarget) {
     const topPhrases = ["확실한 휴식", "확실한 보상", "확실한 당분"];
     const topFx = new TextScramble(topTarget);
     let topIndex = 0;
-
+ 
     topFx.setText(topPhrases[topIndex]);
-
+ 
     setInterval(() => {
       topIndex = (topIndex + 1) % topPhrases.length;
       topFx.setText(topPhrases[topIndex]);
     }, 2800);
   }
-
+ 
   const bottomTarget = document.querySelector(".hero_copy_bottom");
   if (bottomTarget) {
     const phrases = ["확실한 일꾼", "확실한 성과", "확실한 창의력"];
     const fx = new TextScramble(bottomTarget);
     let index = 0;
-
+ 
     fx.setText(phrases[index]);
-
+ 
     setInterval(() => {
       index = (index + 1) % phrases.length;
       fx.setText(phrases[index]);
     }, 2800);
   }
 }
-
+ 
 /* =====================================================================
    로딩: 도트 햄스터의 출근길
    햄스터가 왼쪽에서 걸어와 오른쪽 회사 문으로 들어간다 (걸어간 만큼 = 진행률)
@@ -149,7 +149,7 @@ const LOADER = {
   pixel: 5,          // 도트 한 칸의 화면 크기(px). 좁은 화면(700px 미만)에서는 pixelSmall
   pixelSmall: 4,
 };
-
+ 
 /* 도트 그림 (# 검정 · g 회색 · o 흰색 · . 투명) */
 const PIXEL = {
   ink: "#111111", gray: "#b6b6b6", white: "#ffffff",
@@ -191,7 +191,7 @@ const PIXEL = {
     0: ["###", "#.#", "#.#", "#.#", "###"],
   },
 };
-
+ 
 document.addEventListener("DOMContentLoaded", () => {
   const loader = document.getElementById("mainLoader");
   const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -200,7 +200,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startHeroCopy();
     return;
   }
-
+ 
   const video = document.querySelector(".hero_bg_video");
   const scene = document.getElementById("mainLoaderScene");
   const canvas = document.getElementById("mainLoaderCanvas");
@@ -211,7 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const minEl = document.getElementById("mainLoaderMin");
   const msgEl = document.getElementById("mainLoaderMsg");
   const videoReady = () => !video || video.readyState >= 3;
-
+ 
   /* ---------- 장면 좌표 (칸 단위) — 화면 폭에 맞춰 칸 수를 정한다 ---------- */
   const H = canvas.height;                     // 58칸
   const G = 48;                                // 바닥(길) y
@@ -229,14 +229,14 @@ document.addEventListener("DOMContentLoaded", () => {
   layout();
   addEventListener("resize", layout);
   const at = f => Math.round(START_X + (BLD_X - START_X) * f);           // 길 위의 비율 → 칸
-
+ 
   const px = (x, y, w = 1, h = 1, c = PIXEL.ink) => { ctx.fillStyle = c; ctx.fillRect(x, y, w, h); };
   const sprite = (rows, x, y, map) => rows.forEach((row, ry) => [...row].forEach((ch, rx) => {
     const c = map ? map[ch] : (ch === "#" ? PIXEL.ink : ch === "g" ? PIXEL.gray : ch === "o" ? PIXEL.white : null);
     if (c) px(x + rx, y + ry, 1, 1, c);
   }));
   const box = (x, y, w, h, fill) => { px(x, y, w, h); px(x + 1, y + 1, w - 2, h - 2, fill || PIXEL.white); };
-
+ 
   function drawBackdrop(t, hamCenter) {
     // 구름: 천천히 왼쪽으로 흘러감
     [[.12, 4, .0035], [.4, 9, .0022], [.66, 3, .003], [.9, 7, .0026]].forEach(([f, by, sp]) => {
@@ -270,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const tone = { "#": signColor };
     sprite(PIXEL.font[5], STOP_X - 3, 25, tone); sprite(PIXEL.font[0], STOP_X + 1, 25, tone);
   }
-
+ 
   function drawBuilding() {
     box(BLD_X, BLD_Y, BLD_W, G - BLD_Y + 2);              // 건물 몸체
     px(BLD_X - 2, BLD_Y - 2, BLD_W + 4, 2);                // 지붕
@@ -279,19 +279,19 @@ document.addEventListener("DOMContentLoaded", () => {
     px(DOOR_X - 1, DOOR_Y - 1, DOOR_W + 2, G - DOOR_Y + 1);                            // 열린 문(검은 입구)
     px(DOOR_X, DOOR_Y, DOOR_W, G - DOOR_Y, "#2a2a2a");
   }
-
+ 
   function drawHamster(x, frame) {
     const y = G - HAM_H + (frame ? 0 : 1) - 1;            // 걸을 때 한 칸씩 통통
     sprite(PIXEL.hamster, x, y);
     sprite(PIXEL.feet[frame], x, y + PIXEL.hamster.length);
     return y;
   }
-
+ 
   function drawSweat(x, y, t) {                            // 기다리는 동안 머리 뒤로 땀방울
     const k = Math.floor(t / 260) % 2;
     px(x + 8, y - 2 - k, 1, 2, PIXEL.gray); px(x + 5, y + 1 - k, 1, 2, PIXEL.gray);
   }
-
+ 
   function drawDoor(k) {                                   // k: 0(열림) → 1(닫힘), 오른쪽에서 왼쪽으로 닫힘
     const w = Math.round(DOOR_W * k);
     if (w <= 0) return;
@@ -300,15 +300,17 @@ document.addEventListener("DOMContentLoaded", () => {
     px(x, DOOR_Y, 1, G - DOOR_Y);
     if (w > 6) px(x + 3, DOOR_Y + 9, 2, 2);                // 손잡이
   }
-
+ 
   /* ---------- 진행 ---------- */
   const t0 = performance.now();
   let shown = 0, phase = "walk", phaseAt = 0, done = false, waiting = false;
-
+ 
   function render(now) {
     if (done) return;
-    const elapsed = now - t0;
-
+    // requestAnimationFrame 의 시각(now)은 t0 보다 조금 이를 수 있다(새로고침 직후 자주 발생).
+    // 음수가 되면 아래 걸음 컷 계산이 -1 이 되어 그리기 오류 → 로딩이 바로 끝나 버리므로 0 아래로 내려가지 않게 막는다.
+    const elapsed = Math.max(0, now - t0);
+ 
     if (phase === "walk") {
       const ready = videoReady() || elapsed > LOADER.maxWait;
       shown = Math.min(ready ? 100 : 90, elapsed / LOADER.minTime * 100);   // 경과 시간 기준
@@ -325,18 +327,18 @@ document.addEventListener("DOMContentLoaded", () => {
       phase = "exit";
       finish();
     }
-
+ 
     const p = shown / 100;
     const hx = Math.round(START_X + (END_X - START_X) * p);
     const frame = phase === "walk" && !waiting ? Math.floor(elapsed / LOADER.walkStep) % 2 : 1;
-
+ 
     ctx.clearRect(0, 0, W, H);
     drawBackdrop(elapsed, hx + HAM_W / 2);
     drawBuilding();
     const hy = drawHamster(hx, frame);
     if (waiting) drawSweat(hx, hy, elapsed);
     if (phase === "close" || phase === "exit") drawDoor(Math.min(1, Math.ceil((now - phaseAt) / LOADER.doorClose * 5) / 5));
-
+ 
     // 말풍선(퍼센트) · 가운데 시계
     bubble.style.left = ((hx + HAM_W / 2) * P).toFixed(1) + "px";
     bubble.style.top = (hy * P).toFixed(1) + "px";
@@ -346,7 +348,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (min >= 60) { minEl.previousElementSibling.previousElementSibling.textContent = "09"; minEl.textContent = "00"; }
     else minEl.textContent = String(min);
   }
-
+ 
   // 로딩 끝: 화면을 걷고 본문 시작 (한 번만 실행)
   function finish() {
     if (done) return;
@@ -357,7 +359,7 @@ document.addEventListener("DOMContentLoaded", () => {
     startHeroCopy();                                       // 화면이 걷히기 시작할 때 문구 효과 시작
     setTimeout(() => loader.remove(), LOADER.exit + 60);
   }
-
+ 
   /* ---------- 구동 ----------
      requestAnimationFrame 은 화면이 가려지거나 백그라운드일 때 브라우저가 아예 실행하지 않는다
      (그 상태로 새로고침되면 0%에서 멈춰 보임). 그래서 타이머로도 함께 돌린다.
