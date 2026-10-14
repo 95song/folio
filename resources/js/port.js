@@ -322,6 +322,52 @@ window.PROJECTS = [
 })();
 
 // =================================================================
+// 하단 퀵 내비게이션 가운데 버튼 → 사이트 메뉴(Home · About · Portfolio) 열고 닫기.
+// 독 자체는 그대로 두고 버튼 위로 메뉴만 올라온다 (스타일은 port-1.css 의 .qn-menu).
+// 메뉴(#qnMenu)는 .quick-nav 의 유리 효과와 겹치지 않도록 바깥에 있으므로,
+// 열 때마다 가로 위치를 가운데 버튼 중심에 맞춘다. 바깥 클릭 · Esc · 메뉴 선택 시 닫힌다.
+// =================================================================
+(function () {
+  'use strict';
+  function init() {
+    var nav = document.getElementById('quickNav');
+    var menu = document.getElementById('qnMenu');
+    var btn = nav && nav.querySelector('.quick-nav-center');
+    if (!btn || !menu) return;
+    var links = Array.prototype.slice.call(menu.querySelectorAll('a'));
+    var isOpen = function () { return menu.classList.contains('is-open'); };
+
+    function place() {
+      var r = btn.getBoundingClientRect();
+      menu.style.setProperty('--qn-x', (r.left + r.width / 2) + 'px');
+    }
+    function set(open) {
+      if (open) place();
+      nav.classList.toggle('qn-open', open);
+      menu.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      btn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
+      links.forEach(function (l) { open ? l.removeAttribute('tabindex') : l.setAttribute('tabindex', '-1'); });
+    }
+    btn.addEventListener('click', function (e) {
+      e.stopPropagation();
+      set(!isOpen());
+      if (isOpen() && e.detail === 0 && links[0]) links[0].focus();   // 키보드로 열었을 때만 첫 메뉴로 포커스
+    });
+    document.addEventListener('click', function (e) {
+      if (isOpen() && !nav.contains(e.target) && !menu.contains(e.target)) set(false);
+    });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && isOpen()) { set(false); btn.focus(); } });
+    window.addEventListener('resize', function () { if (isOpen()) place(); });
+    links.forEach(function (l) { l.addEventListener('click', function () { set(false); }); });
+    // 뒤로 가기로 돌아왔을 때(bfcache) 열린 채로 남지 않게
+    window.addEventListener('pageshow', function (e) { if (e.persisted) set(false); });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
+  else init();
+})();
+
+// =================================================================
 // #outro(Ctrl+S 클로징 화면)의 "커튼 공개(reveal footer)" 처리.
 // #outro는 CSS에서 이미 position:fixed로 화면 하단에 고정돼 있고,
 // 앞의 .page-content가 그 위를 덮고 있다가 스크롤이 .outro-spacer까지

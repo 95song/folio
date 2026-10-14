@@ -120,7 +120,7 @@
         ];
         $('#typeScale').innerHTML = TYPE.map(([v, w, s, u], i) => `<div class="tg-type-row rv" style="--d:${i % 4}"><span class="tok tg-mono">${v}</span><span class="px tg-mono">${tok(v)} · ${w}</span><span class="sample" style="font-size:${tok(v)};font-weight:${w}">${s}</span><span class="use">${u}</span></div>`).join('');
 
-        const RAD = [['--br-4', '작은 칩'], ['--br-5', '모든 입력칸'], ['--br-8', '사각 · 라인 버튼'], ['--br-10', '팝업 · 캘린더'], ['--br-12', '정보 카드'], ['--br-15', '패널 · 시트'], ['--br-30', '위치 칩'], ['--br-full', '버튼 · 메시지 알약']];
+        const RAD = [['--br-5', '입력칸 · 사각 버튼'], ['--br-15', '패널 · 카드 · 팝업'], ['--br-30', '위치 칩'], ['--br-full', '버튼 · 메시지 알약']];
         $('#radius').innerHTML = RAD.map(([v, u], i) => `<div class="tg-rad rv" style="--d:${i % 4};--r:${tok(v) === '100px' ? '64px' : tok(v)}"><i></i><b class="tg-mono">${tok(v)}</b><small>${v}<br />${u}</small></div>`).join('');
         const SH = [['--shadow-tab', 'Tab', '탭바 윗선'], ['--shadow-float', 'Float', '지도 위 버튼'], ['--shadow-pop', 'Pop', '팝업 · 캘린더']];
         $('#shadows').innerHTML = SH.map(([v, n, u], i) => `<div class="tg-shadow rv" style="--d:${i};--v:${tok(v)}"><i></i><b>${n}</b><small>${v} · ${u}</small></div>`).join('');
