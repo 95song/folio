@@ -173,7 +173,7 @@
             '<div class="ib-paper">' +
               '<div class="ib-band"><span class="ib-logo">E</span><div><strong>EUNSUN OFFICE</strong><small>DESIGN · PUBLISHING TEAM</small></div></div>' +
               '<div class="ib-body"><div class="ib-photo">' + badgeFaceSvg() + '</div>' +
-                '<div class="ib-who"><strong>송은선</strong><span class="ib-en">SONG EUNSUN</span><span class="ib-role">Web Designer<br>Publisher</span><span class="ib-no">ID <b>EO-2021-0750</b></span></div></div>' +
+                '<div class="ib-who"><strong>송은선</strong><span class="ib-en">SONG EUNSUN</span><span class="ib-role">UX · UI<br>Designer</span><span class="ib-no">ID <b>EO-2021-0750</b></span></div></div>' +
               '<p class="ib-acc"><span>ACCESS · 출입 권한</span><span>MENU</span></p>' +
               '<ul>' + BADGE_MENU.map(function (m) {
                 // 상세 페이지(port-*.html)에선 PORTFOLIO 램프만 켜고, 누르면 목록으로 이동한다
@@ -190,11 +190,16 @@
     var probe = document.createElement('i');
     probe.className = 'id-badge-probe';
     probe.setAttribute('aria-hidden', 'true');
+    // 로딩 화면이 있는 페이지(index · portfolio)는 로딩이 끝날 때까지 숨겨 뒀다가 위에서 떨어뜨린다.
+    // 페이지 스크립트가 로딩을 마치면 'page:ready' 이벤트를 보낸다 (main.js · portfolio.js).
+    var waitForPage = !window.__pageReady && !!document.querySelector('#mainLoader, #wrLoader');
+    if (waitForPage) badge.classList.add('is-wait');
     document.body.appendChild(dim);
     document.body.appendChild(probe);
     document.body.appendChild(badge);
 
     var swing = badge.querySelector('.ib-swing');
+    var strap = badge.querySelector('.ib-strap');
     var card = badge.querySelector('.ib-bcard');
     var links = Array.prototype.slice.call(badge.querySelectorAll('li a'));
     var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -215,7 +220,30 @@
     }
 
     // 닫힐 때 한 번 출렁이는 동작(close)만 있고, 닫혀 있는 동안에는 흔들리지 않는다
-    function stopAll() { swing.getAnimations().forEach(function (a) { a.cancel(); }); }
+    function stopAll() {
+      swing.getAnimations().forEach(function (a) { a.cancel(); });
+      strap.getAnimations().forEach(function (a) { a.cancel(); });
+    }
+
+    // 등장: 실제로 보이는 높이(줄 + 카드)만큼 위에서 떨어져, 줄 끝에서 줄이 살짝 늘었다 줄며 튕기고
+    // 좌우로 몇 번 흔들리다 멈춘다. 줄 윗부분은 언제나 화면 위쪽에 붙어 있다(아래로 넘어가 떨어져 보이지 않게).
+    function enter() {
+      if (!badge.classList.contains('is-wait')) return;
+      var drop = Math.ceil(card.getBoundingClientRect().bottom) + 16;   // 숨김 상태에서도 자리는 그대로라 실제 높이를 잴 수 있다
+      badge.classList.remove('is-wait');
+      if (!canAnimate) return;
+      stopAll();
+      var fall = swing.animate([{ transform: 'translateY(' + -drop + 'px)' }, { transform: 'translateY(0)' }],
+        { duration: 560, easing: 'cubic-bezier(.5,0,.75,.4)' });            // 떨어질수록 빨라짐
+      fall.onfinish = function () {
+        if (isOpen()) return;
+        var h = parseFloat(getComputedStyle(strap).height) || 30;
+        strap.animate([{ height: h + 'px' }, { height: h + 9 + 'px', offset: .22 }, { height: h - 3 + 'px', offset: .5 }, { height: h + 2 + 'px', offset: .74 }, { height: h + 'px' }],
+          { duration: 760, easing: 'ease-out' });                           // 줄이 늘었다 줄며 튕김
+        swing.animate([{ transform: 'rotate(0deg)' }, { transform: 'rotate(4deg)', offset: .25 }, { transform: 'rotate(-2.6deg)', offset: .55 }, { transform: 'rotate(1deg)', offset: .8 }, { transform: 'rotate(0deg)' }],
+          { duration: 1500, easing: 'ease-in-out' });                       // 좌우 흔들림
+      };
+    }
 
     function notify(open) {
       document.dispatchEvent(new CustomEvent('sitemap:toggle', { detail: { open: open } }));
@@ -267,6 +295,10 @@
       });
     });
     // 뒤로 가기로 돌아왔을 때(bfcache) 열린 채로 남아 있지 않게
+    if (waitForPage) {
+      document.addEventListener('page:ready', function () { setTimeout(enter, 80); }, { once: true });
+      setTimeout(enter, 16000);   // 안전장치: 페이지 스크립트가 멈춰도 로딩 화면 안전장치(15초) 뒤에는 나타난다
+    }
     window.addEventListener('pageshow', function (e) {
       if (!e.persisted) return;
       close();
